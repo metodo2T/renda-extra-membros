@@ -155,8 +155,7 @@ export function ModelsTab({ category = 'Todos', title, subtitle }: Props) {
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <img src={model.image} className="absolute inset-0 w-full h-full object-cover opacity-40 blur-xl scale-110 group-hover:scale-125 transition duration-500" loading="lazy" />
-                  <img src={model.image} alt={model.name} className="relative z-10 w-full h-full object-contain group-hover:scale-105 transition duration-500" loading="lazy" />
+                  <img src={model.image} alt={model.name} className="relative z-10 w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
                 </div>
               )}
               {model.indicatedFor && (

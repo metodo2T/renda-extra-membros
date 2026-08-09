@@ -229,12 +229,11 @@ export function PromptLibraryTab() {
                 onClick={() => setSelectedPrompt(prompt)}
               >
                 <div className="relative aspect-[2/3] w-full overflow-hidden bg-[#111] flex items-center justify-center">
-                  <img src={prompt.imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-40 blur-xl scale-110 group-hover:scale-125 transition duration-700" loading="lazy" />
                   <img 
                     src={prompt.imageUrl} 
                     alt={prompt.title}
                     loading="lazy"
-                    className="relative z-10 w-full h-full object-contain group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100"
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply pointer-events-none"></div>
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
