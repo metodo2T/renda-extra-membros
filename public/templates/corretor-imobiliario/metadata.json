@@ -1,0 +1,8 @@
+{
+  "name": "Remix Marcus Vance - Consultoria Imobiliária",
+  "description": "Consultoria imobiliária de alto padrão. Atendimento exclusivo, assessoria jurídica e imóveis selecionados com segurança e sofisticação.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

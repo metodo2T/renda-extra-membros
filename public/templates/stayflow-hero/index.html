@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>StayFlow | Hero</title>
+  <meta name="description" content="Hero section com vídeo em tela cheia para página de vendas." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    history.replaceState(null, '', '/');
+    try {
+      let _fetch = window.fetch;
+      Object.defineProperty(window, 'fetch', {
+        configurable: true,
+        enumerable: true,
+        get() { return _fetch; },
+        set(v) { _fetch = v; }
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=Inter+Tight:wght@300;400;500&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       GLOBAL TOKENS & RESET
+       ========================================================================== */
+    :root {
+      --color-primary: #5bc401;
+      --color-primary-hover: #65da00;
+      --color-secondary: #123429;
+      --color-secondary-hover: #184537;
+      --color-accent: #9de3bc;
+      --color-accent-strong: #65da00;
+      --color-glow-soft: rgba(91, 196, 1, 0.16);
+      --color-glow-faint: rgba(157, 227, 188, 0.08);
+      --color-text: #f7faf7;
+      --color-text-soft: rgba(247, 250, 247, 0.76);
+      --color-surface: rgba(16, 45, 35, 0.42);
+      --color-surface-border: rgba(157, 227, 188, 0.35);
+      --color-light-button-text: #171717;
+      --color-light-button-bg: rgba(255, 255, 255, 0.96);
+      --color-light-button-border: rgba(212, 212, 212, 0.78);
+      --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.24);
+      --shadow-button: 0 12px 32px rgba(18, 52, 41, 0.28);
+      --font-ui: "Manrope", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-tight: "Inter Tight", sans-serif;
+      --font-button: "Cabin", sans-serif;
+      --font-display: "Instrument Serif", Georgia, serif;
+      --method-visual-progress: 0;
+      --card-progress: 0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      font-size: 62.5%; /* 1rem = 10px */
+      scroll-behavior: smooth;
+      background-color: #050b00;
+      color: var(--color-text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    @media (max-width: 834px) {
+      html {
+        font-size: 56.25%; /* 1rem = 9px */
+      }
+    }
+
+    body {
+      min-height: 100%;
+      background-color: #050b00;
+      color: var(--color-text);
+      overflow-x: hidden;
+      font-family: var(--font-body);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Word Reveal helper classes */
+    .word-span {
+      display: inline-block;
+      opacity: 0.08;
+      transform: translateY(0.6rem);
+      filter: blur(0.3rem);
+      transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+      white-space: pre;
+    }
+
+    .word-span.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Eyebrow Label */
+    .eyebrow {
+      color: var(--color-accent-strong);
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Bracket Eyebrow for Services */
+    .eyebrow-brackets {
+      font-family: var(--font-tight);
+      font-size: 1.2rem;
+      color: var(--color-accent-strong);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .eyebrow-brackets::before {
+      content: "[ ";
+      color: #ffffff;
+      margin-right: 0.4rem;
+    }
+    .eyebrow-brackets::after {
+      content: " ]";
+      color: #ffffff;
+      margin-left: 0.4rem;
+    }
+
+    /* ==========================================================================
+       BUTTONS
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary.btn-large {
+      min-height: 5.8rem;
+      padding: 0 2.8rem;
+      border-radius: 1.2rem;
+      background: var(--color-primary);
+      color: #fafafa;
+      font-family: var(--font-button);
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1;
+      box-shadow: var(--shadow-button);
+      border: none;
+    }
+
+    .btn-primary.btn-large:hover {
+      transform: translateY(-1px);
+      background: var(--color-primary-hover);
+      box-shadow: 0 16px 40px rgba(101, 218, 0, 0.35);
+    }
+
+    .btn-pill {
+      min-height: 5.8rem;
+      padding: 0 3rem;
+      border-radius: 999px;
+      background: var(--color-primary);
+      color: #fafafa;
+      font-family: var(--font-ui);
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1;
+      border: none;
+      box-shadow: var(--shadow-button);
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-1px);
+      background: var(--color-primary-hover);
+      box-shadow: 0 16px 40px rgba(101, 218, 0, 0.35);
+    }
+
+    /* ==========================================================================
+       SECTION 1: FULL-SCREEN VIDEO HERO
+       ========================================================================== */
+    .page-shell {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .page-shell::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 14rem;
+      background: linear-gradient(to bottom, transparent 0%, #050b00 100%),
+                  radial-gradient(ellipse at 50% 100%, rgba(91, 196, 1, 0.12) 0%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.4rem;
+      width: 100%;
+      padding: 1.6rem 2.4rem;
+      min-height: 2.4rem;
+    }
+
+    @media (min-width: 768px) {
+      .navbar {
+        padding-inline: 4.8rem;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .navbar {
+        padding-inline: 12rem;
+      }
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: calc(100vh - 8rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4.8rem 2.4rem;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 108rem;
+      margin-top: -3.2rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        margin-top: -4.8rem;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .hero-content {
+        margin-top: -6.4rem;
+      }
+    }
+
+    .hero-heading {
+      margin: 2.4rem 0 2rem;
+      max-width: 98rem;
+      font-family: var(--font-display);
+      font-size: clamp(5.2rem, 10vw, 9.6rem);
+      line-height: 1.04;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      text-shadow: 0 0.8rem 3rem rgba(0, 0, 0, 0.24);
+      color: #f7faf7;
+      text-wrap: balance;
+    }
+
+    .headline-and {
+      display: inline-block;
+      margin: 0 0.12em;
+      font-style: italic;
+      color: var(--color-accent-strong);
+    }
+
+    .hero-paragraph {
+      max-width: 66.2rem;
+      margin: 0;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1.8rem;
+      line-height: 1.7;
+      color: var(--color-text-soft);
+      text-shadow: 0 0.6rem 2.4rem rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-cta-wrap {
+      width: min(100%, 42rem);
+      margin-top: 3.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-cta-wrap {
+        width: auto;
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 834px) {
+      .hero {
+        align-items: flex-start;
+        padding: 7.2rem 1.6rem 4.8rem;
+      }
+      .hero-content {
+        margin-top: 0;
+      }
+      .hero-heading {
+        margin-top: 0;
+      }
+      .hero-cta-wrap {
+        margin-top: 2.8rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 2: PAIN POINTS
+       ========================================================================== */
+    .pain-points {
+      position: relative;
+      overflow: clip;
+      padding: 9.6rem 10% 8.4rem;
+      background: #050b00;
+    }
+
+    .pain-points::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10rem;
+      background: linear-gradient(to bottom, #050b00 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .pain-points__glow {
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      width: 50rem;
+      height: 50rem;
+      background: radial-gradient(circle, rgba(91, 196, 1, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pain-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(28rem, 0.9fr);
+      gap: 5.6rem;
+      align-items: end;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pain-title {
+      max-width: 62rem;
+      font-family: var(--font-display);
+      font-size: clamp(4.4rem, 5vw, 6.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: #f7faf7;
+      margin-top: 1.6rem;
+    }
+
+    .pain-title em {
+      font-style: italic;
+      color: var(--color-accent-strong);
+    }
+
+    .pain-copy {
+      max-width: 44rem;
+      font-family: var(--font-body);
+      font-size: 1.6rem;
+      line-height: 1.65;
+      color: var(--color-text-soft);
+      font-weight: 400;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.8rem;
+      margin-top: 5.6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pain-card {
+      position: relative;
+      padding-top: 2.4rem;
+      opacity: 0;
+      transform: translateY(2.4rem);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .pain-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pain-card__line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(91, 196, 1, 0.92), rgba(157, 227, 188, 0.34));
+    }
+
+    .pain-card__index {
+      font-family: var(--font-display);
+      font-size: clamp(3.6rem, 4vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--color-accent-strong);
+      margin-bottom: 1.8rem;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.8s ease;
+    }
+
+    .pain-card.is-visible .pain-card__index {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .pain-card__title {
+      font-family: var(--font-tight);
+      font-size: 2.2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: #f7faf7;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .pain-card__text {
+      font-family: var(--font-body);
+      font-size: 1.45rem;
+      line-height: 1.6;
+      color: var(--color-text-soft);
+    }
+
+    @media (max-width: 834px) {
+      .pain-points {
+        padding: 6.4rem 1.6rem 5.6rem;
+      }
+      .pain-intro {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+      }
+      .pain-grid {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+        margin-top: 4rem;
+      }
+      .pain-card {
+        border-top: 1px solid rgba(91, 196, 1, 0.6);
+        padding-top: 2rem;
+      }
+      .pain-card__line {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 3: SERVICES SHOWCASE
+       ========================================================================== */
+    .services-showcase {
+      position: relative;
+      z-index: 3;
+      padding: 10rem 10%;
+      background: #050b00;
+      overflow-x: clip;
+    }
+
+    .services-glow {
+      position: absolute;
+      top: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80rem;
+      height: 40rem;
+      background: radial-gradient(ellipse at center, rgba(91, 196, 1, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .services-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-title {
+      max-width: 88rem;
+      font-family: var(--font-display);
+      font-size: clamp(4.4rem, 4.8vw, 6rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #f7faf7;
+      text-wrap: balance;
+    }
+
+    .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3.2rem;
+      margin-top: 4.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-panel {
+      width: calc((100% - 6.4rem) / 3);
+      max-width: 48rem;
+      aspect-ratio: 1 / 1;
+      padding: 3.2rem;
+      border-radius: 2.4rem;
+      border: 0.2rem solid rgba(128, 134, 153, 0.1);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(3.2rem);
+      transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.3s ease;
+    }
+
+    .service-panel.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover effect for non-featured panels */
+    .service-panel__hover {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle 180px at var(--hover-x, 50%) var(--hover-y, 50%), rgba(91, 196, 1, 0.18), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-panel:hover .service-panel__hover {
+      opacity: 1;
+    }
+
+    /* Featured second panel */
+    .service-panel--featured {
+      border-color: rgba(91, 196, 1, 0.35);
+      background: linear-gradient(160deg, rgba(16, 45, 35, 0.6) 0%, rgba(9, 26, 20, 0.8) 100%);
+    }
+
+    .service-panel--featured::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .service-panel__shell {
+      position: absolute;
+      inset: -2px;
+      border-radius: 2.6rem;
+      padding: 2px;
+      background: conic-gradient(from var(--shell-angle, 0deg), transparent 20%, #65da00 40%, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .service-panel__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-panel__index {
+      font-family: var(--font-tight);
+      font-size: 1.4rem;
+      color: var(--color-accent-strong);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+
+    .service-panel__seal {
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: 50%;
+      background: #5bc401;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .service-panel--featured .service-panel__seal {
+      background: #ffffff;
+    }
+
+    .service-panel__seal svg {
+      width: 1.8rem;
+      height: 1.8rem;
+      fill: none;
+      stroke: #050b00;
+      stroke-width: 2.2;
+    }
+
+    .service-panel--featured .service-panel__seal svg {
+      stroke: #123429;
+    }
+
+    .service-panel__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-panel__title {
+      font-family: var(--font-tight);
+      font-size: clamp(3.2rem, 2.9vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #d3d5e5;
+    }
+
+    .service-panel__text {
+      font-family: var(--font-tight);
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 2rem;
+      color: rgba(246, 246, 246, 0.8);
+    }
+
+    .services-cta-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 4.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 1260px) {
+      .service-panel {
+        gap: 1.6rem;
+        padding: 2.4rem;
+        aspect-ratio: 1 / 0.8;
+      }
+    }
+
+    @media (max-width: 1060px) {
+      .service-panel {
+        width: 100%;
+        max-width: 48rem;
+        max-height: 48rem;
+      }
+    }
+
+    @media (max-width: 834px) {
+      .services-showcase {
+        padding: 5.6rem 1.6rem;
+      }
+      .services-grid {
+        gap: 1.6rem;
+      }
+      .services-cta-wrap {
+        margin-top: 3.6rem;
+      }
+      .services-cta-wrap .btn-pill {
+        width: 100%;
+        max-width: 34rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 4: DIFFERENCE BLOCK
+       ========================================================================== */
+    .difference-block {
+      position: relative;
+      background: #050b00;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10rem 0 0;
+      overflow: clip;
+    }
+
+    .difference-block::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 14rem;
+      background: linear-gradient(to bottom, transparent 0%, #050b00 100%);
+      pointer-events: none;
+    }
+
+    .difference-glow {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70rem;
+      height: 40rem;
+      background: radial-gradient(ellipse at center, rgba(91, 196, 1, 0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .difference-hero {
+      padding: 0 10% 9.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .difference-title {
+      max-width: 52rem;
+      font-family: var(--font-display);
+      font-size: clamp(7rem, 10vw, 12rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      color: #f7faf7;
+    }
+
+    .difference-line {
+      display: block;
+      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+      transition: clip-path 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+    }
+
+    .difference-title.is-visible .difference-line:nth-child(1) {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+
+    .difference-title.is-visible .difference-line:nth-child(2) {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+      transition-delay: 0.16s;
+    }
+
+    .difference-footer {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+      z-index: 2;
+    }
+
+    .difference-note {
+      min-height: 18rem;
+      padding: 3.8rem 10%;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: var(--font-body);
+      font-size: 1.4rem;
+      color: var(--color-text-soft);
+    }
+
+    .difference-note__arrow {
+      color: var(--color-accent-strong);
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .difference-copy-wrap {
+      min-height: 18rem;
+      padding: 3.8rem 10%;
+    }
+
+    .difference-copy {
+      max-width: 71rem;
+      font-family: var(--font-body);
+      font-size: clamp(3rem, 3.4vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: #f7faf7;
+    }
+
+    @media (max-width: 834px) {
+      .difference-block {
+        padding-top: 6.4rem;
+      }
+      .difference-hero {
+        padding: 0 1.6rem 5.6rem;
+      }
+      .difference-footer {
+        grid-template-columns: 1fr;
+      }
+      .difference-note {
+        min-height: auto;
+        padding: 2.8rem 1.6rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        flex-direction: row;
+        align-items: center;
+      }
+      .difference-copy-wrap {
+        min-height: auto;
+        padding: 2.8rem 1.6rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 5: METHOD STEPS
+       ========================================================================== */
+    .method-steps {
+      position: relative;
+      padding: 9.6rem 10% 10.8rem;
+      background: #050b00;
+      overflow: clip;
+    }
+
+    .method-glow-left {
+      position: absolute;
+      top: 30%;
+      left: -10rem;
+      width: 50rem;
+      height: 50rem;
+      background: radial-gradient(circle, rgba(91, 196, 1, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .method-glow-right {
+      position: absolute;
+      bottom: 10%;
+      right: -10rem;
+      width: 50rem;
+      height: 50rem;
+      background: radial-gradient(circle, rgba(91, 196, 1, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .method-header {
+      text-align: center;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .method-title {
+      font-family: var(--font-display);
+      font-size: clamp(4.8rem, 6vw, 7.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: #f7faf7;
+      margin-top: 1.6rem;
+    }
+
+    .method-stage {
+      position: relative;
+      min-height: 78rem;
+      margin-top: 6.8rem;
+    }
+
+    @keyframes methodHandFloat {
+      0%, 100% {
+        transform: translate(-50%, -50%) translateY(0);
+      }
+      50% {
+        transform: translate(-50%, -50%) translateY(-1.4rem);
+      }
+    }
+
+    .method-steps__visual {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(32vw, 42rem);
+      transform: translate(-50%, -50%) scale(calc(0.92 + var(--method-visual-progress, 0) * 0.08));
+      opacity: var(--method-visual-progress, 0);
+      filter: blur(calc((1 - var(--method-visual-progress, 0)) * 1.2rem)) drop-shadow(0 0 35px rgba(91, 196, 1, 0.35));
+      animation: methodHandFloat 4.6s ease-in-out infinite;
+      z-index: 1;
+      pointer-events: none;
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .method-hand {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .method-card {
+      position: absolute;
+      width: min(31rem, 100%);
+      padding: 3rem 2.8rem;
+      border-radius: 2.4rem;
+      border: 0.1rem solid rgba(157, 227, 188, 0.14);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(1rem);
+      z-index: 2;
+      opacity: var(--card-progress, 1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .method-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 14px 14px;
+      border-radius: 2.4rem;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .method-card:hover {
+      border-color: rgba(91, 196, 1, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 20px rgba(91, 196, 1, 0.15);
+    }
+
+    .method-card--1 {
+      left: 3%;
+      top: 6%;
+    }
+
+    .method-card--2 {
+      right: 1%;
+      top: 24%;
+    }
+
+    .method-card--3 {
+      left: 10%;
+      bottom: 2%;
+    }
+
+    .method-card__index {
+      font-family: var(--font-tight);
+      font-size: 1.3rem;
+      color: var(--color-accent-strong);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.4rem;
+    }
+
+    .method-card__title {
+      font-family: var(--font-tight);
+      font-size: 2.4rem;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: #f7faf7;
+      margin-bottom: 1.2rem;
+    }
+
+    .method-card__text {
+      font-family: var(--font-body);
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: var(--color-text-soft);
+    }
+
+    @media (max-width: 834px) {
+      .method-steps {
+        padding: 6.4rem 1.6rem 7.2rem;
+      }
+      .method-title {
+        font-size: 4.4rem;
+      }
+      .method-stage {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+        margin-top: 4.8rem;
+      }
+      .method-steps__cards {
+        order: 1;
+        display: grid;
+        gap: 1.6rem;
+      }
+      .method-card {
+        position: relative;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100%;
+        padding: 2.4rem 2rem;
+      }
+      .method-steps__visual {
+        order: 2;
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: scale(calc(0.94 + var(--method-visual-progress, 0) * 0.06));
+        width: min(72vw, 28rem);
+        margin: 3.2rem auto 0;
+        animation: none;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 6: DELIVERABLES STICKY HORIZONTAL SECTION
+       ========================================================================== */
+    .deliverables-section {
+      position: relative;
+      min-height: 300vh;
+      background: #050b00;
+      overflow: clip;
+    }
+
+    .deliverables-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .deliverables-section__sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .deliverables-stage {
+      display: grid;
+      grid-template-columns: minmax(32rem, 45rem) 1fr;
+      gap: 3rem;
+      padding-left: 10%;
+      padding-right: 2.4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .deliverables-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 5.6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .deliverables-title {
+      font-family: var(--font-display);
+      font-size: clamp(4.4rem, 5vw, 6.4rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #f7faf7;
+      margin-top: 1.6rem;
+    }
+
+    .deliverables-hint {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+
+    .deliverables-hint__dots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+    }
+
+    .deliverables-hint__dots span {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--color-accent-strong);
+    }
+
+    .deliverables-hint__text {
+      font-family: var(--font-body);
+      font-size: 1.4rem;
+      line-height: 1.4;
+      color: #f7faf7;
+    }
+
+    .deliverables-hint__text em {
+      display: block;
+      font-style: italic;
+      color: var(--color-text-soft);
+    }
+
+    .deliverables-cards-viewport {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      cursor: grab;
+    }
+
+    .deliverables-cards-viewport:active {
+      cursor: grabbing;
+    }
+
+    .deliverables-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+      gap: 3rem;
+      will-change: transform;
+      transition: transform 0.05s linear;
+    }
+
+    .deliverable-card {
+      width: min(57.5rem, 40vw);
+      min-width: 57.5rem;
+      min-height: 38rem;
+      padding: 2.8rem;
+      border-radius: 2.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(160deg, rgba(13, 26, 18, 0.82), rgba(19, 26, 24, 0.62));
+      backdrop-filter: blur(1rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .deliverable-card__overlay {
+      position: absolute;
+      inset: 1.2rem;
+      border-radius: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: radial-gradient(circle at 80% 20%, rgba(91, 196, 1, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .deliverable-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .deliverable-card__index {
+      font-family: var(--font-ui);
+      font-size: 1.2rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: rgba(246, 246, 246, 0.4);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .deliverable-card__icon {
+      height: 4.8rem;
+    }
+
+    .deliverable-card__body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .deliverable-card__title {
+      font-family: var(--font-tight);
+      font-size: 3.2rem;
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: #f7faf7;
+    }
+
+    .deliverable-card__highlight {
+      font-family: var(--font-ui);
+      font-size: 1.45rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--color-accent-strong);
+    }
+
+    .deliverable-card__text {
+      font-family: var(--font-tight);
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(246, 246, 246, 0.8);
+      max-width: 46rem;
+    }
+
+    /* Desktop Pagination */
+    .deliverables-pagination {
+      position: absolute;
+      left: 50%;
+      bottom: 8vh;
+      transform: translateX(-50%);
+      background: rgba(13, 26, 18, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .deliverables-pagination button {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: width 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .deliverables-pagination button.is-active {
+      width: 2.8rem;
+      border-radius: 999px;
+      background: var(--color-accent-strong);
+      box-shadow: 0 0 10px rgba(101, 218, 0, 0.5);
+    }
+
+    @media (max-width: 1023px) {
+      .deliverables-stage {
+        display: flex;
+        flex-direction: column;
+        padding: 7.2rem 1.6rem 3.2rem;
+        gap: 2.4rem;
+      }
+      .deliverables-track {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1.6rem;
+      }
+      .deliverable-card {
+        width: calc(100vw - 3.2rem);
+        min-width: calc(100vw - 3.2rem);
+        min-height: 36rem;
+        padding: 2.4rem;
+      }
+      .deliverables-pagination {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 7: OFFER BLOCK
+       ========================================================================== */
+    .offer-block {
+      position: relative;
+      background-color: #050b00;
+      background-image: url("https://res.cloudinary.com/dalwymbky/image/upload/v1782324118/fundooferta_hqmgrb.png");
+      background-position: center top;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      padding: 8.8rem 1.6rem 9.2rem;
+      overflow: clip;
+    }
+
+    .offer-block::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 13rem;
+      background: linear-gradient(to bottom, #050b00 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .offer-block::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 13rem;
+      background: linear-gradient(to top, #050b00 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .offer-card {
+      max-width: 53rem;
+      margin: 0 auto;
+      padding: 3.2rem 2.6rem 3.4rem;
+      border-radius: 2.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(160deg, rgba(13, 22, 16, 0.82), rgba(17, 24, 20, 0.62));
+      backdrop-filter: blur(1rem);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .offer-title {
+      max-width: 44rem;
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 4vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: #f7faf7;
+    }
+
+    .offer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      text-align: left;
+      width: 100%;
+      max-width: 42rem;
+    }
+
+    .offer-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-body);
+      font-size: 1.45rem;
+      color: var(--color-text);
+    }
+
+    .offer-list li::before {
+      content: "";
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--color-accent-strong);
+      flex-shrink: 0;
+    }
+
+    .offer-pricing-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .offer-old-price {
+      font-family: var(--font-ui);
+      font-size: 1.55rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: rgba(247, 250, 247, 0.6);
+      text-decoration: line-through;
+    }
+
+    .offer-price-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .offer-price-label {
+      font-family: var(--font-ui);
+      font-size: 1.4rem;
+      color: var(--color-text-soft);
+    }
+
+    .offer-price-main {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .offer-price-prefix {
+      font-family: var(--font-ui);
+      font-size: clamp(1.35rem, 1.6vw, 1.65rem);
+      transform: translateY(-0.3rem);
+      color: var(--color-text);
+    }
+
+    .offer-price-val {
+      font-family: var(--font-tight);
+      font-size: clamp(3.6rem, 4vw, 4.8rem);
+      font-weight: 500;
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      color: #ffffff;
+    }
+
+    .offer-price-cash {
+      font-family: var(--font-ui);
+      font-size: 1.4rem;
+      color: var(--color-accent);
+      margin-top: 0.4rem;
+    }
+
+    .offer-cta {
+      width: 100%;
+      min-height: 5.4rem;
+      padding: 0 2.4rem;
+    }
+
+    @media (max-width: 834px) {
+      .offer-block {
+        padding: 6.8rem 1.6rem 7.4rem;
+        background-size: cover;
+      }
+      .offer-card {
+        max-width: 100%;
+        padding: 2.8rem 1.8rem 3rem;
+        border-radius: 2.2rem;
+      }
+      .offer-title {
+        font-size: 3.2rem;
+      }
+      .offer-list li {
+        font-size: 1.35rem;
+      }
+      .offer-price-val {
+        font-size: 3.1rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 8: GUARANTEE BLOCK
+       ========================================================================== */
+    .guarantee-block {
+      position: relative;
+      background: linear-gradient(180deg, #050b00 0%, #081105 100%);
+      padding: 7.2rem 1.6rem 8.8rem;
+      overflow: clip;
+    }
+
+    .guarantee-block::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 14rem;
+      background: linear-gradient(to bottom, #050b00 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .guarantee-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes guaranteeBadgeFloat {
+      0%, 100% {
+        transform: rotateX(0deg) rotateY(0deg) translateY(0);
+      }
+      50% {
+        transform: rotateX(8deg) rotateY(-8deg) translateY(-0.8rem);
+      }
+    }
+
+    .guarantee-badge {
+      width: 13.6rem;
+      height: 13.6rem;
+      margin-bottom: 2.4rem;
+      perspective: 120rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3.2rem;
+      background: linear-gradient(135deg, rgba(18, 52, 41, 0.9) 0%, rgba(9, 26, 20, 0.9) 100%);
+      border: 1px solid rgba(157, 227, 188, 0.35);
+      box-shadow: 0 12px 32px rgba(18, 52, 41, 0.35), inset 0 0 20px rgba(91, 196, 1, 0.2);
+      animation: guaranteeBadgeFloat 6s ease-in-out infinite;
+    }
+
+    .guarantee-badge__number {
+      font-family: var(--font-display);
+      font-size: 8rem;
+      color: var(--color-accent-strong);
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(101, 218, 0, 0.5);
+    }
+
+    .guarantee-title {
+      max-width: 58rem;
+      font-family: var(--font-display);
+      font-size: clamp(3.8rem, 4.4vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: #f7faf7;
+      margin-top: 1.2rem;
+    }
+
+    .guarantee-text {
+      max-width: 60rem;
+      margin-top: 2.2rem;
+      font-family: var(--font-body);
+      font-size: 1.65rem;
+      line-height: 1.7;
+      color: var(--color-text-soft);
+      font-weight: 400;
+    }
+
+    @media (max-width: 834px) {
+      .guarantee-block {
+        padding: 6.2rem 1.6rem 7.2rem;
+      }
+      .guarantee-badge {
+        width: 11.2rem;
+        height: 11.2rem;
+      }
+      .guarantee-badge__number {
+        font-size: 6.6rem;
+      }
+      .guarantee-title {
+        font-size: 3.4rem;
+      }
+      .guarantee-text {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 9: FAQ BLOCK
+       ========================================================================== */
+    .faq-block {
+      position: relative;
+      background: linear-gradient(180deg, #081105 0%, #050b00 100%);
+      padding: 7.2rem 1.6rem 9.6rem;
+      overflow: clip;
+    }
+
+    .faq-inner {
+      max-width: 78rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .faq-title {
+      font-family: var(--font-display);
+      font-size: clamp(4.4rem, 5vw, 6rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #f7faf7;
+      margin: 1.6rem 0 4.8rem;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .faq-item {
+      padding: 2.2rem 2.2rem 2.4rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(160deg, rgba(13, 22, 16, 0.72), rgba(17, 24, 20, 0.52));
+      backdrop-filter: blur(0.8rem);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .faq-item[open] {
+      border-color: rgba(91, 196, 1, 0.35);
+      background: linear-gradient(160deg, rgba(16, 35, 25, 0.85), rgba(13, 26, 20, 0.75));
+    }
+
+    .faq-item summary {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-tight);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #f7faf7;
+      user-select: none;
+      position: relative;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-family: var(--font-body);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--color-accent-strong);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .faq-answer {
+      margin-top: 1.4rem;
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      line-height: 1.6;
+      color: var(--color-text-soft);
+    }
+
+    @media (max-width: 834px) {
+      .faq-block {
+        padding: 6.2rem 1.6rem 8rem;
+      }
+      .faq-title {
+        font-size: 3.4rem;
+      }
+      .faq-item {
+        padding: 1.8rem 1.8rem 2rem;
+        border-radius: 1.8rem;
+      }
+      .faq-item summary {
+        font-size: 1.55rem;
+        padding-right: 2.6rem;
+      }
+      .faq-answer {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 10: FOOTER
+       ========================================================================== */
+    .site-footer {
+      background: #050b00;
+      padding: 2.4rem 1.6rem 3.2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .site-footer__text {
+      font-family: var(--font-ui);
+      font-size: 1.3rem;
+      line-height: 1.5;
+      color: rgba(246, 246, 246, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-shell">
+    <!-- 1. Video de fundo do hero -->
+    <video class="hero-video" autoplay loop muted playsinline aria-label="Vídeo de fundo do hero">
+      <source src="https://res.cloudinary.com/dalwymbky/video/upload/v1782324124/hero_u9l9cb.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Header Spacer -->
+    <header class="site-header">
+      <nav class="navbar" aria-label="Navegação principal"></nav>
+    </header>
+
+    <!-- SECTION 1: HERO -->
+    <main class="hero" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-heading">
+          Transforme conversas em vendas
+          <span class="headline-and">e</span>
+          feche com mais segurança
+        </h1>
+
+        <p class="hero-paragraph">
+          Domine um processo comercial claro para abordar melhor, conduzir com autoridade e aumentar seus fechamentos sem depender de improviso.
+        </p>
+
+        <div class="hero-cta-wrap">
+          <a href="#oferta" class="btn btn-primary btn-large" aria-label="Quero entrar agora">
+            Quero entrar agora
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- SECTION 2: PAIN POINTS -->
+  <section class="pain-points" id="dores" data-pain-section>
+    <div class="pain-points__glow"></div>
+    <div class="pain-intro">
+      <div>
+        <span class="eyebrow">por que as vendas travam</span>
+        <h2 class="pain-title" data-pain-title>
+          Seu resultado desacelera quando <em>a insegurança assume</em>
+        </h2>
+      </div>
+      <p class="pain-copy" data-pain-copy>
+        No comercial, clareza, ritmo e confiança definem a conversa desde o primeiro contato. Quando falta direção, o cliente perde interesse, a objeção cresce e a venda esfria.
+      </p>
+    </div>
+
+    <div class="pain-grid">
+      <!-- Card 1 -->
+      <article class="pain-card" data-pain-card>
+        <div class="pain-card__line"></div>
+        <div class="pain-card__index">[ 01 ]</div>
+        <h3 class="pain-card__title">Você trava logo no início da conversa</h3>
+        <p class="pain-card__text">
+          Sem uma abordagem clara, o prospect esfria rápido, compara alternativas e sai da conversa antes de avançar no processo.
+        </p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="pain-card" data-pain-card>
+        <div class="pain-card__line"></div>
+        <div class="pain-card__index">[ 02 ]</div>
+        <h3 class="pain-card__title">Seu discurso não sustenta valor</h3>
+        <p class="pain-card__text">
+          Quando a apresentação é genérica, o cliente não percebe diferença real e a negociação cai sempre para preço.
+        </p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="pain-card" data-pain-card>
+        <div class="pain-card__line"></div>
+        <div class="pain-card__index">[ 03 ]</div>
+        <h3 class="pain-card__title">As objeções quebram seu ritmo de fechamento</h3>
+        <p class="pain-card__text">
+          Sem preparo para contornar dúvidas e resistências, a conversa perde força, o timing passa e a decisão não acontece.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SERVICES SHOWCASE -->
+  <section class="services-showcase" id="treinamento" data-service-cards>
+    <div class="services-glow"></div>
+    <div class="services-header">
+      <span class="eyebrow-brackets">treinamento</span>
+      <h2 class="services-title">
+        Estrutura comercial prática pensada para vender mais
+      </h2>
+    </div>
+
+    <div class="services-grid">
+      <!-- Panel 1 -->
+      <article class="service-panel" data-reveal>
+        <div class="service-panel__hover"></div>
+        <div class="service-panel__top">
+          <span class="service-panel__index">[ 1.0 ]</span>
+          <div class="service-panel__seal">
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </div>
+        </div>
+        <div class="service-panel__bottom">
+          <h3 class="service-panel__title">Abordagem Comercial</h3>
+          <p class="service-panel__text">
+            Aprenda a iniciar conversas com mais segurança, gerar interesse rápido e conduzir o atendimento com direção desde o primeiro minuto.
+          </p>
+        </div>
+      </article>
+
+      <!-- Panel 2 (Featured with rotating glow shell) -->
+      <article class="service-panel service-panel--featured" data-reveal>
+        <div class="service-panel__shell"></div>
+        <div class="service-panel__top">
+          <span class="service-panel__index">[ 2.0 ]</span>
+          <div class="service-panel__seal">
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </div>
+        </div>
+        <div class="service-panel__bottom">
+          <h3 class="service-panel__title">Script de Conversão</h3>
+          <p class="service-panel__text">
+            Receba um roteiro aplicável para apresentar valor, organizar sua fala, reduzir travas e aumentar consistência nas reuniões e chamadas.
+          </p>
+        </div>
+      </article>
+
+      <!-- Panel 3 -->
+      <article class="service-panel" data-reveal>
+        <div class="service-panel__hover"></div>
+        <div class="service-panel__top">
+          <span class="service-panel__index">[ 3.0 ]</span>
+          <div class="service-panel__seal">
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </div>
+        </div>
+        <div class="service-panel__bottom">
+          <h3 class="service-panel__title">Processo de Follow-up</h3>
+          <p class="service-panel__text">
+            Estruture acompanhamentos com mais clareza para manter o lead ativo, reforçar percepção de valor e encurtar o tempo até o fechamento.
+          </p>
+        </div>
+      </article>
+
+      <!-- Panel 4 -->
+      <article class="service-panel" data-reveal>
+        <div class="service-panel__hover"></div>
+        <div class="service-panel__top">
+          <span class="service-panel__index">[ 4.0 ]</span>
+          <div class="service-panel__seal">
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </div>
+        </div>
+        <div class="service-panel__bottom">
+          <h3 class="service-panel__title">Quebra de Objeções</h3>
+          <p class="service-panel__text">
+            Entenda como responder com firmeza e naturalidade às dúvidas mais comuns sem parecer pressionar o cliente durante a decisão.
+          </p>
+        </div>
+      </article>
+
+      <!-- Panel 5 -->
+      <article class="service-panel" data-reveal>
+        <div class="service-panel__hover"></div>
+        <div class="service-panel__top">
+          <span class="service-panel__index">[ 5.0 ]</span>
+          <div class="service-panel__seal">
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </div>
+        </div>
+        <div class="service-panel__bottom">
+          <h3 class="service-panel__title">Fechamento</h3>
+          <p class="service-panel__text">
+            Domine técnicas para conduzir o próximo passo com clareza, pedir a decisão no momento certo e transformar interesse em venda.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="services-cta-wrap">
+      <a href="#oferta" class="btn btn-pill" aria-label="Quero acessar o treinamento">
+        Quero acessar o treinamento
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 4: DIFFERENCE BLOCK -->
+  <section class="difference-block" id="diferencial">
+    <div class="difference-glow"></div>
+    <div class="difference-hero">
+      <span class="eyebrow">diferencial</span>
+      <h2 class="difference-title" data-difference-title>
+        <span class="difference-line">Treinamento</span>
+        <span class="difference-line">que vende</span>
+      </h2>
+    </div>
+
+    <div class="difference-footer">
+      <div class="difference-note">
+        <span class="difference-note__arrow">↓</span>
+        <span>Veja por que ele acelera seu comercial</span>
+      </div>
+      <div class="difference-copy-wrap">
+        <p class="difference-copy" data-difference-copy>
+          Este treinamento foi pensado para quem precisa transformar teoria em conversa real. Você aprende como abordar, conduzir, contornar objeções e fechar com mais segurança, usando um processo aplicável na rotina comercial.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: METHOD STEPS -->
+  <section class="method-steps" id="metodo" data-method-steps>
+    <div class="method-glow-left"></div>
+    <div class="method-glow-right"></div>
+
+    <div class="method-header">
+      <span class="eyebrow">como funciona o método</span>
+      <h2 class="method-title">Veja como funciona na prática</h2>
+    </div>
+
+    <div class="method-stage">
+      <!-- 2. Mao holografica verde -->
+      <div class="method-steps__visual" data-method-visual>
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782324118/t1_gurovc.png" 
+          alt="Mão holográfica do método StayFlow" 
+          class="method-hand"
+        />
+      </div>
+
+      <div class="method-steps__cards">
+        <!-- Card 1 -->
+        <article class="method-card method-card--1" data-method-card>
+          <div class="method-card__index">[ 01 ]</div>
+          <h3 class="method-card__title">Clareza na abordagem</h3>
+          <p class="method-card__text">
+            Primeiro você organiza a entrada da conversa para gerar atenção, conduzir com firmeza e evitar travas logo nos primeiros minutos.
+          </p>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="method-card method-card--2" data-method-card>
+          <div class="method-card__index">[ 02 ]</div>
+          <h3 class="method-card__title">Valor na condução</h3>
+          <p class="method-card__text">
+            Depois você aprende a sustentar valor com uma estrutura clara, reduzindo objeções e deixando a conversa mais segura e natural.
+          </p>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="method-card method-card--3" data-method-card>
+          <div class="method-card__index">[ 03 ]</div>
+          <h3 class="method-card__title">Ritmo no fechamento</h3>
+          <p class="method-card__text">
+            Por fim, você entende como conduzir o próximo passo, pedir a decisão no momento certo e transformar interesse em avanço real.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: DELIVERABLES STICKY HORIZONTAL SECTION -->
+  <section class="deliverables-section" id="entregaveis" data-deliverables>
+    <div class="deliverables-section__sticky">
+      <div class="deliverables-stage">
+        <div class="deliverables-intro">
+          <div>
+            <span class="eyebrow">o que você recebe</span>
+            <h2 class="deliverables-title">Tudo o que precisa para vender melhor</h2>
+          </div>
+
+          <div class="deliverables-hint">
+            <div class="deliverables-hint__dots">
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+            <div class="deliverables-hint__text">
+              Continue descendo
+              <em>para ver os entregáveis</em>
+            </div>
+          </div>
+        </div>
+
+        <div class="deliverables-cards-viewport" data-deliverables-viewport>
+          <div class="deliverables-track" data-deliverables-track>
+            <!-- Card 1 -->
+            <article class="deliverable-card" data-deliverable-card>
+              <div class="deliverable-card__overlay"></div>
+              <div class="deliverable-card__top">
+                <span class="deliverable-card__index">1.0</span>
+                <svg class="deliverable-card__icon" viewBox="0 0 31 42" fill="none">
+                  <circle cx="15.5" cy="8" r="6" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="8" r="2.5" fill="#ffffff"/>
+                  <circle cx="8" cy="21" r="5" stroke="#5bc401" stroke-width="1.8"/>
+                  <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+                  <circle cx="23" cy="21" r="5" stroke="#5bc401" stroke-width="1.8"/>
+                  <circle cx="23" cy="21" r="2" fill="#ffffff"/>
+                  <circle cx="15.5" cy="34" r="6" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="34" r="2.5" fill="#ffffff"/>
+                  <path d="M15.5 14V28M11.5 18L19.5 24" stroke="rgba(91,196,1,0.4)" stroke-dasharray="2 2"/>
+                </svg>
+              </div>
+              <div class="deliverable-card__body">
+                <h3 class="deliverable-card__title">Aulas gravadas</h3>
+                <div class="deliverable-card__highlight">Método para abordar e conduzir</div>
+                <p class="deliverable-card__text">
+                  Você recebe aulas objetivas para aprender abordagem, qualificação, condução da conversa e fechamento com mais segurança na prática.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="deliverable-card" data-deliverable-card>
+              <div class="deliverable-card__overlay"></div>
+              <div class="deliverable-card__top">
+                <span class="deliverable-card__index">2.0</span>
+                <svg class="deliverable-card__icon" viewBox="0 0 31 42" fill="none">
+                  <circle cx="8" cy="10" r="5" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="8" cy="10" r="2" fill="#ffffff"/>
+                  <circle cx="23" cy="10" r="5" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="23" cy="10" r="2" fill="#ffffff"/>
+                  <circle cx="15.5" cy="24" r="6" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="24" r="2.5" fill="#ffffff"/>
+                  <circle cx="15.5" cy="36" r="4" stroke="#5bc401" stroke-width="1.5"/>
+                  <circle cx="15.5" cy="36" r="1.5" fill="#ffffff"/>
+                </svg>
+              </div>
+              <div class="deliverable-card__body">
+                <h3 class="deliverable-card__title">Scripts prontos</h3>
+                <div class="deliverable-card__highlight">Estrutura para ganhar consistência</div>
+                <p class="deliverable-card__text">
+                  Você recebe roteiros aplicáveis para abrir conversas, apresentar valor, conduzir o lead e manter firmeza sem parecer robótico.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="deliverable-card" data-deliverable-card>
+              <div class="deliverable-card__overlay"></div>
+              <div class="deliverable-card__top">
+                <span class="deliverable-card__index">3.0</span>
+                <svg class="deliverable-card__icon" viewBox="0 0 31 42" fill="none">
+                  <circle cx="15.5" cy="10" r="6" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="10" r="2.5" fill="#ffffff"/>
+                  <circle cx="8" cy="26" r="5" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="8" cy="26" r="2" fill="#ffffff"/>
+                  <circle cx="23" cy="26" r="5" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="23" cy="26" r="2" fill="#ffffff"/>
+                </svg>
+              </div>
+              <div class="deliverable-card__body">
+                <h3 class="deliverable-card__title">Mapa de objeções</h3>
+                <div class="deliverable-card__highlight">Respostas para os bloqueios mais comuns</div>
+                <p class="deliverable-card__text">
+                  Você recebe direcionamentos para contornar preço, tempo, indecisão e comparação, mantendo controle da conversa até a decisão.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="deliverable-card" data-deliverable-card>
+              <div class="deliverable-card__overlay"></div>
+              <div class="deliverable-card__top">
+                <span class="deliverable-card__index">4.0</span>
+                <svg class="deliverable-card__icon" viewBox="0 0 31 42" fill="none">
+                  <circle cx="15.5" cy="8" r="5" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="8" r="2" fill="#ffffff"/>
+                  <circle cx="15.5" cy="21" r="6" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="21" r="2.5" fill="#ffffff"/>
+                  <circle cx="15.5" cy="34" r="5" stroke="#5bc401" stroke-width="2"/>
+                  <circle cx="15.5" cy="34" r="2" fill="#ffffff"/>
+                </svg>
+              </div>
+              <div class="deliverable-card__body">
+                <h3 class="deliverable-card__title">Plano de execução</h3>
+                <div class="deliverable-card__highlight">Rotina para aplicar sem se perder</div>
+                <p class="deliverable-card__text">
+                  Você recebe uma direção clara para transformar conteúdo em rotina comercial, aplicar no dia a dia e acompanhar sua evolução.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Pagination -->
+      <div class="deliverables-pagination" data-deliverables-pagination></div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: OFFER BLOCK -->
+  <!-- 3. Fundo da oferta com feixe verde -->
+  <section class="offer-block" id="oferta">
+    <div class="offer-card">
+      <span class="eyebrow">oferta especial</span>
+      <h2 class="offer-title">Hoje você pode acessar com uma oferta exclusiva</h2>
+
+      <ul class="offer-list">
+        <li>Aulas gravadas com método completo</li>
+        <li>Scripts prontos para vender com consistência</li>
+        <li>Mapa de objeções para contornar bloqueios</li>
+        <li>Plano de execução para aplicar na rotina</li>
+      </ul>
+
+      <div class="offer-pricing-box">
+        <span class="offer-old-price">De R$ 497,00</span>
+        
+        <div class="offer-price-stack">
+          <span class="offer-price-label">por apenas</span>
+          <div class="offer-price-main">
+            <span class="offer-price-prefix">12x de</span>
+            <span class="offer-price-val">R$ 19,70</span>
+          </div>
+          <span class="offer-price-cash">ou R$ 197,00 à vista</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn btn-pill offer-cta" aria-label="Quero garantir minha vaga">
+        Quero garantir minha vaga
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 8: GUARANTEE BLOCK -->
+  <section class="guarantee-block" id="garantia">
+    <div class="guarantee-inner">
+      <div class="guarantee-badge">
+        <span class="guarantee-badge__number">7</span>
+      </div>
+
+      <span class="eyebrow">garantia incondicional</span>
+      <h2 class="guarantee-title">Você tem 7 dias para entrar, assistir e decidir com tranquilidade</h2>
+      <p class="guarantee-text">
+        Se perceber que o treinamento não faz sentido para o seu momento, basta solicitar o reembolso dentro do prazo. O risco fica com a gente para que você possa testar com segurança.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 9: FAQ BLOCK -->
+  <section class="faq-block" id="faq">
+    <div class="faq-inner">
+      <span class="eyebrow">perguntas frequentes</span>
+      <h2 class="faq-title">Tire suas dúvidas antes de entrar</h2>
+
+      <div class="faq-list">
+        <!-- Q1 -->
+        <details class="faq-item">
+          <summary>Para quem esse treinamento é indicado?</summary>
+          <div class="faq-answer">
+            Para vendedores, closers, consultores, autônomos e profissionais que querem vender com mais clareza, consistência e segurança nas conversas.
+          </div>
+        </details>
+
+        <!-- Q2 -->
+        <details class="faq-item">
+          <summary>O acesso é imediato depois da compra?</summary>
+          <div class="faq-answer">
+            Sim. Assim que o pagamento for confirmado, você recebe o acesso para entrar na plataforma e começar a assistir ao conteúdo.
+          </div>
+        </details>
+
+        <!-- Q3 -->
+        <details class="faq-item">
+          <summary>Por quanto tempo posso assistir às aulas?</summary>
+          <div class="faq-answer">
+            O acesso é liberado para você consumir o material com calma, revisar as aulas e aplicar o método na sua rotina comercial.
+          </div>
+        </details>
+
+        <!-- Q4 -->
+        <details class="faq-item">
+          <summary>E se eu perceber que não era o que eu precisava?</summary>
+          <div class="faq-answer">
+            Você conta com garantia de 7 dias. Dentro desse prazo, basta solicitar o reembolso e devolveremos o valor conforme a política da oferta.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10: FOOTER -->
+  <footer class="site-footer">
+    <p class="site-footer__text">@2026 todos os direitos reservados</p>
+  </footer>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT
+       ========================================================================== */
+  -->
+  <script>
+    (function () {
+      // 1. Word Reveal Helper
+      function setupWordReveal(element, startRatio, endRatio) {
+        if (!element) return;
+        const text = element.textContent.trim();
+        const words = text.split(/\s+/);
+        element.innerHTML = '';
+        const spans = words.map(word => {
+          const span = document.createElement('span');
+          span.className = 'word-span';
+          span.textContent = word + ' ';
+          element.appendChild(span);
+          return span;
+        });
+
+        function updateReveal() {
+          const rect = element.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const start = vh * startRatio;
+          const end = vh * endRatio;
+          let progress = (start - rect.top) / (start - end);
+          progress = Math.max(0, Math.min(1, progress));
+          const count = Math.floor(progress * spans.length);
+          spans.forEach((s, idx) => {
+            if (idx <= count) {
+              s.classList.add('is-revealed');
+            } else {
+              s.classList.remove('is-revealed');
+            }
+          });
+        }
+
+        window.addEventListener('scroll', updateReveal, { passive: true });
+        updateReveal();
+      }
+
+      // Pain Points title and copy word reveal
+      const painTitle = document.querySelector('[data-pain-title]');
+      const painCopy = document.querySelector('[data-pain-copy]');
+      if (painTitle) setupWordReveal(painTitle, 0.90, 0.40);
+      if (painCopy) setupWordReveal(painCopy, 0.86, 0.34);
+
+      // Difference block title & copy
+      const diffTitle = document.querySelector('[data-difference-title]');
+      const diffCopy = document.querySelector('[data-difference-copy]');
+      if (diffCopy) setupWordReveal(diffCopy, 0.92, 0.28);
+
+      if (diffTitle) {
+        const obsDiff = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              diffTitle.classList.add('is-visible');
+              obsDiff.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.24 });
+        obsDiff.observe(diffTitle);
+      }
+
+      // 2. IntersectionObserver for Pain Cards
+      const painCards = document.querySelectorAll('[data-pain-card]');
+      if (painCards.length) {
+        const obsPain = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              painCards.forEach((card, idx) => {
+                setTimeout(() => {
+                  card.classList.add('is-visible');
+                }, idx * 90);
+              });
+              obsPain.disconnect();
+            }
+          });
+        }, { threshold: 0.24 });
+        const painSection = document.querySelector('[data-pain-section]');
+        if (painSection) obsPain.observe(painSection);
+      }
+
+      // 3. Service Cards Reveal & Hover Glow
+      const servicePanels = document.querySelectorAll('.service-panel');
+      if (servicePanels.length) {
+        const obsService = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              servicePanels.forEach((panel, idx) => {
+                setTimeout(() => {
+                  panel.classList.add('is-visible');
+                }, idx * 90);
+              });
+              obsService.disconnect();
+            }
+          });
+        }, { threshold: 0.15 });
+        const servicesSection = document.querySelector('[data-service-cards]');
+        if (servicesSection) obsService.observe(servicesSection);
+
+        // Hover cursor tracking for non-featured panels
+        servicePanels.forEach(panel => {
+          if (!panel.classList.contains('service-panel--featured')) {
+            panel.addEventListener('mousemove', e => {
+              const rect = panel.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              panel.style.setProperty('--hover-x', `${x}px`);
+              panel.style.setProperty('--hover-y', `${y}px`);
+            });
+          }
+        });
+
+        // Featured panel shell rotation
+        const featuredShell = document.querySelector('.service-panel__shell');
+        let angle = 0;
+        function rotateShell() {
+          if (featuredShell) {
+            angle = (angle + 0.7) % 360;
+            featuredShell.style.setProperty('--shell-angle', `${angle}deg`);
+          }
+          requestAnimationFrame(rotateShell);
+        }
+        rotateShell();
+      }
+
+      // 4. Method Steps Scroll Progress
+      const methodSection = document.querySelector('[data-method-steps]');
+      const methodVisual = document.querySelector('[data-method-visual]');
+      const methodCards = document.querySelectorAll('[data-method-card]');
+
+      function updateMethodProgress() {
+        if (!methodSection) return;
+        const rect = methodSection.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const start = vh * 0.88;
+        const end = vh * 0.42;
+        let progress = (start - rect.top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+
+        document.documentElement.style.setProperty('--method-visual-progress', progress);
+        methodCards.forEach((card, idx) => {
+          const cardProgress = Math.max(0, Math.min(1, (progress - idx * 0.08) / (1 - idx * 0.08)));
+          card.style.setProperty('--card-progress', cardProgress);
+        });
+      }
+      window.addEventListener('scroll', updateMethodProgress, { passive: true });
+      updateMethodProgress();
+
+      // 5. Deliverables Sticky Horizontal Scroll & Pagination
+      const delivSection = document.querySelector('[data-deliverables]');
+      const delivTrack = document.querySelector('[data-deliverables-track]');
+      const delivViewport = document.querySelector('[data-deliverables-viewport]');
+      const delivCards = document.querySelectorAll('[data-deliverable-card]');
+      const paginationContainer = document.querySelector('[data-deliverables-pagination]');
+
+      let maxTranslate = 0;
+      let maxScroll = 0;
+
+      function setupDeliverables() {
+        if (!delivSection || !delivTrack || !delivViewport) return;
+        const isMobile = window.innerWidth <= 1023;
+        
+        maxTranslate = delivTrack.scrollWidth - delivViewport.clientWidth;
+        if (maxTranslate < 0) maxTranslate = 0;
+
+        if (!isMobile) {
+          maxScroll = maxTranslate + window.innerHeight * 0.7;
+          delivSection.style.minHeight = `${window.innerHeight + maxScroll}px`;
+        } else {
+          maxScroll = maxTranslate + window.innerHeight * 0.45;
+          delivSection.style.minHeight = `${window.innerHeight + maxScroll}px`;
+        }
+
+        // Build pagination buttons if empty
+        if (paginationContainer && !paginationContainer.children.length && delivCards.length) {
+          delivCards.forEach((_, idx) => {
+            const btn = document.createElement('button');
+            btn.setAttribute('aria-label', `Entregável ${idx + 1}`);
+            if (idx === 0) btn.classList.add('is-active');
+            btn.addEventListener('click', () => {
+              const targetProgress = idx / (delivCards.length - 1);
+              const sectionTop = delivSection.offsetTop;
+              window.scrollTo({
+                top: sectionTop + targetProgress * maxScroll,
+                behavior: 'smooth'
+              });
+            });
+            paginationContainer.appendChild(btn);
+          });
+        }
+      }
+
+      function updateDeliverablesScroll() {
+        if (!delivSection || !delivTrack) return;
+        const rect = delivSection.getBoundingClientRect();
+        const isMobile = window.innerWidth <= 1023;
+        const scrollDistance = -rect.top;
+
+        if (scrollDistance <= 0) {
+          delivTrack.style.transform = `translateX(0px)`;
+          updatePagination(0);
+        } else if (scrollDistance >= maxScroll) {
+          delivTrack.style.transform = `translateX(-${maxTranslate}px)`;
+          updatePagination(1);
+        } else {
+          const ratio = scrollDistance / maxScroll;
+          const currentTranslate = ratio * maxTranslate;
+          delivTrack.style.transform = `translateX(-${currentTranslate}px)`;
+          updatePagination(ratio);
+        }
+      }
+
+      function updatePagination(ratio) {
+        if (!paginationContainer) return;
+        const total = delivCards.length;
+        const activeIndex = Math.min(total - 1, Math.round(ratio * (total - 1)));
+        Array.from(paginationContainer.children).forEach((btn, idx) => {
+          btn.classList.toggle('is-active', idx === activeIndex);
+        });
+      }
+
+      window.addEventListener('resize', () => {
+        setupDeliverables();
+        updateDeliverablesScroll();
+      });
+
+      window.addEventListener('scroll', updateDeliverablesScroll, { passive: true });
+
+      // Mobile/Tablet drag to scroll
+      if (delivViewport) {
+        let isDown = false;
+        let startX = 0;
+
+        delivViewport.addEventListener('pointerdown', (e) => {
+          isDown = true;
+          startX = e.clientX;
+        });
+
+        window.addEventListener('pointerup', () => {
+          isDown = false;
+        });
+
+        delivViewport.addEventListener('pointermove', (e) => {
+          if (!isDown) return;
+          const deltaX = startX - e.clientX;
+          startX = e.clientX;
+          window.scrollBy({ top: deltaX * 1.5, behavior: 'auto' });
+        });
+      }
+
+      setupDeliverables();
+      updateDeliverablesScroll();
+    })();
+  </script>
+</body>
+</html>

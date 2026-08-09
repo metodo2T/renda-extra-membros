@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psicóloga Clínica | Cuidado, escuta e acolhimento</title>
+  <meta name="description" content="Página institucional e de vendas para psicóloga clínica com posicionamento acolhedor, profissional e focado em conversão.">
+  
+  <!-- Mandatory history replaceState fix for iframe preview inside Replicador -->
+  <script>try{history.replaceState(null,'','/');}catch(e){}</script>
+
+  <style>
+    @font-face {
+      font-family: "Helvetica Regular";
+      src: local("Helvetica Regular"), local("Helvetica"), local("Arial");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --page-bg: #f0f0f0;
+      --ink-main: #5e6470;
+      --accent-deep: rgba(30, 50, 90, 0.9);
+      --accent-soft: rgba(30, 50, 90, 0.8);
+      --border-soft: rgba(255, 255, 255, 0.2);
+      --font-helvetica: "Helvetica Regular", Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--page-bg);
+      color: var(--ink-main);
+      font-family: var(--font-helvetica);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a {
+      font-family: inherit;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    video, img {
+      display: block;
+    }
+
+    /* REUSABLE COMPONENTS */
+
+    /* Pill Button */
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .pill-btn-hero {
+      height: 3.35rem;
+      padding: 0 1.3rem 0 1.45rem;
+      background: rgba(255, 255, 255, 0.58);
+      color: rgba(33, 42, 58, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 14px 34px rgba(55, 67, 86, 0.12);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .pill-btn-hero:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 18px 40px rgba(55, 67, 86, 0.18);
+    }
+
+    .pill-icon-circle {
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(33, 42, 58, 0.88);
+      flex-shrink: 0;
+    }
+
+    .pill-btn-cream {
+      background: #fdfdfc;
+      color: rgba(33, 42, 58, 0.9);
+      padding: 0.95rem 1.65rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .pill-btn-cream:hover {
+      transform: translateY(-1px);
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .pill-btn-ghost {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 0.95rem 1.65rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+
+    .pill-btn-ghost:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .pill-btn-manifesto {
+      background: #f4f5f0;
+      color: #38452f;
+      padding: 1.05rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .pill-btn-manifesto:hover {
+      transform: translateY(-1px);
+      background: #ffffff;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Reveal Animations */
+    .animate-on-load {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 750ms cubic-bezier(0.2, 0.75, 0.25, 1), transform 750ms cubic-bezier(0.2, 0.75, 0.25, 1);
+    }
+
+    .animate-on-load.is-loaded {
+      opacity: 1;
+      transform: none;
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(44px) scale(0.985);
+      transition: opacity 750ms cubic-bezier(0.2, 0.75, 0.25, 1), transform 750ms cubic-bezier(0.2, 0.75, 0.25, 1), filter 800ms ease;
+    }
+
+    .animate-on-scroll.blur-on-scroll {
+      filter: blur(16px);
+    }
+
+    .animate-on-scroll.scroll-from-left {
+      transform: translateX(-52px);
+    }
+
+    .animate-on-scroll.scroll-from-right {
+      transform: translateX(52px);
+    }
+
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-load, .animate-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* SECTION 1: ROUNDED VIDEO HERO */
+    .hero-wrapper {
+      min-height: 100vh;
+      padding: 0.75rem;
+      background: #f0f0f0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .hero-shell {
+      position: relative;
+      width: 100%;
+      max-width: 1536px;
+      min-height: calc(100vh - 1.5rem);
+      overflow: hidden;
+      border-radius: 1.5rem;
+      isolation: isolate;
+      color: #2d3442;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .hero-shell {
+        border-radius: 3rem;
+      }
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      object-fit: cover;
+      object-position: 65% center;
+      filter: none;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-video {
+        object-position: center center;
+      }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background: 
+        linear-gradient(180deg, rgba(240, 240, 240, 0.2) 0%, rgba(23, 31, 45, 0.14) 100%),
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 68%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 1.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Hero Navigation */
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .hero-nav {
+        padding: 1.4rem clamp(1.2rem, 2vw, 2.25rem) 0;
+      }
+    }
+
+    .hero-logo-mobile {
+      color: rgba(44, 53, 68, 0.82);
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      .hero-logo-mobile {
+        display: none;
+      }
+    }
+
+    .hero-menu {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .hero-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        padding: 0.72rem 1.65rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.36);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 18px 45px rgba(49, 58, 73, 0.08);
+        list-style: none;
+      }
+    }
+
+    .hero-menu a {
+      font-size: 0.875rem;
+      color: rgb(45, 45, 45);
+      line-height: 1;
+      opacity: 0.9;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: opacity 150ms ease;
+    }
+
+    .hero-menu a:hover {
+      opacity: 1;
+    }
+
+    /* Hero Text Center */
+    .hero-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-text {
+      position: relative;
+      width: 100%;
+      max-width: 64rem;
+      margin: auto;
+      padding: 2rem 1.5rem 0;
+    }
+
+    .hero-text::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(55rem, 92vw);
+      height: min(17rem, 58vw);
+      border-radius: 2.25rem;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 100%);
+      filter: blur(22px);
+      opacity: 0.78;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 2.35rem;
+      padding: 0 0.95rem;
+      border-radius: 999px;
+      color: rgba(49, 58, 73, 0.72);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 28px rgba(55, 67, 86, 0.1);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .hero-text h1 {
+      margin: 1.15rem auto 0;
+      max-width: 55rem;
+      color: rgba(44, 53, 68, 0.96);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      text-shadow: 0 8px 30px rgba(255, 255, 255, 0.42);
+    }
+
+    .hero-text p {
+      max-width: 40rem;
+      margin: 1rem auto 0;
+      font-size: clamp(0.98rem, 2vw, 1.18rem);
+      line-height: 1.8;
+      color: rgba(72, 82, 98, 0.82);
+    }
+
+    /* Metric card */
+    .hero-metric {
+      position: absolute;
+      right: 1rem;
+      bottom: 5.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 1rem 1.15rem;
+      min-width: 8.5rem;
+      border-radius: 1.2rem;
+      background: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 18px 48px rgba(44, 55, 75, 0.14);
+      z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+      .hero-metric {
+        left: 1.5rem;
+        right: auto;
+        bottom: 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-metric {
+        left: 2.5rem;
+        bottom: 2.5rem;
+      }
+    }
+
+    .hero-metric-number {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 0.9;
+      color: rgba(44, 53, 68, 0.92);
+      letter-spacing: -0.05em;
+      font-weight: 400;
+    }
+
+    .hero-metric-label {
+      font-size: 0.78rem;
+      line-height: 1.25;
+      color: rgba(72, 82, 98, 0.72);
+    }
+
+    /* SECTION 2: PSYCHOLOGY CLINICAL CARDS */
+    .performance-section {
+      padding: 0 0.75rem 1.5rem;
+      background: #f0f0f0;
+    }
+
+    @media (min-width: 768px) {
+      .performance-section {
+        padding: 0 1.25rem 2rem;
+      }
+    }
+
+    .performance-shell {
+      max-width: 1536px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      background: #f7f7f5;
+      padding: 2rem 1rem 1rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    }
+
+    @media (min-width: 768px) {
+      .performance-shell {
+        border-radius: 2rem;
+        padding: 3.5rem 1.5rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .performance-shell {
+        border-radius: 2.35rem;
+        padding: 4.5rem 2rem 2rem;
+      }
+    }
+
+    .performance-heading {
+      max-width: 54rem;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .performance-eyebrow {
+      color: rgba(95, 104, 122, 0.78);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .performance-heading h2 {
+      margin: 0.65rem 0 0;
+      color: rgba(42, 50, 64, 0.94);
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .performance-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .performance-grid {
+        grid-template-columns: 0.95fr 1.12fr 1.12fr;
+        grid-auto-rows: minmax(12rem, auto);
+      }
+    }
+
+    .performance-card {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(96, 110, 136, 0.08);
+      border-radius: 1.4rem;
+      box-shadow: 0 18px 48px rgba(75, 86, 110, 0.08);
+      padding: 1.35rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .card-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .card-mini .badge-crp {
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: rgba(44, 53, 68, 0.9);
+    }
+
+    .card-mini .badge-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(95, 104, 122, 0.7);
+    }
+
+    .card-feature h3 {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: rgba(42, 50, 64, 0.94);
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-feature p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: rgba(95, 104, 122, 0.82);
+    }
+
+    .card-tall {
+      grid-row: span 2;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 247, 250, 0.75) 100%);
+    }
+
+    .card-tall h3 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: rgba(42, 50, 64, 0.94);
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .card-tall p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(95, 104, 122, 0.85);
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(95, 104, 122, 0.65);
+    }
+
+    .card-footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: rgba(42, 50, 64, 0.85);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    /* SECTION 3: VIDEO CTA BANNER */
+    .cta-section {
+      padding: 0 0.75rem 1.5rem;
+      background: #f0f0f0;
+    }
+
+    @media (min-width: 768px) {
+      .cta-section {
+        padding: 0 1.25rem 2rem;
+      }
+    }
+
+    .cta-shell {
+      position: relative;
+      max-width: 1536px;
+      min-height: 11rem;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 1.6rem;
+      background: #4c5a84;
+      isolation: isolate;
+      display: flex;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .cta-shell {
+        min-height: 13rem;
+        border-radius: 1.9rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .cta-shell {
+        min-height: 13.6rem;
+        border-radius: 2.1rem;
+      }
+    }
+
+    .cta-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(90deg, rgba(30, 45, 75, 0.88) 0%, rgba(30, 45, 75, 0.72) 60%, rgba(30, 45, 75, 0.45) 100%);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      padding: 1.5rem;
+      color: white;
+    }
+
+    @media (min-width: 900px) {
+      .cta-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem clamp(2rem, 4vw, 4rem);
+      }
+    }
+
+    .cta-text-box h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-text-box p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 32rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    /* SECTION 4: CARE METHOD / FUTURE CARDS */
+    .future-section {
+      padding: 0 0.75rem 1.5rem;
+      background: #f0f0f0;
+    }
+
+    @media (min-width: 768px) {
+      .future-section {
+        padding: 0 1.25rem 2rem;
+      }
+    }
+
+    .future-shell {
+      max-width: 1536px;
+      margin: auto;
+      border-radius: 1.6rem;
+      background: #f7f7f5;
+      padding: 2rem 1rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .future-shell {
+        border-radius: 2rem;
+        padding: 3.4rem 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .future-shell {
+        border-radius: 2.2rem;
+        padding: 4.4rem 2rem;
+      }
+    }
+
+    .future-heading {
+      max-width: 54rem;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+
+    .future-kicker {
+      color: rgba(95, 104, 122, 0.78);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .future-heading h2 {
+      margin: 0.65rem 0 0;
+      color: rgba(42, 50, 64, 0.94);
+      font-size: clamp(2rem, 5vw, 4.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 400;
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .future-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .future-card {
+      min-height: 220px;
+      border-radius: 1.45rem;
+      border: 1px solid rgba(96, 110, 136, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 250, 248, 0.8) 100%);
+      padding: 1.35rem;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .future-card {
+        min-height: 270px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .future-card {
+        min-height: 300px;
+      }
+    }
+
+    .future-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(55, 67, 86, 0.12);
+    }
+
+    .future-card h3 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: rgba(42, 50, 64, 0.94);
+      letter-spacing: -0.03em;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .future-card p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: rgba(95, 104, 122, 0.82);
+    }
+
+    .card-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(42, 50, 64, 0.5);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* SECTION 5: MANIFESTO STRIP */
+    .manifesto-section {
+      padding: 0 0.75rem 1.5rem;
+      background: #f0f0f0;
+    }
+
+    @media (min-width: 768px) {
+      .manifesto-section {
+        padding: 0 1.25rem 2rem;
+      }
+    }
+
+    .manifesto-shell {
+      position: relative;
+      max-width: 1536px;
+      min-height: 260px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 3rem 1.5rem;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(185, 195, 140, 0.35) 0%, rgba(95, 109, 79, 0) 70%),
+        linear-gradient(135deg, #5f6d4f 0%, #38452f 100%);
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .manifesto-shell {
+        min-height: 300px;
+        border-radius: 2rem;
+        padding: 4rem 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .manifesto-shell {
+        min-height: 330px;
+        border-radius: 2.2rem;
+      }
+    }
+
+    .manifesto-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 12px);
+      pointer-events: none;
+    }
+
+    .manifesto-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 56rem;
+      font-size: clamp(2rem, 5vw, 4.15rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+
+    /* SECTION 6: PROFILE / PROTOCOL SECTION */
+    .protocol-section {
+      padding: 0 0.75rem 1.5rem;
+      background: #f0f0f0;
+    }
+
+    @media (min-width: 768px) {
+      .protocol-section {
+        padding: 0 1.25rem 2rem;
+      }
+    }
+
+    .protocol-shell {
+      max-width: 1536px;
+      margin: auto;
+      border-radius: 1.6rem;
+      background: #f7f7f5;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    @media (min-width: 768px) {
+      .protocol-shell {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        border-radius: 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .protocol-shell {
+        border-radius: 2.2rem;
+      }
+    }
+
+    .protocol-visual {
+      padding: 1rem;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .protocol-window {
+      position: relative;
+      width: 100%;
+      min-height: 420px;
+      overflow: hidden;
+      border-radius: 1.35rem;
+      background: #d4d2cf;
+      box-shadow: 0 30px 70px rgba(58, 67, 84, 0.14);
+    }
+
+    .protocol-window-chrome {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    .chrome-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .protocol-window-image {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1254&q=80');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .protocol-window-overlay {
+      display: none;
+    }
+
+    .protocol-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.3rem 2.4rem;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .protocol-copy {
+        text-align: left;
+        padding: clamp(3rem, 5vw, 5rem);
+      }
+    }
+
+    .protocol-copy h2 {
+      margin: 0;
+      color: rgba(42, 50, 64, 0.94);
+      font-size: clamp(2.1rem, 5vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 400;
+    }
+
+    .protocol-copy p {
+      margin-top: 1rem;
+      max-width: 34rem;
+      color: rgba(86, 94, 110, 0.78);
+      font-size: clamp(1rem, 1.7vw, 1.16rem);
+      line-height: 1.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1: ROUNDED VIDEO HERO -->
+  <section class="hero-wrapper">
+    <div class="hero-shell">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dalwymbky/video/upload/v1782348406/hero1_arb8ja.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <!-- Hero Nav -->
+        <header class="hero-nav animate-on-load" data-delay="100">
+          <div class="hero-logo-mobile">Psicóloga</div>
+
+          <ul class="hero-menu">
+            <li><a href="#sobre">Sobre</a></li>
+            <li>
+              <a href="#abordagem">
+                <span>Abordagem</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </a>
+            </li>
+            <li><a href="#atendimentos">Atendimentos</a></li>
+            <li>
+              <a href="#contato">
+                <span>Contato</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </a>
+            </li>
+          </ul>
+
+          <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20conversa" target="_blank" rel="noopener" class="pill-btn pill-btn-hero">
+            <span>Agendar conversa</span>
+            <div class="pill-icon-circle">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </div>
+          </a>
+        </header>
+
+        <!-- Hero Center -->
+        <div class="hero-center">
+          <div class="hero-text animate-on-load" data-delay="300">
+            <div class="hero-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
+              <span>Atendimento online e presencial</span>
+            </div>
+
+            <h1>Cuidado psicológico para viver com mais clareza</h1>
+            <p>Um espaço seguro para acolher sua história, compreender suas dores e construir caminhos mais leves, conscientes e saudáveis.</p>
+          </div>
+        </div>
+
+        <!-- Metric Card -->
+        <div class="hero-metric animate-on-load" data-delay="500">
+          <div class="hero-metric-number">10+</div>
+          <div class="hero-metric-label">Anos de experiência</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: PSYCHOLOGY CLINICAL CARDS -->
+  <section class="performance-section" id="abordagem">
+    <div class="performance-shell animate-on-scroll blur-on-scroll">
+      <div class="performance-heading">
+        <div class="performance-eyebrow">Psicologia clínica</div>
+        <h2>Uma prática pensada para acolher você com profundidade e presença</h2>
+      </div>
+
+      <div class="performance-grid">
+        <!-- Mini card -->
+        <div class="performance-card card-mini animate-on-scroll" data-scroll-delay="100">
+          <div class="badge-crp">CRP</div>
+          <div class="badge-label">ATENDIMENTO CLÍNICO</div>
+        </div>
+
+        <!-- Feature card -->
+        <div class="performance-card card-feature animate-on-scroll" data-scroll-delay="200">
+          <h3>Escuta acolhedora e direção terapêutica</h3>
+          <p>Cada encontro é conduzido com atenção genuína, leitura cuidadosa da sua história e um processo que respeita o seu tempo.</p>
+        </div>
+
+        <!-- Tall card -->
+        <div class="performance-card card-tall animate-on-scroll" data-scroll-delay="300">
+          <h3>Um espaço para elaborar<br>o que hoje pesa em silêncio</h3>
+          <p>Ansiedade, relacionamentos, autoestima, luto, exaustão emocional e fases de transição podem ser trabalhados com cuidado e profundidade.</p>
+        </div>
+
+        <!-- Data card -->
+        <div class="performance-card animate-on-scroll" data-scroll-delay="200">
+          <div>
+            <div class="card-meta-row">
+              <span>ATENDIMENTO</span>
+              <span>01</span>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.65; color: rgba(95, 104, 122, 0.82);">
+              Sessões online e presenciais com estrutura clara, sigilo e acompanhamento responsável.
+            </p>
+          </div>
+          <a href="#contato" class="card-footer-link">
+            <span>Como funciona</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Oracle card -->
+        <div class="performance-card animate-on-scroll" data-scroll-delay="300">
+          <div>
+            <div class="card-meta-row">
+              <span>FOCO CLÍNICO</span>
+              <span>02</span>
+            </div>
+            <div style="margin-bottom: 0.75rem; color: rgba(42, 50, 64, 0.7);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.65; color: rgba(95, 104, 122, 0.82);">
+              Um processo feito para ampliar autoconhecimento, fortalecer recursos emocionais e promover mudanças consistentes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: VIDEO CTA BANNER -->
+  <section class="cta-section" id="contato">
+    <div class="cta-shell animate-on-scroll blur-on-scroll">
+      <video class="cta-video" autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dalwymbky/video/upload/v1782348402/v3_hgipc8.mp4" type="video/mp4">
+      </video>
+      <div class="cta-overlay"></div>
+
+      <div class="cta-content">
+        <div class="cta-text-box">
+          <h2>Você não precisa<br>dar conta de tudo sozinho.</h2>
+          <p>A psicoterapia pode ser o começo de uma relação mais saudável com suas emoções, escolhas e formas de se posicionar no mundo.</p>
+        </div>
+
+        <div class="cta-actions">
+          <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20sess%C3%A3o" target="_blank" rel="noopener" class="pill-btn pill-btn-cream">
+            <span>Agendar sessão</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <a href="#atendimentos" class="pill-btn pill-btn-ghost">
+            <span>Como funciona</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CARE METHOD / FUTURE CARDS -->
+  <section class="future-section" id="atendimentos">
+    <div class="future-shell animate-on-scroll">
+      <div class="future-heading">
+        <div class="future-kicker">Minha forma de cuidar</div>
+        <h2>Uma presença profissional<br>com escuta humana de verdade.</h2>
+      </div>
+
+      <div class="future-grid">
+        <!-- First Card (will be overwritten by JS on DOMContentLoaded) -->
+        <div class="future-card animate-on-scroll" data-scroll-delay="100">
+          <h3>Original Method</h3>
+          <p>Original description placeholder</p>
+        </div>
+
+        <!-- Second Card -->
+        <div class="future-card animate-on-scroll" data-scroll-delay="200">
+          <h3>Escuta que acolhe sem julgamento</h3>
+          <p>O processo terapêutico oferece um lugar seguro para nomear dores, reconhecer padrões e abrir espaço para novas possibilidades.</p>
+        </div>
+
+        <!-- Third Card -->
+        <div class="future-card animate-on-scroll" data-scroll-delay="300">
+          <h3>Condução técnica com sensibilidade</h3>
+          <p>Mais do que conversar, a terapia organiza experiências internas e apoia movimentos concretos na sua vida emocional e relacional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MANIFESTO STRIP -->
+  <section class="manifesto-section">
+    <div class="manifesto-shell animate-on-scroll blur-on-scroll">
+      <div class="manifesto-copy">
+        Todos atravessamos medos, conflitos e cansaços.<br>Você não precisa enfrentar tudo isso sozinho.
+      </div>
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20come%C3%A7ar%20meu%20processo" target="_blank" rel="noopener" class="pill-btn pill-btn-manifesto">
+        <span>Quero começar meu processo</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PROFILE / PROTOCOL SECTION -->
+  <section class="protocol-section" id="sobre">
+    <div class="protocol-shell animate-on-scroll">
+      <div class="protocol-visual">
+        <div class="protocol-window">
+          <div class="protocol-window-chrome">
+            <span class="chrome-dot"></span>
+            <span class="chrome-dot"></span>
+            <span class="chrome-dot"></span>
+          </div>
+          <div class="protocol-window-image"></div>
+          <div class="protocol-window-overlay"></div>
+        </div>
+      </div>
+
+      <div class="protocol-copy">
+        <h2>Placeholder Title</h2>
+        <p>Placeholder paragraph</p>
+        <a href="#" class="protocol-link">Placeholder Link</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript Requirements -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Overwrite first .future-card
+      const firstFutureCard = document.querySelector('.future-card');
+      if (firstFutureCard) {
+        firstFutureCard.innerHTML = `
+          <h3><span class="card-dot"></span>Cada historia merece ser ouvida com respeito</h3>
+          <p>Um espaco terapeutico seguro para acolher sua experiencia, nomear sentimentos e atravessar processos com mais clareza e suporte.</p>
+        `;
+      }
+
+      // 2. Overwrite .protocol-copy h2
+      const protocolH2 = document.querySelector('.protocol-copy h2');
+      if (protocolH2) {
+        protocolH2.textContent = 'Quem sou eu';
+      }
+
+      // 3. Overwrite .protocol-copy p
+      const protocolP = document.querySelector('.protocol-copy p');
+      if (protocolP) {
+        protocolP.textContent = 'Sou psicologa clinica e conduzo meu trabalho a partir de uma escuta atenta, etica e profundamente humana. Minha proposta e oferecer um espaco seguro para que cada pessoa possa compreender a propria historia, elaborar seus conflitos e construir novos caminhos com mais clareza e autonomia.';
+      }
+
+      // 4. Remove .protocol-link if present
+      const protocolLink = document.querySelector('.protocol-link');
+      if (protocolLink) {
+        protocolLink.remove();
+      }
+
+      // 5. Reveal animate-on-load elements
+      document.querySelectorAll('.animate-on-load').forEach(el => {
+        const delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+        setTimeout(() => {
+          el.classList.add('is-loaded');
+        }, delay);
+      });
+
+      // 6. IntersectionObserver for animate-on-scroll elements
+      if ('IntersectionObserver' in window) {
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const delay = parseInt(el.getAttribute('data-scroll-delay') || '0', 10);
+              if (delay > 0) {
+                setTimeout(() => {
+                  el.classList.add('is-visible');
+                }, delay);
+              } else {
+                el.classList.add('is-visible');
+              }
+              observer.unobserve(el);
+            }
+          });
+        }, {
+          threshold: 0.2,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          scrollObserver.observe(el);
+        });
+      } else {
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+          el.classList.add('is-visible');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

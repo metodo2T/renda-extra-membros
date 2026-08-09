@@ -1,0 +1,6 @@
+{
+  "name": "Documentação de Engenharia Reversa - Fritadeira Gourmet",
+  "description": "Documentação técnica em MDX e Design System completo para recriação exata da landing page da Fritadeira Gourmet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

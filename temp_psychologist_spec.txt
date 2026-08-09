@@ -1,0 +1,50 @@
+<USER_REQUEST>
+/goal Build a full landing page for a clinical psychologist using plain HTML, CSS, and vanilla JavaScript. Recreate the existing page with maximum visual fidelity: a calm, premium psychology/therapy page with a rounded full-screen video hero, soft translucent navigation, editorial glass overlays, muted blue-gray typography, clinical service cards, a video CTA banner, care-method cards, a green manifesto strip, and a final "Quem sou eu" profile section.
+
+PAGE IDENTITY
+- Page title: "Psicóloga Clínica | Cuidado, escuta e acolhimento"
+- Meta description: "Página institucional e de vendas para psicóloga clínica com posicionamento acolhedor, profissional e focado em conversão."
+- Language: pt-BR.
+- Page type: long-form institutional/sales landing page for a clinical psychologist.
+- Visual style: soft therapeutic editorial, rounded full-bleed media panels, warm off-white backgrounds, translucent glass cards, muted slate/blue-gray text, gentle green accents, and subtle scroll/load reveal motion.
+- Overall background: #f0f0f0.
+- Primary font: custom "Helvetica Regular" loaded from local or hosted WOFF2/WOFF files, with Helvetica/Arial fallback.
+- Core fidelity rule: preserve the rounded video hero and CTA video banner as real autoplaying background videos, not static images. Preserve the soft glass overlays, section card radii, responsive video positioning, scroll reveal animations, and the JavaScript content overrides in the future/protocol sections.
+
+ASSETS DE IMAGEM E VIDEO
+
+Use exatamente estes assets por link. Nao use placeholders visuais, midia gerada, banco de imagens ou alternativas parecidas. Preencha apenas o campo "Link" de cada item. Os assets estao em ordem de aparicao na pagina.
+
+1. Video principal do hero
+   Tipo: video
+   Link:https://res.cloudinary.com/dalwymbky/video/upload/v1782348406/hero1_arb8ja.mp4
+   Aparece em: primeira dobra da pagina, como video de fundo em tela cheia dentro do card arredondado do hero.
+   Detalhes: MP4 horizontal 1920x1080, 30fps, duracao aproximada de 9.15
+<truncated 19564 bytes>
+, `.cta-overlay`, `.cta-content`
+  - `.future-section`, `.future-shell`, `.future-grid`, `.future-card`
+  - `.manifesto-section`, `.manifesto-shell`
+  - `.protocol-section`, `.protocol-shell`, `.protocol-window`, `.protocol-window-image`, `.protocol-copy`
+- Use decoded Portuguese accents in visible static HTML. Keep the JavaScript replacement strings exactly as specified where noted.
+- Preserve all inline SVG icons: sparkle badge, chevrons, arrow-up-right buttons, and small card icons.
+- Keep all sections inside a single static page; no navigation routing.
+- Avoid visible scrollbars caused by large rounded media panels.
+
+STRICT RECREATION RULES
+- Do not invent extra sections, nav bars, testimonials, pricing tables, or FAQ blocks.
+- Do not replace the hero video or CTA video with static images.
+- Do not change the section order.
+- Do not render the profile image as a regular standalone image; it must be a background inside the rounded protocol window.
+- Do not remove glass overlays, large border radii, muted therapeutic colors, or soft shadows.
+- Do not change text content, capitalization, button labels, card labels, or the JavaScript-overridden profile copy.
+- Do not change the custom Helvetica Regular font role.
+- Preserve load reveal, scroll reveal, blur/translate reveal variants, hover lifts, responsive breakpoints, and the rounded max-width 1536px page shell composition.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-08-03T16:28:11-03:00.
+
+The user has mentioned some items in the form @[ITEM]. Here is extra information about the items that were mentioned by the user, in the order that they appear:
+
+/goal is a [Slash Command]:
+The user has marked this task with /goal, indicating that this task is intended to run for a long time without user input, e.g. overnight. You should be extra thorough and only stop when you are confident the goal has been completely fulfilled. The system will force you to continue execution, prompting you to audit your work until completion.
+</ADDITIONAL_METADATA>

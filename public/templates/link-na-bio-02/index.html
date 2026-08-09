@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Duda Silva | Social Media Specialist</title>
+  <meta name="description" content="Especialista em transformar a presença digital de marcas com estratégias de conteúdo visual, design marcante e posicionamento de alto impacto." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    history.replaceState(null, '', '/');
+    try {
+      let _fetch = window.fetch;
+      Object.defineProperty(window, 'fetch', {
+        configurable: true,
+        enumerable: true,
+        get() { return _fetch; },
+        set(v) { _fetch = v; }
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f8f6fb;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-primary: #2e1065;
+      --text-secondary: #582788;
+      --accent-purple: #7e22ce;
+      --border-purple: #e9d5ff;
+      --radius-card: 1.5rem;
+      --max-width: 448px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(216, 180, 254, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.2) 0%, transparent 40%);
+      display: flex;
+      justify-content: center;
+      padding: 0 0 40px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: var(--max-width);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Sticky Header Bar */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #f3e8ff;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7e22ce, #c084fc);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 8px rgba(126, 34, 206, 0.3);
+    }
+
+    .header-info h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1e1b4b;
+    }
+
+    .header-info p {
+      font-size: 0.72rem;
+      color: #7e22ce;
+      font-weight: 600;
+    }
+
+    /* Marquee Banner */
+    .marquee-section {
+      width: 100%;
+      overflow: hidden;
+      padding: 16px 0;
+      background: linear-gradient(180deg, rgba(243, 232, 255, 0.5) 0%, rgba(248, 246, 251, 0) 100%);
+      position: relative;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      animation: scrollMarquee 25s linear infinite;
+    }
+
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      width: 130px;
+      height: 175px;
+      border-radius: 1rem;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      box-shadow: 0 4px 12px rgba(126, 34, 206, 0.08);
+    }
+
+    .marquee-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .marquee-label {
+      position: absolute;
+      bottom: 0;
+      inset-inline: 0;
+      padding: 6px 8px;
+      background: linear-gradient(180deg, transparent 0%, rgba(46, 16, 101, 0.85) 100%);
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Profile Avatar & Identity */
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      margin-top: -36px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar-box {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, #c084fc, #7e22ce);
+      box-shadow: 0 10px 25px -4px rgba(126, 34, 206, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .avatar-box img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      margin-bottom: 2px;
+    }
+
+    .profile-role {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #7e22ce;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+
+    /* Main Content Area */
+    .content-area {
+      padding: 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Card Sobre Mim */
+    .about-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-purple);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: 0 10px 30px -5px rgba(126, 34, 206, 0.06);
+    }
+
+    .about-card h3 {
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: #2e1065;
+      margin-bottom: 8px;
+    }
+
+    .about-card h3 strong {
+      font-weight: 800;
+    }
+
+    .about-card p {
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: #582788;
+    }
+
+    .about-card p strong {
+      color: #2e1065;
+      font-weight: 700;
+    }
+
+    /* Links Section */
+    .links-heading {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #2e1065;
+      margin-top: 10px;
+      margin-bottom: -4px;
+      padding-left: 4px;
+    }
+
+    .link-item-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: #ffffff;
+      border: 1px solid #e9d5ff;
+      border-radius: 1.25rem;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 16px -2px rgba(126, 34, 206, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .link-item-btn:hover {
+      transform: scale(1.015);
+      border-color: #c084fc;
+      box-shadow: 0 8px 24px -4px rgba(126, 34, 206, 0.15);
+    }
+
+    .link-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #faf5ff;
+      border: 1px solid #f3e8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .link-text-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .link-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2e1065;
+    }
+
+    .link-sub {
+      font-size: 0.76rem;
+      color: #6b21a8;
+      opacity: 0.85;
+    }
+
+    .link-chevron {
+      font-size: 1rem;
+      color: #a855f7;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .app-footer {
+      margin-top: 36px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #7e22ce;
+      opacity: 0.8;
+      padding: 0 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sticky Header Bar -->
+    <header class="sticky-header">
+      <div class="logo-badge">DS</div>
+      <div class="header-info">
+        <h4>Duda Silva</h4>
+        <p>Social Media & Branding</p>
+      </div>
+    </header>
+
+    <!-- Infinite Marquee Section -->
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <!-- Loop 1 -->
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Strategy" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Social Strategy</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600" alt="Branding" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Branding</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=600" alt="Content Creation" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Content Creation</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=600" alt="Feed Aesthetics" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Feed Aesthetics</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1542744094-3a31b272c490?auto=format&fit=crop&q=80&w=600" alt="Digital Marketing" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Marketing</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=600" alt="Visual Assets" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Visual Assets</div>
+        </div>
+
+        <!-- Loop 2 (Duplicate for smooth infinite scroll) -->
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Strategy" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Social Strategy</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600" alt="Branding" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Branding</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=600" alt="Content Creation" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Content Creation</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=600" alt="Feed Aesthetics" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Feed Aesthetics</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1542744094-3a31b272c490?auto=format&fit=crop&q=80&w=600" alt="Digital Marketing" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Marketing</div>
+        </div>
+        <div class="marquee-item">
+          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=600" alt="Visual Assets" referrerpolicy="no-referrer" />
+          <div class="marquee-label">Visual Assets</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+      <div class="avatar-box">
+        <img 
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" 
+          alt="Duda Silva" 
+          referrerpolicy="no-referrer"
+        />
+      </div>
+      <h1 class="profile-name">Duda Silva</h1>
+      <div class="profile-role">Social Media Specialist</div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-area">
+      <!-- Card Sobre Mim -->
+      <div class="about-card">
+        <h3>Sobre <strong>Mim</strong></h3>
+        <p>
+          Sou <strong>Maria Eduarda</strong>, atuo como <strong>Social Media</strong> especialista em transformar a presença digital de marcas. Crio estratégias de conteúdo visual, design marcante e posicionamento de alto impacto para atrair e engajar seu público ideal.
+        </p>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="links-heading">Links que vão te ajudar</h2>
+
+      <!-- Links List -->
+      <a href="https://wa.me/5511999998888?text=Olá%20Duda,%20quero%20um%20orçamento!" target="_blank" class="link-item-btn">
+        <div class="link-icon-box">💬</div>
+        <div class="link-text-box">
+          <div class="link-title">Solicitar Orçamento no WhatsApp</div>
+          <div class="link-sub">Conversa direta para análise de perfil</div>
+        </div>
+        <div class="link-chevron">➔</div>
+      </a>
+
+      <a href="https://behance.net" target="_blank" class="link-item-btn">
+        <div class="link-icon-box">🎨</div>
+        <div class="link-text-box">
+          <div class="link-title">Ver Portfólio Completo</div>
+          <div class="link-sub">Cases de sucesso, feeds e identidades visuais</div>
+        </div>
+        <div class="link-chevron">➔</div>
+      </a>
+
+      <a href="https://calendly.com" target="_blank" class="link-item-btn">
+        <div class="link-icon-box">📅</div>
+        <div class="link-text-box">
+          <div class="link-title">Agendar Consultoria Individual</div>
+          <div class="link-sub">Sessão estratégica de 1h para o seu perfil</div>
+        </div>
+        <div class="link-chevron">➔</div>
+      </a>
+
+      <a href="https://instagram.com" target="_blank" class="link-item-btn">
+        <div class="link-icon-box">✨</div>
+        <div class="link-text-box">
+          <div class="link-title">Acompanhar Dicas no Instagram</div>
+          <div class="link-sub">Conteúdo diário sobre criação e métricas</div>
+        </div>
+        <div class="link-chevron">➔</div>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 Duda Silva. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+
+</body>
+</html>

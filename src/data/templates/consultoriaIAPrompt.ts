@@ -1,0 +1,1 @@
+export const consultoriaIAPrompt = `Build a full landing page for "Consultoria de IA" using plain HTML, CSS, and vanilla JavaScript. [COLE O PROMPT DA PÁGINA 02 AQUI]`;

@@ -1,0 +1,6 @@
+{
+  "name": "Gestor de Tráfego Pago - Link na Bio",
+  "description": "Link na Bio profissional e minimalista para Gestor de Tráfego Pago com banners 3D, integração Meta Ads e Google Ads, e calculadora de ROI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

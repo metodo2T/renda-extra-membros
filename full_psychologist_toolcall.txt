@@ -1,0 +1,14 @@
+[
+  {
+    "name": "write_to_file",
+    "args": {
+      "CodeContent": "\"const fs = require('fs');\\n\\nconst path = 'C:\\\\\\\\Users\\\\\\\\OS\\\\\\\\.gemini\\\\\\\\antigravity\\\\\\\\brain\\\\\\\\8fea2376-9f34-41d2-b791-9509ff6a005f\\\\\\\\.system_generated\\\\\\\\logs\\\\\\\\transcript.jsonl';\\nconst lines = fs.readFileSync(path, 'utf8').split('\\\\n');\\n\\nfor (let i = 0; i < lines.length; i++) {\\n  if (lines[i].includes('hero1_arb8ja')) {\\n    try {\\n      const obj = JSON.parse(lines[i]);\\n      console.log('Found in line ' + i + ', type: ' + obj.type);\\n      if (obj.content) {\\n        fs.writeFileSync('full_psychologist_prompt.txt', obj.content);\\n        console.log('Saved full content to full_psychologist_prompt.txt! Length:', obj.content.length);\\n      } else if (obj.tool_calls) {\\n        fs.writeFileSync('full_psychologist_toolcall.txt', JSON.stringify(obj.tool_calls, null, 2));\\n        console.log('Saved tool_calls to full_psychologist_toolcall.txt!');\\n      }\\n    } catch (e) {\\n      console.log('Error parsing JSON on line ' + i + ': ' + e.message);\\n    }\\n  }\\n}\\n\"",
+      "Description": "\"Extract the full prompt text from transcript.jsonl\"",
+      "IsArtifact": "false",
+      "Overwrite": "true",
+      "TargetFile": "\"c:\\\\Users\\\\OS\\\\Downloads\\\\Replicador de paginas\\\\app-replicador--main\\\\app-replicador--main\\\\extract_prompt_text.cjs\"",
+      "toolAction": "\"Writing extract_prompt_text.cjs\"",
+      "toolSummary": "\"Write script to extract prompt text\""
+    }
+  }
+]

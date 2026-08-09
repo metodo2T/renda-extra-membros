@@ -1,0 +1,6 @@
+- [x] Criar componente `MemberArea.tsx` (Header, Filtros, Grid).
+- [x] Atualizar `models.ts` para conter imagens e metadados mocados das landing pages.
+- [x] Implementar a ação **Preview** (Modal com iframe do HTML).
+- [x] Implementar a ação **Baixar** (gerar download de HTML).
+- [x] Implementar a ação **Prompt** (Abrir Briefing ou exibir Prompt).
+- [x] Configurar `App.tsx` para exibir `MemberArea.tsx`.

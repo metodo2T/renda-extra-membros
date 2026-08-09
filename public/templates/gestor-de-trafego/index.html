@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Tráfego | Performance e Escala</title>
+  <meta name="description" content="Gestão de tráfego pago com foco em leads, vendas e otimização contínua para negócios que querem crescer com previsibilidade.">
+
+  <!-- Google Font: Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       GLOBAL RESETS & TOKENS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: #0C0C0C;
+      color: #D7E2EA;
+      font-family: 'Kanit', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    #root, .main-wrapper {
+      background-color: #0C0C0C;
+      width: 100%;
+      overflow-x: clip;
+      position: relative;
+    }
+
+    /* Reusable Gradient Heading */
+    .hero-heading {
+      background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Reusable Primary Contact Button */
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #FFFFFF;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      background: linear-gradient(123deg, #04160C 7%, #0A8F45 37%, #22C55E 72%, #8BFFB8 100%);
+      box-shadow: 0px 4px 12px rgba(10,143,69,0.3), inset 4px 4px 12px #14984F;
+      outline: 2px solid #FFFFFF;
+      outline-offset: -3px;
+      padding: 0.75rem 2rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s cubic-bezier(0.25,0.1,0.25,1), filter 0.2s cubic-bezier(0.25,0.1,0.25,1), box-shadow 0.2s cubic-bezier(0.25,0.1,0.25,1);
+    }
+
+    @media (min-width: 640px) {
+      .btn-contact {
+        padding: 0.875rem 2.5rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .btn-contact {
+        padding: 1rem 3rem;
+        font-size: 1rem;
+      }
+    }
+
+    .btn-contact:hover {
+      transform: translateY(-2px) scale(1.03);
+      filter: brightness(1.1);
+      box-shadow: 0px 8px 18px rgba(10,143,69,0.42), inset 4px 4px 12px #14984F;
+    }
+
+    .btn-contact:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Scroll Fade In */
+    .scroll-fade-in {
+      opacity: 0;
+      transform: translate(var(--x, 0px), var(--y, 30px));
+      transition: opacity var(--duration, 0.7s) cubic-bezier(0.25,0.1,0.25,1), transform var(--duration, 0.7s) cubic-bezier(0.25,0.1,0.25,1);
+      transition-delay: var(--delay, 0s);
+      will-change: opacity, transform;
+    }
+
+    .scroll-fade-in.is-visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    /* Initial Load Animations */
+    .fade-in-load {
+      opacity: 0;
+      transform: translate(var(--start-x, 0px), var(--start-y, 0px));
+      animation: fadeInLoad var(--duration, 0.7s) cubic-bezier(0.25,0.1,0.25,1) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes fadeInLoad {
+      to {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      background-color: #020405;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(2.5rem, 6vw, 4rem) 0 2rem;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle at 50% 46%, rgba(215,226,234,0.1) 0%, rgba(99,113,124,0.06) 20%, rgba(2,4,5,0) 54%),
+                  linear-gradient(180deg, #050708 0%, #020405 68%, #020405 100%);
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: clamp(10rem, 22vw, 18rem);
+      pointer-events: none;
+      z-index: 2;
+      background: linear-gradient(180deg, transparent 0%, #020405 100%);
+    }
+
+    .hero-heading-container {
+      width: 100%;
+      overflow: hidden;
+      padding: 0 1rem;
+      z-index: 8;
+      pointer-events: none;
+      max-width: min(1200px, calc(100vw - 2rem));
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .hero-heading-container {
+        padding: 0 1.5rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-heading-container {
+        padding: 0 2.5rem;
+      }
+    }
+
+    .hero-heading-text {
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.045em;
+      line-height: 0.88;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      opacity: 0.94;
+      font-size: clamp(3rem, 8vw, 7rem);
+    }
+
+    .hero-heading-text span {
+      display: block;
+    }
+
+    @media (min-width: 640px) {
+      .hero-heading-text {
+        font-size: clamp(3.7rem, 8vw, 7.8rem);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-heading-text {
+        font-size: clamp(4.3rem, 7.2vw, 8.4rem);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-heading-text {
+        font-size: clamp(4.8rem, 6.7vw, 8.8rem);
+      }
+    }
+
+    .hero-bio {
+      color: #D7E2EA;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+      font-size: clamp(0.72rem, 1.1vw, 1.05rem);
+      max-width: 680px;
+      text-align: center;
+      margin: clamp(0.9rem, 2vw, 1.4rem) auto 0;
+      padding: 0 1.5rem;
+      z-index: 25;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.72);
+      position: relative;
+    }
+
+    @media (min-width: 640px) {
+      .hero-bio {
+        max-width: 720px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-bio {
+        max-width: 760px;
+      }
+    }
+
+    /* Hero Portrait Statue */
+    .hero-portrait-container {
+      position: absolute;
+      left: 50%;
+      top: 54%;
+      transform: translate(-50%, -50%) translate3d(var(--hero-shift-x, 0px), var(--hero-shift-y, 0px), 28px) rotateX(var(--hero-rotate-x, 0deg)) rotateY(var(--hero-rotate-y, 0deg));
+      width: min(50vw, 480px);
+      z-index: 18;
+      pointer-events: none;
+      transform-style: preserve-3d;
+      transform-origin: center;
+      transition: transform 0.04s linear;
+      will-change: transform;
+      opacity: 0;
+      animation: heroPortraitReveal 0.75s cubic-bezier(0.25,0.1,0.25,1) 0.25s forwards;
+    }
+
+    @media (min-width: 768px) {
+      .hero-portrait-container {
+        top: 55%;
+        width: min(31vw, 420px);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero-portrait-container {
+        top: 56%;
+        width: min(27vw, 440px);
+      }
+    }
+
+    .hero-portrait-img {
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+      filter: drop-shadow(0 3rem 3.5rem rgba(0,0,0,0.54));
+      display: block;
+    }
+
+    .hero-portrait-container::after {
+      content: '';
+      position: absolute;
+      bottom: 2%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 54%;
+      height: 8%;
+      background: rgba(0,0,0,0.5);
+      filter: blur(22px);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    @keyframes heroPortraitReveal {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate3d(var(--hero-shift-x, 0px), var(--hero-shift-y, 0px), 28px) rotateX(var(--hero-rotate-x, 0deg)) rotateY(var(--hero-rotate-y, 0deg)) scale(1);
+      }
+    }
+
+    .hero-cta-row {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 25;
+      top: 73%;
+      bottom: auto;
+    }
+
+    @media (min-width: 768px) {
+      .hero-cta-row {
+        top: auto;
+        bottom: clamp(1.75rem, 5vh, 3rem);
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 2: TRABALHOS REALIZADOS MARQUEE
+       ========================================================================== */
+    .marquee-section {
+      background: radial-gradient(ellipse at 50% 0%, rgba(107,157,178,0.08) 0%, rgba(43,76,91,0.04) 30%, rgba(2,4,5,0) 64%),
+                  linear-gradient(180deg, #020405 0%, #05090b 28%, #0C0C0C 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      padding-top: clamp(7rem, 13vw, 10rem);
+      padding-bottom: 2.5rem;
+    }
+
+    .marquee-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: clamp(6rem, 12vw, 9rem);
+      background: linear-gradient(180deg, #020405 0%, rgba(12,12,12,0) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .marquee-heading {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      font-size: clamp(2.4rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+      padding: 0 1.25rem;
+      width: 100%;
+    }
+
+    .marquee-container {
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0.75rem;
+      will-change: transform;
+    }
+
+    .marquee-tile {
+      width: 420px;
+      height: 270px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      border: 1px solid rgba(215,226,234,0.05);
+      background-color: #1a1a1a;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .marquee-tile {
+        width: 280px;
+        height: 180px;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 3: SOBRE
+       ========================================================================== */
+    .about-section {
+      min-height: 100vh;
+      background-color: #0C0C0C;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
+      padding: 5rem 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .about-section {
+        padding: 5rem 2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .about-section {
+        padding: 5rem 2.5rem;
+      }
+    }
+
+    .section-heading-huge {
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      text-align: center;
+      font-size: clamp(3rem, 12vw, 160px);
+      z-index: 2;
+      margin-bottom: 2.5rem;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: normal;
+    }
+
+    @media (min-width: 640px) {
+      .section-heading-huge {
+        margin-bottom: 3.5rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .section-heading-huge {
+        margin-bottom: 4rem;
+      }
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4rem;
+      max-width: 560px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    @media (min-width: 640px) {
+      .about-content {
+        gap: 5rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .about-content {
+        gap: 6rem;
+      }
+    }
+
+    .about-paragraph {
+      color: #D7E2EA;
+      font-weight: 500;
+      line-height: 1.6;
+      text-align: center;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+    }
+
+    .char {
+      opacity: 0.2;
+      display: inline-block;
+      white-space: pre-wrap;
+      will-change: opacity;
+      transition: opacity 0.1s ease;
+    }
+
+    /* ==========================================================================
+       SECTION 4: SERVIÇOS
+       ========================================================================== */
+    .services-section {
+      background-color: #FFFFFF;
+      color: #0C0C0C;
+      position: relative;
+      z-index: 8;
+      overflow: hidden;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      padding: 5rem 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .services-section {
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        padding: 6rem 2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .services-section {
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        padding: 8rem 2.5rem;
+      }
+    }
+
+    .services-heading {
+      color: #0C0C0C;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-list {
+      max-width: 1024px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid rgba(12,12,12,0.15);
+      padding: 2rem 0;
+      transition: transform 0.3s cubic-bezier(0.25,0.1,0.25,1), padding-left 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+
+    .service-item:last-child {
+      border-bottom: 1px solid rgba(12,12,12,0.15);
+    }
+
+    .service-item:hover {
+      padding-left: 1.5rem;
+      transform: translateX(5px);
+    }
+
+    .service-item:hover .service-title {
+      color: #0A8F45;
+    }
+
+    .service-number {
+      font-weight: 900;
+      font-size: clamp(3rem, 10vw, 140px);
+      color: #0C0C0C;
+      line-height: 0.8;
+      margin-right: 2rem;
+      width: 30%;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .service-number {
+        margin-right: 3rem;
+        width: 25%;
+      }
+    }
+
+    .service-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 70%;
+    }
+
+    @media (min-width: 768px) {
+      .service-content {
+        width: 75%;
+      }
+    }
+
+    .service-title {
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: clamp(1rem, 2.2vw, 2.1rem);
+      color: #0C0C0C;
+      transition: color 0.3s cubic-bezier(0.25,0.1,0.25,1);
+    }
+
+    .service-description {
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 650px;
+      font-size: clamp(0.85rem, 1.6vw, 1.25rem);
+      opacity: 0.6;
+      color: #0C0C0C;
+    }
+
+    /* ==========================================================================
+       SECTION 5: COMO FUNCIONA
+       ========================================================================== */
+    .process-section {
+      background-color: #0C0C0C;
+      position: relative;
+      z-index: 10;
+      margin-top: -2.5rem;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      padding: 6rem 1.25rem 20vh;
+    }
+
+    @media (min-width: 640px) {
+      .process-section {
+        margin-top: -3rem;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .process-section {
+        margin-top: -3.5rem;
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+    }
+
+    .project-stack-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 4rem auto 0;
+      position: relative;
+      perspective: 1400px;
+    }
+
+    .project-card-wrapper {
+      height: 85vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      transform-origin: top center;
+      will-change: transform, opacity;
+    }
+
+    .project-card {
+      position: sticky;
+      top: calc(clamp(6rem, 15vh, 8rem) + var(--stack-offset, 0px));
+      border-radius: 40px;
+      border: 2px solid #D7E2EA;
+      background: #0C0C0C;
+      padding: 1.25rem;
+      width: 100%;
+      max-width: 100%;
+      height: 90%;
+      min-height: clamp(24rem, 62vh, 38rem);
+      box-shadow: 0 -20px 40px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      overflow: hidden;
+      transform-origin: center top;
+      position: relative;
+    }
+
+    @media (max-width: 767px) {
+      .project-card {
+        min-height: clamp(24rem, 70vh, 32rem);
+      }
+    }
+
+    @media (min-width: 640px) {
+      .project-card {
+        border-radius: 50px;
+        padding: 2rem;
+        gap: 2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .project-card {
+        border-radius: 60px;
+        padding: 2.5rem;
+      }
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(215,226,234,0.05) 0%, rgba(6,10,12,0.16) 26%, rgba(2,4,5,0.5) 100%);
+      opacity: var(--stack-overlay-opacity, 0);
+      z-index: 0;
+      pointer-events: none;
+      transition: opacity 0.1s linear;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+      .card-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+    }
+
+    .card-info-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .card-info-group {
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .card-info-group {
+        align-items: flex-start;
+      }
+    }
+
+    .card-number {
+      font-weight: 900;
+      font-size: clamp(2rem, 6vw, 5.5rem);
+      color: #D7E2EA;
+      line-height: 0.8;
+      flex-shrink: 0;
+    }
+
+    .card-category {
+      font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-title {
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: clamp(1rem, 2vw, 1.8rem);
+      color: #D7E2EA;
+    }
+
+    .project-method-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .method-intro {
+      max-width: 60rem;
+      color: rgba(215,226,234,0.78);
+      font-size: clamp(0.98rem, 1.5vw, 1.2rem);
+      line-height: 1.65;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(215,226,234,0.12);
+    }
+
+    .method-body {
+      max-width: 70rem;
+      color: rgba(215,226,234,0.64);
+      line-height: 1.65;
+      font-size: clamp(0.92rem, 1.22vw, 1.04rem);
+    }
+
+    /* ==========================================================================
+       SECTION 6: CONTACT FOOTER
+       ========================================================================== */
+    .contact-footer {
+      background-color: #0C0C0C;
+      text-align: center;
+      padding: 6rem 1.25rem;
+      border-top: 1px solid rgba(215,226,234,0.1);
+      position: relative;
+      z-index: 12;
+    }
+
+    .footer-heading {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      line-height: 1.1;
+    }
+
+    .footer-paragraph {
+      opacity: 0.6;
+      max-width: 500px;
+      margin: 0 auto 3rem auto;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #D7E2EA;
+    }
+
+    .footer-copyright {
+      opacity: 0.3;
+      font-size: 0.8rem;
+      margin-top: 5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #D7E2EA;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper" id="root">
+
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section" id="hero">
+      <div class="hero-heading-container">
+        <h1 class="hero-heading-text hero-heading fade-in-load" style="--delay: 0.15s; --start-y: 40px;">
+          <span>TRANSFORME CLIQUES</span>
+          <span>EM CLIENTES REAIS</span>
+        </h1>
+      </div>
+
+      <p class="hero-bio fade-in-load" style="--delay: 0.35s; --start-y: 20px;">
+        ESTRATÉGIA, MÍDIA E OTIMIZAÇÃO DIÁRIA PARA TRANSFORMAR INVESTIMENTO EM VENDAS.
+      </p>
+
+      <div class="hero-portrait-container" id="hero-portrait">
+        <img class="hero-portrait-img" src="https://res.cloudinary.com/dalwymbky/image/upload/v1783952002/hero_dimpqc.png" alt="Escultura clássica com venda nos olhos" width="1254" height="1254" draggable="false" />
+      </div>
+
+      <div class="hero-cta-row fade-in-load" style="--delay: 0.5s; --start-y: 20px;">
+        <a href="#contact" class="btn-contact">Solicitar diagnóstico</a>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TRABALHOS REALIZADOS MARQUEE -->
+    <section class="marquee-section" id="trabalhos-realizados">
+      <h2 class="marquee-heading hero-heading scroll-fade-in" style="--y: 30px;">
+        TRABALHOS REALIZADOS
+      </h2>
+
+      <!-- Marquee Row 1 -->
+      <div class="marquee-container">
+        <div class="marquee-track" id="marquee-track-1">
+          <!-- Repeat 1 -->
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 1" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 2" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 3" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 4" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 5" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 6" loading="lazy" />
+
+          <!-- Repeat 2 -->
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 1" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 2" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 3" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 4" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 5" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 6" loading="lazy" />
+
+          <!-- Repeat 3 -->
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 1" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 2" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 3" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 4" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 5" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 6" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Marquee Row 2 -->
+      <div class="marquee-container">
+        <div class="marquee-track" id="marquee-track-2">
+          <!-- Repeat 1 -->
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 8" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 9" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 10" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 2" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 3" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 4" loading="lazy" />
+
+          <!-- Repeat 2 -->
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 8" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 9" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 10" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 2" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 3" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 4" loading="lazy" />
+
+          <!-- Repeat 3 -->
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 8" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 9" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 10" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 2" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 3" loading="lazy" />
+          <img class="marquee-tile" src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=1600&q=80" alt="Portfolio 4" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SOBRE -->
+    <section class="about-section" id="sobre">
+      <h2 class="section-heading-huge hero-heading scroll-fade-in" style="--y: 30px;">
+        SOBRE
+      </h2>
+
+      <div class="about-content">
+        <p class="about-paragraph" id="about-text">
+          Sou gestor de tráfego com foco em aquisição, performance e escala. Estruturo campanhas no Meta Ads e Google Ads, acompanho as métricas todos os dias e otimizo o funil para reduzir custo por resultado e aumentar previsibilidade de vendas.
+        </p>
+
+        <div class="scroll-fade-in" style="--delay: 0.1s; --y: 30px;">
+          <a href="#contact" class="btn-contact">Quero escalar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SERVIÇOS -->
+    <section class="services-section" id="servicos">
+      <h2 class="section-heading-huge services-heading scroll-fade-in" style="--y: 30px;">
+        SERVIÇOS
+      </h2>
+
+      <div class="services-list">
+        <!-- Item 01 -->
+        <div class="service-item scroll-fade-in" style="--delay: 0s; --y: 30px;">
+          <div class="service-number">01</div>
+          <div class="service-content">
+            <h3 class="service-title">Planejamento de mídia</h3>
+            <p class="service-description">Definição de oferta, público, verba, canais e metas para campanhas começarem com direção clara e expectativa realista de resultado.</p>
+          </div>
+        </div>
+
+        <!-- Item 02 -->
+        <div class="service-item scroll-fade-in" style="--delay: 0.1s; --y: 30px;">
+          <div class="service-number">02</div>
+          <div class="service-content">
+            <h3 class="service-title">Gestão de Meta Ads</h3>
+            <p class="service-description">Criação, monitoramento e otimização de campanhas no Instagram e Facebook com foco em leads qualificados, vendas e remarketing.</p>
+          </div>
+        </div>
+
+        <!-- Item 03 -->
+        <div class="service-item scroll-fade-in" style="--delay: 0.2s; --y: 30px;">
+          <div class="service-number">03</div>
+          <div class="service-content">
+            <h3 class="service-title">Gestão de Google Ads</h3>
+            <p class="service-description">Campanhas de pesquisa, display, performance max e YouTube orientadas por intenção de compra e leitura constante dos dados.</p>
+          </div>
+        </div>
+
+        <!-- Item 04 -->
+        <div class="service-item scroll-fade-in" style="--delay: 0.3s; --y: 30px;">
+          <div class="service-number">04</div>
+          <div class="service-content">
+            <h3 class="service-title">Criativos e testes</h3>
+            <p class="service-description">Organização de hipóteses, testes A/B e leitura de criativos para descobrir quais mensagens e formatos mais convertem.</p>
+          </div>
+        </div>
+
+        <!-- Item 05 -->
+        <div class="service-item scroll-fade-in" style="--delay: 0.4s; --y: 30px;">
+          <div class="service-number">05</div>
+          <div class="service-content">
+            <h3 class="service-title">Otimização e relatórios</h3>
+            <p class="service-description">Ajustes semanais com base em CAC, CPL, CTR, ROAS e taxa de conversão para manter crescimento com mais controle.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: COMO FUNCIONA -->
+    <section class="process-section" id="como-funciona">
+      <h2 class="section-heading-huge hero-heading scroll-fade-in" style="--y: 30px;">
+        COMO FUNCIONA
+      </h2>
+
+      <div class="project-stack-container" id="project-stack">
+        
+        <!-- Card 01 -->
+        <div class="project-card-wrapper" style="--stack-offset: 0px; --index: 0; z-index: 1;">
+          <div class="project-card">
+            <div class="card-top-row">
+              <div class="card-info-group">
+                <div class="card-number">01</div>
+                <div>
+                  <div class="card-category">ETAPA 01</div>
+                  <h3 class="card-title">DIAGNÓSTICO</h3>
+                </div>
+              </div>
+            </div>
+            <div class="project-method-content">
+              <p class="method-intro">Começo entendendo sua oferta, público, metas e o que já foi feito.</p>
+              <p class="method-body">A partir dessa leitura, identifico oportunidades, gargalos e o melhor caminho para atrair clientes com mais previsibilidade.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="project-card-wrapper" style="--stack-offset: 28px; --index: 1; z-index: 2;">
+          <div class="project-card">
+            <div class="card-top-row">
+              <div class="card-info-group">
+                <div class="card-number">02</div>
+                <div>
+                  <div class="card-category">ETAPA 02</div>
+                  <h3 class="card-title">ESTRUTURAÇÃO</h3>
+                </div>
+              </div>
+            </div>
+            <div class="project-method-content">
+              <p class="method-intro">Organizo campanhas, públicos, criativos e mensagens de acordo com o objetivo.</p>
+              <p class="method-body">Tudo é configurado para medir os resultados certos e direcionar a verba para o que tem maior chance de conversão.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="project-card-wrapper" style="--stack-offset: 56px; --index: 2; z-index: 3;">
+          <div class="project-card">
+            <div class="card-top-row">
+              <div class="card-info-group">
+                <div class="card-number">03</div>
+                <div>
+                  <div class="card-category">ETAPA 03</div>
+                  <h3 class="card-title">OTIMIZAÇÃO</h3>
+                </div>
+              </div>
+            </div>
+            <div class="project-method-content">
+              <p class="method-intro">Acompanho os dados, ajusto as campanhas e corto desperdícios durante a operação.</p>
+              <p class="method-body">Com os aprendizados, reforço o que performa melhor e busco escalar mantendo controle de custo e qualidade dos leads.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: CONTACT FOOTER -->
+    <footer class="contact-footer" id="contact">
+      <div class="scroll-fade-in" style="--delay: 0s; --y: 30px;">
+        <h2 class="hero-heading footer-heading">
+          PRONTO PARA VENDER MAIS?
+        </h2>
+
+        <p class="footer-paragraph">
+          Se você quer campanhas com direção, criativos alinhados e otimização constante, vamos conversar e montar um plano de aquisição para o seu negócio.
+        </p>
+
+        <a href="mailto:contato@seudominio.com" class="btn-contact">Entrar em contato</a>
+
+        <div class="footer-copyright">
+          © 2026 Gestor de Tráfego. Todos os direitos reservados.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT INTERACTIONS
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ------------------------------------------------------------------------
+      // 1. SCROLL FADE IN (IntersectionObserver)
+      // ------------------------------------------------------------------------
+      const fadeElements = document.querySelectorAll('.scroll-fade-in');
+      if ('IntersectionObserver' in window) {
+        const fadeObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          rootMargin: '50px',
+          threshold: 0
+        });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+      } else {
+        fadeElements.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // ------------------------------------------------------------------------
+      // 2. HERO 3D CURSOR FOLLOW (Pointer Inertial Lerp)
+      // ------------------------------------------------------------------------
+      const heroSec = document.getElementById('hero');
+      const heroPortrait = document.getElementById('hero-portrait');
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let isHeroActive = false;
+
+      if (!prefersReduced && heroSec && heroPortrait) {
+        heroSec.addEventListener('pointermove', (e) => {
+          if (e.pointerType === 'touch') return;
+          const rect = heroSec.getBoundingClientRect();
+          const relX = (e.clientX - rect.left) / rect.width - 0.5;
+          const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+          targetX = relX * 300; // +/- 150px
+          targetY = relY * 128; // +/- 64px
+          isHeroActive = true;
+        });
+
+        heroSec.addEventListener('pointerleave', () => {
+          targetX = 0;
+          targetY = 0;
+          isHeroActive = false;
+        });
+
+        const updateHeroFollow = () => {
+          currentX += (targetX - currentX) * 0.18;
+          currentY += (targetY - currentY) * 0.18;
+
+          heroPortrait.style.setProperty('--hero-shift-x', `${currentX.toFixed(2)}px`);
+          heroPortrait.style.setProperty('--hero-shift-y', `${currentY.toFixed(2)}px`);
+          heroPortrait.style.setProperty('--hero-rotate-x', `${(-currentY * 0.055).toFixed(2)}deg`);
+          heroPortrait.style.setProperty('--hero-rotate-y', `${(currentX * 0.055).toFixed(2)}deg`);
+
+          requestAnimationFrame(updateHeroFollow);
+        };
+        requestAnimationFrame(updateHeroFollow);
+      }
+
+      // ------------------------------------------------------------------------
+      // 3. ABOUT CHARACTER REVEAL
+      // ------------------------------------------------------------------------
+      const aboutTextEl = document.getElementById('about-text');
+      if (aboutTextEl) {
+        const textContent = aboutTextEl.textContent.trim();
+        aboutTextEl.textContent = '';
+        const charSpans = [];
+
+        for (let i = 0; i < textContent.length; i++) {
+          const span = document.createElement('span');
+          span.className = 'char';
+          span.textContent = textContent[i];
+          aboutTextEl.appendChild(span);
+          charSpans.push(span);
+        }
+
+        const updateAboutReveal = () => {
+          const rect = aboutTextEl.getBoundingClientRect();
+          const viewH = window.innerHeight;
+          const startReveal = viewH * 0.85;
+          const endReveal = viewH * 0.25;
+          const progress = Math.max(0, Math.min(1, (startReveal - rect.top) / (startReveal - endReveal)));
+
+          const total = charSpans.length;
+          for (let i = 0; i < total; i++) {
+            const charStart = (i / total) * 0.85;
+            const charProgress = Math.max(0, Math.min(1, (progress - charStart) / 0.15));
+            const opacity = 0.2 + (charProgress * 0.8);
+            charSpans[i].style.opacity = opacity.toFixed(2);
+          }
+        };
+
+        window.addEventListener('scroll', updateAboutReveal, { passive: true });
+        updateAboutReveal();
+      }
+
+      // ------------------------------------------------------------------------
+      // 4. MARQUEE SCROLL-LINKED MOTION & STACKED PROCESS CARDS
+      // ------------------------------------------------------------------------
+      const marqueeSec = document.getElementById('trabalhos-realizados');
+      const track1 = document.getElementById('marquee-track-1');
+      const track2 = document.getElementById('marquee-track-2');
+
+      const cardWrappers = Array.from(document.querySelectorAll('.project-card-wrapper'));
+      const cards = cardWrappers.map(w => w.querySelector('.project-card'));
+
+      const updateScrollLoops = () => {
+        // Marquee
+        if (marqueeSec && track1 && track2) {
+          const offset = (window.scrollY - marqueeSec.offsetTop + window.innerHeight) * 0.3;
+          track1.style.transform = `translate3d(${offset - 200}px, 0, 0)`;
+          track2.style.transform = `translate3d(${-(offset - 200)}px, 0, 0)`;
+        }
+
+        // Stacked Cards Motion
+        if (!prefersReduced && cardWrappers.length > 0) {
+          const startY = window.innerHeight * 0.92;
+
+          cardWrappers.forEach((wrapper, i) => {
+            const card = cards[i];
+            if (!card) return;
+
+            let scale = 1;
+            let translateY = 0;
+            let overlayOpacity = 0;
+            let brightness = 1;
+
+            // Check up to next 2 wrappers
+            for (let offset = 1; offset <= 2; offset++) {
+              const nextIndex = i + offset;
+              if (nextIndex < cardWrappers.length) {
+                const nextWrapper = cardWrappers[nextIndex];
+                const nextRect = nextWrapper.getBoundingClientRect();
+                const stickyTop = 100 + (i * 28);
+                const progress = Math.max(0, Math.min(1, (startY - nextRect.top) / Math.max(1, startY - stickyTop)));
+                const influence = offset === 1 ? 1 : 0.55;
+
+                scale -= progress * 0.055 * influence;
+                translateY -= progress * 28 * influence;
+                overlayOpacity += progress * 0.2 * influence;
+                brightness -= progress * 0.075 * influence;
+              }
+            }
+
+            scale = Math.max(0.89, Math.min(1, scale));
+            brightness = Math.max(0.84, Math.min(1, brightness));
+            overlayOpacity = Math.max(0, Math.min(0.28, overlayOpacity));
+
+            card.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+            card.style.filter = `brightness(${brightness.toFixed(3)})`;
+            card.style.setProperty('--stack-overlay-opacity', overlayOpacity.toFixed(3));
+          });
+        }
+
+        requestAnimationFrame(updateScrollLoops);
+      };
+
+      requestAnimationFrame(updateScrollLoops);
+    });
+  </script>
+</body>
+</html>

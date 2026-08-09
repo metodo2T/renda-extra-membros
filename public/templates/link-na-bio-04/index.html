@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Camila Silveira | Corretora de Imóveis | CRECI 248.910-F</title>
+  <meta name="description" content="Especialista em imóveis de alto padrão, condomínios fechados e investimentos imobiliários exclusivos." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    history.replaceState(null, '', '/');
+    try {
+      let _fetch = window.fetch;
+      Object.defineProperty(window, 'fetch', {
+        configurable: true,
+        enumerable: true,
+        get() { return _fetch; },
+        set(v) { _fetch = v; }
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --page-bg: #f4f0e6;
+      --container-bg: #ffffff;
+      --card-green-bg: #d2ef7a;
+      --card-dark-bg: #0e120b;
+      --card-blue-bg: #b8d2fc;
+      --card-cream-bg: #f7e2be;
+      --lime-accent: #ccf244;
+      --lime-dark: #0f1403;
+      --text-dark: #111111;
+      --text-muted: #666666;
+      --radius-card: 1.35rem;
+      --max-width: 520px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--page-bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--page-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px 40px;
+    }
+
+    /* Container Centralizado Mobile-First */
+    .app-wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      position: relative;
+      margin: 0 auto;
+    }
+
+    /* Header Fixo Glassmorphism */
+    .sticky-header {
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 9999px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+      margin-bottom: -60px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .header-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    }
+
+    .verified-icon {
+      width: 18px;
+      height: 18px;
+      fill: #0095f6;
+    }
+
+    /* Hero Portrait Expandido */
+    .hero-card {
+      width: 100%;
+      height: 575px;
+      position: relative;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+      margin-bottom: 24px;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%;
+      filter: brightness(0.98) contrast(1.02);
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 24px;
+      color: #ffffff;
+    }
+
+    .hero-badge {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* Banners Stack */
+    .banners-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bento-card {
+      width: 100%;
+      border-radius: var(--radius-card);
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+    }
+
+    .bento-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      line-height: 1.35;
+      opacity: 0.85;
+    }
+
+    .card-btn {
+      align-self: flex-start;
+      margin-top: 4px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .card-thumb {
+      width: 105px;
+      height: 105px;
+      border-radius: 1rem;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+
+    /* Cores dos Cards */
+    .card-green {
+      background-color: var(--card-green-bg);
+      color: #111111;
+    }
+    .card-green .card-btn {
+      background-color: #111111;
+      color: #ffffff;
+    }
+
+    .card-dark {
+      background-color: var(--card-dark-bg);
+      color: #ffffff;
+    }
+    .card-dark .card-desc {
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .card-dark .card-btn {
+      background-color: #25D366;
+      color: #ffffff;
+    }
+
+    .card-blue {
+      background-color: var(--card-blue-bg);
+      color: #0b1e36;
+    }
+    .card-blue .card-btn {
+      background-color: #0b1e36;
+      color: #ffffff;
+    }
+
+    .card-cream {
+      background-color: var(--card-cream-bg);
+      color: #2c1a06;
+    }
+    .card-cream .card-btn {
+      background-color: #2c1a06;
+      color: #ffffff;
+    }
+
+    /* Footer */
+    .app-footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Modais */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      border-radius: 1.75rem;
+      padding: 24px;
+      position: relative;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f1f1;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      height: 140px;
+      border-radius: 1rem;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 0.9rem;
+      color: #555555;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .modal-cta-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 9999px;
+      background-color: #111111;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      margin-top: 12px;
+    }
+
+    .modal-cta-wa {
+      background-color: #25D366;
+    }
+
+    .prop-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .prop-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+    }
+    .prop-info {
+      padding: 10px 14px;
+    }
+    .prop-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .prop-price {
+      font-size: 0.85rem;
+      color: #16a34a;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sticky Header -->
+    <header class="sticky-header">
+      <div class="header-brand">
+        <div class="header-dot"></div>
+        <span>Camila Silveira</span>
+        <svg class="verified-icon" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <div style="font-size: 0.75rem; font-weight: 600; color: #666;">CRECI 248.910-F</div>
+    </header>
+
+    <!-- Full-Width Hero Cover Photo -->
+    <div class="hero-card">
+      <img 
+        src="https://i.postimg.cc/HsCKd0Pk/download-(7).jpg" 
+        alt="Camila Silveira" 
+        class="hero-image"
+        referrerpolicy="no-referrer"
+      />
+      <div class="hero-gradient">
+        <div class="hero-badge">Imóveis Exclusivos</div>
+        <h1 class="hero-title">Camila Silveira</h1>
+        <p class="hero-subtitle">Especialista em imóveis de alto padrão, condomínios fechados e investimentos nobres em SP.</p>
+      </div>
+    </div>
+
+    <!-- Banners Stack -->
+    <div class="banners-stack">
+      <!-- Card 1: Agendamento -->
+      <div class="bento-card card-green" onclick="openModal('modal-visit')">
+        <div class="card-left">
+          <div class="card-title">Agendamento São Paulo</div>
+          <div class="card-desc">Visitas guiadas e atendimento personalizado com hora marcada.</div>
+          <button class="card-btn">Agendar Visita ➔</button>
+        </div>
+        <img 
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400" 
+          alt="Agendamento" 
+          class="card-thumb"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+
+      <!-- Card 2: WhatsApp -->
+      <a href="https://wa.me/5511999998888" target="_blank" class="bento-card card-dark">
+        <div class="card-left">
+          <div class="card-title">Atendimento VIP WhatsApp</div>
+          <div class="card-desc">Fale diretamente comigo para consultoria imediata e dúvidas.</div>
+          <button class="card-btn">Iniciar Conversa 💬</button>
+        </div>
+        <img 
+          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=400" 
+          alt="WhatsApp" 
+          class="card-thumb"
+          referrerpolicy="no-referrer"
+        />
+      </a>
+
+      <!-- Card 3: Carteira de Imóveis -->
+      <div class="bento-card card-blue" onclick="openModal('modal-portfolio')">
+        <div class="card-left">
+          <div class="card-title">Carteira de Imóveis</div>
+          <div class="card-desc">Mansões, penthouses e coberturas exclusivas disponíveis.</div>
+          <button class="card-btn">Ver Seleção ➔</button>
+        </div>
+        <img 
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=400" 
+          alt="Carteira de Imóveis" 
+          class="card-thumb"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+
+      <!-- Card 4: Consultoria -->
+      <div class="bento-card card-cream" onclick="openModal('modal-consulting')">
+        <div class="card-left">
+          <div class="card-title">Consultoria Exclusiva</div>
+          <div class="card-desc">Assessoria jurídica e financeira para aquisição imobiliária.</div>
+          <button class="card-btn">Saber Mais ➔</button>
+        </div>
+        <img 
+          src="https://i.postimg.cc/Kc96wLQ2/1c901d2b35e2cc6474fe524a1c3aac68.jpg" 
+          alt="Consultoria" 
+          class="card-thumb"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 Camila Silveira | CRECI 248.910-F. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- Modais Interativos -->
+  <div class="modal-overlay" id="modal-visit" onclick="closeModalOnOutside(event, 'modal-visit')">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-visit')">×</button>
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=600" class="modal-hero-img" alt="Visita" referrerpolicy="no-referrer" />
+      <h3 class="modal-title">Agendamento de Visitas</h3>
+      <p class="modal-desc">Selecione o melhor dia e horário para conhecer nossos empreendimentos exclusivos nos principais bairros de São Paulo.</p>
+      <a href="https://wa.me/5511999998888?text=Olá,%20gostaria%20de%20agendar%20uma%20visita." target="_blank" class="modal-cta-btn modal-cta-wa">Agendar pelo WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-portfolio" onclick="closeModalOnOutside(event, 'modal-portfolio')">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-portfolio')">×</button>
+      <h3 class="modal-title">Carteira Selecionada</h3>
+      <p class="modal-desc">Confira alguns dos destaques da nossa carteira de alto padrão:</p>
+      
+      <div class="prop-card">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=600" class="prop-img" alt="Mansão Alphaville" referrerpolicy="no-referrer" />
+        <div class="prop-info">
+          <div class="prop-title">Mansão Contemporânea Alphaville</div>
+          <div class="prop-price">R$ 14.500.000 • 850m² • 5 Suítes</div>
+        </div>
+      </div>
+
+      <div class="prop-card">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=600" class="prop-img" alt="Penthouse Jardins" referrerpolicy="no-referrer" />
+        <div class="prop-info">
+          <div class="prop-title">Penthouse Duplex Jardins</div>
+          <div class="prop-price">R$ 9.800.000 • 420m² • Vista 360°</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/5511999998888?text=Olá,%20quero%20receber%20a%20carteira%20completa%20de%20imóveis." target="_blank" class="modal-cta-btn modal-cta-wa">Solicitar Portfólio Completo</a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-consulting" onclick="closeModalOnOutside(event, 'modal-consulting')">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('modal-consulting')">×</button>
+      <img src="https://i.postimg.cc/Kc96wLQ2/1c901d2b35e2cc6474fe524a1c3aac68.jpg" class="modal-hero-img" alt="Consultoria" referrerpolicy="no-referrer" />
+      <h3 class="modal-title">Consultoria Imobiliária</h3>
+      <p class="modal-desc">Atendimento sob medida para investidores e compradores exigentes. Estruturação patrimonial e curadoria rigorosa de ativos.</p>
+      <a href="https://wa.me/5511999998888?text=Olá,%20gostaria%20de%20uma%20consultoria%20imobiliária." target="_blank" class="modal-cta-btn modal-cta-wa">Falar com Camila Silveira</a>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnOutside(e, id) {
+      if (e.target.id === id) {
+        closeModal(id);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Protocolo Reels IA</title>
+  <meta name="description" content="Aprenda a criar e vender seu produto low ticket com uma estrutura simples: oferta validada, conteúdo que converte e funil enxuto para gerar vendas todos os dias no direct." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    history.replaceState(null, '', '/');
+    try {
+      let _fetch = window.fetch;
+      Object.defineProperty(window, 'fetch', {
+        configurable: true,
+        enumerable: true,
+        get() { return _fetch; },
+        set(v) { _fetch = v; }
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans / Inter como fallback base -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       FONTS & DESIGN TOKENS
+       ========================================================================== */
+    @font-face {
+      font-family: "Nohemi";
+      src: local("Nohemi"), local("Plus Jakarta Sans"), local("Inter");
+      font-weight: 300 800;
+      font-display: swap;
+    }
+
+    :root {
+      --navy: #0D1B2A;
+      --navy-shadow: #0A1422;
+      --teal: #2A9D8F;
+      --teal-dark: #1D7F74;
+      --teal-border: #0F5F58;
+      --cream: #F3F7F2;
+      --cream-bg: #F3F7F2;
+      --grid-cream: #F4F3EA;
+      --border-bluegray: #B8C4D2;
+      --yellow: #FFD166;
+      --yellow-dark: #F4B73F;
+      --yellow-border: #C8922E;
+      --font-nohemi: "Nohemi", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cream);
+      color: var(--navy);
+      font-family: var(--font-nohemi);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--cream);
+      color: var(--navy);
+      font-family: var(--font-nohemi);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Grid Texture pattern on cream sections */
+    .bg-grid-cream {
+      background-color: #F3F7F2;
+      background-image: 
+        radial-gradient(rgba(13, 27, 42, 0.04) 1px, transparent 1px),
+        linear-gradient(to right, rgba(13, 27, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(13, 27, 42, 0.035) 1px, transparent 1px);
+      background-size: 32px 32px, 32px 32px, 32px 32px;
+      background-position: center center;
+    }
+
+    /* Hard Navy Offset Shadow */
+    .hard-shadow {
+      box-shadow: 0px 4px 0px 0px #0A1422 !important;
+    }
+
+    .hard-shadow-lg {
+      box-shadow: 0px 6px 0px 0px #0A1422 !important;
+    }
+
+    /* Inline Highlight Chip */
+    .destaque {
+      background: #2A9D8F;
+      color: #FFFFFF;
+      padding: 4px 12px;
+      border-radius: 6px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       BUTTONS & CTAs
+       ========================================================================== */
+    @keyframes ctaPulse {
+      0% {
+        box-shadow: 0 10px 24px rgba(13, 27, 42, 0.24), 0 0 0 0 rgba(42, 157, 143, 0.55);
+      }
+      70% {
+        box-shadow: 0 10px 24px rgba(13, 27, 42, 0.24), 0 0 0 14px rgba(42, 157, 143, 0);
+      }
+      100% {
+        box-shadow: 0 10px 24px rgba(13, 27, 42, 0.24), 0 0 0 0 rgba(42, 157, 143, 0);
+      }
+    }
+
+    .btn-primary-teal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row-reverse;
+      gap: 0;
+      width: 100%;
+      max-width: 418px;
+      min-height: 58px;
+      padding: 14px 20px 14px 28px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2A9D8F 0%, #1D7F74 100%);
+      border: 1px solid #0F5F58;
+      box-shadow: 0 10px 24px rgba(13, 27, 42, 0.24), 0 0 0 0 rgba(42, 157, 143, 0.55);
+      color: #F3F7F2;
+      font-family: var(--font-nohemi);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-align: center;
+      cursor: pointer;
+      animation: ctaPulse 1.8s ease-in-out infinite;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-primary-teal:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn-primary-teal .icon-chip {
+      width: 48px;
+      height: 48px;
+      padding: 10px;
+      margin-left: 12px;
+      background: #0D1B2A;
+      border-radius: 200px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .btn-primary-teal .icon-chip svg {
+      width: 16px;
+      height: 16px;
+      fill: #2A9D8F;
+    }
+
+    /* Yellow Support Button */
+    .btn-yellow-support {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row-reverse;
+      width: 100%;
+      max-width: 425px;
+      min-height: 54px;
+      padding: 12px 18px 12px 24px;
+      background: linear-gradient(135deg, #FFD166 0%, #F4B73F 100%);
+      border: 1px solid #C8922E;
+      border-radius: 14px;
+      color: #0D1B2A;
+      font-family: var(--font-nohemi);
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(13, 27, 42, 0.22), 0 0 0 0 rgba(255, 209, 102, 0.55);
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-yellow-support:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #FFE08A 0%, #F6C65B 100%);
+    }
+
+    .btn-yellow-support .icon-chip {
+      width: 44px;
+      height: 44px;
+      margin-left: 10px;
+      background: #FFFFFF;
+      border-radius: 200px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .btn-yellow-support .icon-chip svg {
+      width: 16px;
+      height: 16px;
+      fill: #D98200;
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO
+       ========================================================================== */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 5vw 20px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0D1B2A;
+      color: #7ED6CC;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0px 3px 0px 0px #0A1422;
+    }
+
+    .hero-heading {
+      max-width: 840px;
+      width: 90%;
+      color: var(--navy);
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 auto;
+    }
+
+    .hero-heading span.gradient-text {
+      background: linear-gradient(90deg, #1D7F74, #2A9D8F);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-paragraph {
+      max-width: 780px;
+      width: 90%;
+      color: var(--navy);
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 0 auto;
+      opacity: 0.92;
+    }
+
+    .hero-video-wrap {
+      width: min(320px, 86vw);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0px 14px 34px rgba(13, 27, 42, 0.18), 0 0 0 1px rgba(13, 27, 42, 0.08);
+      position: relative;
+      margin: 10px 0;
+      background: #000;
+    }
+
+    .hero-video-wrap img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 9/16;
+      border-radius: 18px;
+    }
+
+    /* ==========================================================================
+       SECTION 2: NAVY TICKER STRIP
+       ========================================================================== */
+    .navy-ticker-strip {
+      background: #0D1B2A;
+      min-height: 83px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2em 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ticker-pill {
+      background: #F3F7F2;
+      border: 1px solid #B8C4D2;
+      color: #0D1B2A;
+      border-radius: 999px;
+      font-family: var(--font-nohemi);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 18px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.15);
+    }
+
+    .ticker-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: var(--teal);
+    }
+
+    /* ==========================================================================
+       SECTION 3: PAIN POINTS / DORES
+       ========================================================================== */
+    .pain-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 5vw 20px;
+      text-align: center;
+    }
+
+    .pain-heading {
+      max-width: 840px;
+      width: 90%;
+      color: var(--navy);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .pain-paragraph {
+      max-width: 780px;
+      width: 90%;
+      color: var(--navy);
+      font-size: clamp(16px, 1.6vw, 18px);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .pain-pills-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 15px 0 25px;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .pain-pill {
+      min-height: 60px;
+      background: #2A9D8F;
+      border-radius: 999px;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      color: #FFFFFF;
+      font-family: var(--font-nohemi);
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 24px;
+      text-align: center;
+    }
+
+    .pain-pill-1 { width: min(220px, 100%); }
+    .pain-pill-2 { width: min(265px, 100%); }
+    .pain-pill-3 { width: min(160px, 100%); }
+    .pain-pill-4 { width: min(400px, 100%); }
+
+    .alert-summary-panel {
+      width: min(75%, 980px);
+      min-height: 130px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: #0D1B2A;
+      color: #F3F7F2;
+      border-radius: 20px;
+      padding: 24px 30px;
+      margin-bottom: 30px;
+      box-shadow: 0px 6px 0px 0px #0A1422;
+      text-align: center;
+    }
+
+    .alert-summary-panel p {
+      font-size: clamp(16px, 1.7vw, 19px);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .alert-summary-panel strong {
+      color: #7ED6CC;
+    }
+
+    /* ==========================================================================
+       SECTION 4: FRUSTRATION CARDS
+       ========================================================================== */
+    .frustration-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 4vw 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .frustration-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .frustration-card {
+      min-height: 350px;
+      border-radius: 14px;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .frustration-card.card-bad {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+    }
+
+    .frustration-card.card-good {
+      background: #0D1B2A;
+      color: #F3F7F2;
+      border: 1px solid #1D7F74;
+    }
+
+    .frustration-card-title {
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-bad .frustration-card-title { color: #E63946; }
+    .card-good .frustration-card-title { color: #2A9D8F; }
+
+    .frustration-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .frustration-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .frustration-list li svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       SECTION 5: ABOUT / EXPLANATION
+       ========================================================================== */
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 4vw 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-header-panel {
+      width: 100%;
+      min-height: 100px;
+      background: #0D1B2A;
+      color: #F3F7F2;
+      border-radius: 20px;
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0px 6px 0px 0px #0A1422;
+    }
+
+    .about-header-panel h2 {
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 700;
+    }
+
+    .media-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 20px 0;
+    }
+
+    .media-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .media-text-col {
+      width: min(500px, 90%);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .media-text-col h3 {
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .media-text-col p {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--navy);
+    }
+
+    .media-img-col {
+      width: min(320px, 86vw);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0px 10px 24px rgba(13, 27, 42, 0.16);
+    }
+
+    .media-img-col img {
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+    }
+
+    /* ==========================================================================
+       SECTION 6: AUTHORITY & SOCIAL PROOF
+       ========================================================================== */
+    .proof-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 4vw 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .proof-banner {
+      width: min(75%, 980px);
+      min-height: 120px;
+      background: #2A9D8F;
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .proof-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      border: 1px solid #B8C4D2;
+      overflow: hidden;
+    }
+
+    .proof-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* ==========================================================================
+       SECTION 7: METHOD / 3 STEPS
+       ========================================================================== */
+    .method-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 4vw 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .method-header-panel {
+      width: 100%;
+      min-height: 100px;
+      background: #0D1B2A;
+      color: #F3F7F2;
+      border-radius: 20px;
+      padding: 30px 40px;
+      text-align: center;
+      box-shadow: 0px 6px 0px 0px #0A1422;
+    }
+
+    .method-header-panel h2 {
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .method-header-panel p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #7ED6CC;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: min(90%, 1100px);
+    }
+
+    .method-card {
+      background: #FFFFFF;
+      border: 1px solid #0D1B2A;
+      border-radius: 12px;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      padding: 28px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .method-card .icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: #F3F7F2;
+      border: 1px solid #B8C4D2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .method-card .icon-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .method-card-step {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .method-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .method-card p {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #4B5563;
+    }
+
+    /* ==========================================================================
+       SECTION 8: OFFER / PRICING
+       ========================================================================== */
+    .offer-section {
+      display: flex;
+      justify-content: center;
+      padding: 5vw 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .offer-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .offer-left-block {
+      background: #FFFFFF;
+      border: 1px solid #B8C4D2;
+      border-radius: 14px;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .offer-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .offer-deliverables-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .offer-deliverables-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .offer-deliverables-list li .check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #2A9D8F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .offer-deliverables-list li .check-icon svg {
+      width: 12px;
+      height: 12px;
+      fill: #FFFFFF;
+    }
+
+    .offer-right-block {
+      background: #0D1B2A;
+      color: #F3F7F2;
+      border: 1px solid #1D7F74;
+      border-radius: 14px;
+      box-shadow: 0px 4px 0px 0px #0A1422;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .offer-badge-tag {
+      background: #2A9D8F;
+      color: #FFFFFF;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .offer-old-price {
+      font-size: 16px;
+      color: #94A3B8;
+      text-decoration: line-through;
+    }
+
+    .offer-price-prefix {
+      font-size: 18px;
+      font-weight: 600;
+      color: #7ED6CC;
+    }
+
+    .offer-main-price {
+      font-size: clamp(48px, 6vw, 63px);
+      font-weight: 800;
+      color: #FFD166;
+      line-height: 1;
+    }
+
+    .offer-cash-price {
+      font-size: 16px;
+      font-weight: 500;
+      color: #CBD5E1;
+    }
+
+    /* ==========================================================================
+       SECTION 9: GUARANTEE
+       ========================================================================== */
+    .guarantee-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4vw 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .guarantee-card {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid #B8C4D2;
+      border-radius: 20px;
+      box-shadow: 0px 6px 0px 0px #0A1422;
+      padding: 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .guarantee-seal-wrap {
+      width: min(200px, 40%);
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .guarantee-seal-wrap svg {
+      width: 140px;
+      height: 140px;
+    }
+
+    .guarantee-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 600px;
+    }
+
+    .guarantee-text-wrap h3 {
+      font-size: clamp(22px, 2.5vw, 28px);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .guarantee-text-wrap p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #4B5563;
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       SECTION 10: FAQ / FINAL CTA
+       ========================================================================== */
+    .faq-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 4vw 20px 6vw;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .faq-header h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .faq-accordion {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: #FFFFFF;
+      border: 1px solid #B8C4D2;
+      border-radius: 12px;
+      box-shadow: 0px 3px 0px 0px #0A1422;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .faq-question {
+      padding: 18px 24px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-question .faq-icon {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.active .faq-question .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 24px;
+      color: #4B5563;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 250px;
+      padding: 0 24px 20px;
+    }
+
+    /* Final CTA inside FAQ */
+    .final-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 30px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       SECTION 11: FLOATING WHATSAPP BUTTON
+       ========================================================================== */
+    .whatsapp-floating-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+
+    .whatsapp-floating-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-floating-btn svg {
+      width: 32px;
+      height: 32px;
+      fill: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer.main-footer {
+      background: #0D1B2A;
+      color: #94A3B8;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+    }
+
+    footer.main-footer p {
+      margin: 4px 0;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE RULES
+       ========================================================================== */
+    @media (max-width: 1100px) {
+      .hero-heading, .pain-heading { width: 95%; }
+      .hero-paragraph, .pain-paragraph { width: 95%; }
+      .alert-summary-panel { width: 90%; }
+      .proof-banner { width: 90%; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .method-grid { width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section { padding: 8vw 16px; }
+      .hero-heading { font-size: 26px; }
+      .hero-paragraph { font-size: 16px; }
+      .btn-primary-teal { width: 100%; max-width: 100%; }
+      .btn-yellow-support { width: 100%; max-width: 100%; }
+      
+      .pain-pills-row { gap: 10px; }
+      .pain-pill { width: 100% !important; min-height: 52px; font-size: 15px; }
+
+      .frustration-grid { grid-template-columns: 1fr; }
+      .media-row { flex-direction: column !important; gap: 20px; text-align: center; }
+      .media-text-col { width: 100%; align-items: center; }
+
+      .proof-grid { grid-template-columns: 1fr; gap: 14px; }
+      .method-grid { grid-template-columns: 1fr; gap: 14px; }
+
+      .offer-container { grid-template-columns: 1fr; }
+      .offer-right-block { padding: 30px 20px; }
+
+      .guarantee-card { flex-direction: column; text-align: center; padding: 30px 20px; }
+      .guarantee-seal-wrap { width: 100%; }
+
+      .alert-summary-panel { width: 100%; padding: 20px 16px; }
+      .proof-banner { width: 100%; padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body class="bg-grid-cream">
+
+  <!-- ==========================================================================
+       SECTION 1: HERO
+       ========================================================================== -->
+  <section class="hero-section bg-grid-cream" id="hero">
+    <div class="hero-badge">
+      <span>🚀 MÉTODO VALIDADO DE CONVERSÃO</span>
+    </div>
+
+    <h1 class="hero-heading">
+      Transforme conversas no direct em vendas automáticas com Reels criados por <span class="gradient-text">Inteligência Artificial</span>
+    </h1>
+
+    <p class="hero-paragraph">
+      O método simples para criar vídeos magnéticos, atrair compradores qualificados e gerar vendas todos os dias com um funil enxuto.
+    </p>
+
+    <!-- Thumbnail vertical de vídeo / celular -->
+    <div class="hero-video-wrap">
+      <img 
+        src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350418/imgvideo_dsgbm0.png" 
+        alt="Demonstração em vídeo do Protocolo Reels IA" 
+        loading="eager"
+      />
+    </div>
+
+    <!-- Primary Teal CTA Button with icon chip -->
+    <a href="#oferta" class="btn-primary-teal" aria-label="Quero acesso ao protocolo">
+      <span class="icon-chip">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>QUERO ACESSO AO PROTOCOLO</span>
+    </a>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: NAVY TICKER STRIP
+       ========================================================================== -->
+  <section class="navy-ticker-strip">
+    <div class="ticker-track">
+      <div class="ticker-pill"><span class="dot"></span> REELS QUE VENDEM</div>
+      <div class="ticker-pill"><span class="dot"></span> AUTOMAÇÃO DE DIRECT</div>
+      <div class="ticker-pill"><span class="dot"></span> OFERTA VALIDADA</div>
+      <div class="ticker-pill"><span class="dot"></span> CONVERSÃO COM IA</div>
+      <div class="ticker-pill"><span class="dot"></span> FUNIL ENXUTO</div>
+      <div class="ticker-pill"><span class="dot"></span> ROTEIROS MAGNÉTICOS</div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: PAIN POINTS / DORES
+       ========================================================================== -->
+  <section class="pain-section bg-grid-cream" id="dores">
+    <h2 class="pain-heading">
+      Você passa horas tentando produzir conteúdo e o resultado nas vendas é quase zero?
+    </h2>
+
+    <p class="pain-paragraph">
+      A maioria dos profissionais comete os mesmos erros ao tentar vender pelas redes sociais:
+    </p>
+
+    <div class="pain-pills-row">
+      <div class="pain-pill pain-pill-1">01. Falta de tempo</div>
+      <div class="pain-pill pain-pill-2">02. Roteiros sem retenção</div>
+      <div class="pain-pill pain-pill-3">03. Pouco alcance</div>
+      <div class="pain-pill pain-pill-4">04. Nenhuma conversão no direct</div>
+    </div>
+
+    <div class="alert-summary-panel">
+      <p>
+        O problema <strong>não é a frequência de posts</strong>, mas sim a <strong>falta de uma estrutura psicológica validada</strong> que faz a pessoa sair do vídeo e mandar mensagem no seu direct pronta para comprar.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: FRUSTRATION CARDS
+       ========================================================================== -->
+  <section class="frustration-section">
+    <div class="frustration-grid">
+      <!-- Card Bad -->
+      <div class="frustration-card card-bad">
+        <h3 class="frustration-card-title">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#E63946" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          O jeito comum (e exaustivo)
+        </h3>
+        <ul class="frustration-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="#E63946"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Gravar vídeos todos os dias sem um roteiro com gatilhos de compra.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="#E63946"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Depender de dancinhas ou tendências que não trazem clientes qualificados.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="#E63946"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Perder horas editando manualmente sem saber se o vídeo vai vender.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="#E63946"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            Direct vazio e zero previsibilidade no faturamento do mês.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card Good -->
+      <div class="frustration-card card-good">
+        <h3 class="frustration-card-title">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2A9D8F" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          Com o Protocolo Reels IA
+        </h3>
+        <ul class="frustration-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="#2A9D8F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Roteiros de alta conversão gerados em segundos com IA treinada.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="#2A9D8F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Ganchos magnéticos nos primeiros 3 segundos para reter atenção.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="#2A9D8F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Chamada para ação automática que direciona o lead para o direct.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="#2A9D8F"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Funil enxuto de produto low ticket gerando vendas diárias.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: ABOUT / EXPLANATION
+       ========================================================================== */
+  -->
+  <section class="about-section" id="sobre">
+    <div class="about-header-panel">
+      <h2>Como funciona a Engenharia de Conversão por IA</h2>
+    </div>
+
+    <!-- Media Row 1: Text Left, Image Right -->
+    <div class="media-row">
+      <div class="media-text-col">
+        <span class="destaque" style="width: fit-content;">ETAPA 1: ROTEIRO & GANCHO</span>
+        <h3>Roteiros criados para prender a atenção e gerar desejo imediato</h3>
+        <p>
+          Utilize prompts calibrados para o algoritmo do Instagram. Cada segundo do vídeo é pensado para transformar o espectador casual em um lead curioso.
+        </p>
+      </div>
+      <div class="media-img-col">
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350382/img01_kmchg6.png" 
+          alt="Demonstração do roteiro gerado por IA" 
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Media Row 2: Image Left, Text Right -->
+    <div class="media-row reverse">
+      <div class="media-text-col">
+        <span class="destaque" style="width: fit-content;">ETAPA 2: FUNIL DE DIRECT</span>
+        <h3>Automação inteligente que conduz o seguidor até o link de pagamento</h3>
+        <p>
+          Quando a pessoa comenta ou clica, ela recebe uma mensagem personalizada no direct que quebra objeções e entrega o link da oferta automaticamente.
+        </p>
+      </div>
+      <div class="media-img-col">
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350421/img02_g1ctv9.png" 
+          alt="Demonstração do funil de conversão no direct" 
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: AUTHORITY & SOCIAL PROOF
+       ========================================================================== -->
+  <section class="proof-section">
+    <div class="proof-banner">
+      ⭐ Mais de 2.400 criadores e infoprodutores aplicando o Protocolo com resultados validados
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg" 
+          alt="Depoimento de aluno 1" 
+          loading="lazy"
+        />
+      </div>
+      <div class="proof-card">
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg" 
+          alt="Depoimento de aluno 2" 
+          loading="lazy"
+        />
+      </div>
+      <div class="proof-card">
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg" 
+          alt="Depoimento de aluno 3" 
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 7: METHOD / 3 STEPS
+       ========================================================================== -->
+  <section class="method-section" id="metodo">
+    <div class="method-header-panel">
+      <h2>O Método em 3 Passos Simples</h2>
+      <p>Um mapa direto ao ponto para você executar ainda hoje</p>
+    </div>
+
+    <div class="method-grid">
+      <!-- Step 1 -->
+      <div class="method-card">
+        <div class="icon-wrap">
+          <img 
+            src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350415/4561d54c8ec3be53_vvgjfe.webp" 
+            alt="Ícone Passo 1" 
+          />
+        </div>
+        <span class="method-card-step">Passo 01</span>
+        <h3>Criação de Conteúdo Magnético com IA</h3>
+        <p>Gere 30 dias de roteiros virais e chamadas irresistíveis em menos de 15 minutos utilizando nossos modelos de prompts.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="method-card">
+        <div class="icon-wrap">
+          <img 
+            src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350389/2c87dffcea935d81_ogxp09.webp" 
+            alt="Ícone Passo 2" 
+          />
+        </div>
+        <span class="method-card-step">Passo 02</span>
+        <h3>Funil de Direct & Automação</h3>
+        <p>Configure a rota de entrega de conteúdo para transformar visualizações em conversas privadas prontas para comprar.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="method-card">
+        <div class="icon-wrap">
+          <img 
+            src="https://res.cloudinary.com/dalwymbky/image/upload/v1782350413/29e066748324c223_mo4smy.webp" 
+            alt="Ícone Passo 3" 
+          />
+        </div>
+        <span class="method-card-step">Passo 03</span>
+        <h3>Oferta Low Ticket de Alta Conversão</h3>
+        <p>Apresente um produto de entrada irresistível (R$ 19 a R$ 97) para converter seguidores em clientes no mesmo dia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 8: OFFER / PRICING
+       ========================================================================== -->
+  <section class="offer-section" id="oferta">
+    <div class="offer-container">
+      <!-- Left Features Block -->
+      <div class="offer-left-block">
+        <h3 class="offer-title">Tudo o que você vai receber hoje:</h3>
+        <ul class="offer-deliverables-list">
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <span><strong>Módulo 1:</strong> Engenharia de Roteiros Magnéticos com IA</span>
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <span><strong>Módulo 2:</strong> Automação e Funil de Vendas no Direct</span>
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <span><strong>Módulo 3:</strong> Criação de Ofertas Low Ticket Validadas</span>
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <span><strong>Bônus 1:</strong> Pack com 50 Prompts Prontos de Alta Conversão</span>
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <span><strong>Bônus 2:</strong> Gravações de Análise de Perfis Reais</span>
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <span><strong>Acesso por 1 ano</strong> na plataforma com suporte a dúvidas</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Pricing Block -->
+      <div class="offer-right-block">
+        <span class="offer-badge-tag">CONDIÇÃO ESPECIAL DE LANÇAMENTO</span>
+        <span class="offer-old-price">De R$ 297,00 por apenas</span>
+        
+        <div class="offer-price-box">
+          <span class="offer-price-prefix">12x de</span>
+          <div class="offer-main-price">R$ 9,74</div>
+          <span class="offer-cash-price">ou R$ 97,00 à vista</span>
+        </div>
+
+        <!-- Yellow Support Button with white icon chip -->
+        <a href="#hero" class="btn-yellow-support" aria-label="Garantir minha vaga agora">
+          <span class="icon-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </span>
+          <span>GARANTIR MINHA VAGA AGORA</span>
+        </a>
+
+        <p style="font-size: 13px; color: #94A3B8; margin-top: 4px;">
+          🔒 Pagamento 100% seguro com acesso imediato.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 9: GUARANTEE
+       ========================================================================== -->
+  <section class="guarantee-section">
+    <div class="guarantee-card">
+      <div class="guarantee-seal-wrap">
+        <!-- SVG 7 Days Shield Badge -->
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="88" fill="#F3F7F2" stroke="#2A9D8F" stroke-width="6"/>
+          <path d="M100 35L150 55V105C150 140 100 165 100 165C100 165 50 140 50 105V55L100 35Z" fill="#0D1B2A"/>
+          <text x="100" y="105" fill="#FFD166" font-size="34" font-weight="bold" text-anchor="middle" font-family="sans-serif">7</text>
+          <text x="100" y="128" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">DIAS</text>
+        </svg>
+      </div>
+
+      <div class="guarantee-text-wrap">
+        <h3>Garantia Incondicional de 7 Dias</h3>
+        <p>
+          Você tem 7 dias inteiros para testar o método, aplicar os prompts e validar o funil no seu perfil. Se por qualquer motivo você achar que não valeu a pena, basta nos enviar um e-mail que devolveremos 100% do seu dinheiro sem perguntas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 10: FAQ / FINAL CTA
+       ========================================================================== -->
+  <section class="faq-section" id="faq">
+    <div class="faq-header">
+      <h2>Perguntas Frequentes</h2>
+    </div>
+
+    <div class="faq-accordion">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Como recebo o acesso ao treinamento?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Assim que o pagamento for confirmado, você receberá instantaneamente um e-mail com seus dados de login e senha para acessar a plataforma do curso e todos os bônus.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Preciso aparecer nos vídeos?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Não! O método ensina tanto formatos onde você aparece de forma prática quanto formatos sem aparecer (canais dark e perfis institucionais), utilizando recursos de IA.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Funciona para quem está começando do absoluto zero?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Sim! O passo a passo é extremamente didático e prático, mostrando cada clique na tela desde a geração do primeiro roteiro até a configuração do direct.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Por quanto tempo terei acesso ao material?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Você terá acesso completo por 12 meses (1 ano inteiro), incluindo todas as atualizações de prompts e aulas extras adicionadas no período.
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta-wrap">
+      <a href="#oferta" class="btn-primary-teal" style="max-width: 450px;">
+        <span class="icon-chip">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>QUERO COMEÇAR AGORA</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 11: FLOATING WHATSAPP BUTTON
+       ========================================================================== -->
+  <a 
+    href="https://api.whatsapp.com/send?text=Ol%C3%A1,%20gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20o%20Protocolo%20Reels%20IA" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="whatsapp-floating-btn" 
+    aria-label="Tire dúvidas no WhatsApp"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.19-.09-1.12-.55-1.29-.62-.17-.06-.3-.09-.43.09-.12.19-.49.62-.6.75-.11.12-.22.14-.41.05-.19-.09-.8-.29-1.53-.94-.57-.5-9.5-1.13-.1.06-.1-.17-.1-.28-.05-.47.05-.09.19-.22.28-.33.1-.11.13-.19.19-.31.06-.12.03-.23-.01-.33-.05-.09-.43-1.04-.59-1.42-.16-.38-.32-.33-.43-.33h-.37c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.64s.71 1.9 1.01 2.1c.3.2 1.4 2.14 3.4 3 .48.21.85.33 1.14.42.48.15.92.13 1.27.08.39-.06 1.12-.46 1.28-.9.16-.45.16-.83.11-.91-.04-.08-.16-.14-.35-.23z"/>
+    </svg>
+  </a>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="main-footer">
+    <p>© 2026 Protocolo Reels IA. Todos os direitos reservados.</p>
+    <p style="font-size: 12px; color: #64748B; margin-top: 6px;">Este site não possui vínculo institucional com o Instagram ou Meta.</p>
+  </footer>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    // FAQ Accordion Interaction
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        const isActive = parent.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        
+        // Toggle clicked
+        if (!isActive) {
+          parent.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@keyframes scrollPage {
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-70%); }
+  60% { transform: translateY(-70%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-scroll-page {
+  animation: scrollPage 60s ease-in-out infinite;
+}
+
+/* Preview thumbnail: páginas completas */
+@keyframes memberIframeScroll {
+  0%   { top: 0%; }
+  45%  { top: -70%; }
+  55%  { top: -70%; }
+  100% { top: 0%; }
+}
+
+.animate-member-iframe-scroll {
+  animation: memberIframeScroll 12s ease-in-out infinite;
+}
+
+/* Preview thumbnail: link na bio (mobile) */
+@keyframes memberIframeScrollMobile {
+  0%   { top: 0%; }
+  45%  { top: -70%; }
+  55%  { top: -70%; }
+  100% { top: 0%; }
+}
+
+.animate-member-iframe-scroll-mobile {
+  animation: memberIframeScrollMobile 10s ease-in-out infinite;
+}

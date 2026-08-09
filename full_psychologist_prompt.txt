@@ -1,0 +1,49 @@
+Created At: 2026-08-03T19:34:02Z
+Completed At: 2026-08-03T19:34:13Z
+
+				The command completed successfully.
+				Output:
+				c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\public\templates\pagina-07\index.html
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1783170030/i1_k3q50x.jpg
+  -> https://res.cloudinary.com/dalwymbky/video/upload/v1783170031/hero2_zkooqn.mp4
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\public\templates\protocolo-reels\index.html
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350418/imgvideo_dsgbm0.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350382/img01_kmchg6.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350421/img02_g1ctv9.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350415/4561d54c8ec3be53_vvgjfe.webp
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350389/2c87dffcea935d81_ogxp09.webp
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350413/29e066748324c223_mo4smy.webp
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\public\templates\stayflow-hero\index.html
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782324118/fundooferta_hqmgrb.png
+  -> https://res.cloudinary.com/dalwymbky/video/upload/v1782324124/hero_u9l9cb.mp4
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782324118/t1_gurovc.png
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\public\templates\violao-do-zero\index.html
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782391166/garantia_gqpidc.svg
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\src\
+<truncated 858 bytes>
+ky/image/upload/v1782346527/i1_va5clt.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782346527/i1_va5clt.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782346527/i1_va5clt.png
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\src\data\templates\pagina07Prompt.ts
+  -> https://res.cloudinary.com/dalwymbky/video/upload/v1783170031/hero2_zkooqn.mp4
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1783170030/i1_k3q50x.jpg
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\src\data\templates\protocoloReelsPrompt.ts
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350418/imgvideo_dsgbm0.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350382/img01_kmchg6.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350421/img02_g1ctv9.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350383/depoimento_1_ml8ixz.jpg
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350413/29e066748324c223_mo4smy.webp
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350415/4561d54c8ec3be53_vvgjfe.webp
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782350389/2c87dffcea935d81_ogxp09.webp
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\src\data\templates\stayflowHeroPrompt.ts
+  -> https://res.cloudinary.com/dalwymbky/video/upload/v1782324124/hero_u9l9cb.mp4
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782324118/t1_gurovc.png
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782324118/fundooferta_hqmgrb.png
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\src\data\templates\violaoDoZeroPrompt.ts
+  -> https://res.cloudinary.com/dalwymbky/image/upload/v1782391166/garantia_gqpidc.svg
+c:\Users\OS\Downloads\Replicador de paginas\app-replicador--main\app-replicador--main\temp_psychologist_spec.txt
+  -> https://res.cloudinary.com/dalwymbky/video/upload/v1782348406/hero1_arb8ja.mp4
+

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Dr. Jorge Hunky | Advogado Criminalista</title>
+  <meta name="description" content="Dr. Jorge Hunky - Defesa técnica especializada, atuação em crimes de alta complexidade e acompanhamento em todas as instâncias." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    try { history.replaceState(null, '', '/'); } catch (e) {}
+  </script>
+
+  <!-- Google Fonts Preconnect & Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg-main: #0E1418;
+      --bg-gradient-start: #151E23;
+      --bg-gradient-end: #070A0C;
+      --card-bg: #FFFFFF;
+      --card-text-title: #000000;
+      --card-text-body: #444444;
+      --btn-black: #000000;
+      --btn-black-hover: #262626;
+      --verified-badge-bg: #0095F6;
+      --verified-badge-icon: #FFFFFF;
+      --border-radius-card: 22px;
+      --max-width-mobile: 430px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #06090B;
+      color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #06090B;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #FFFFFF;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 12px 48px;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* Container Centralizado Mobile */
+    .mobile-container {
+      width: 100%;
+      max-width: var(--max-width-mobile);
+      background: linear-gradient(165deg, var(--bg-gradient-start) 0%, var(--bg-main) 50%, var(--bg-gradient-end) 100%);
+      border-radius: 36px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
+      .mobile-container {
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+      }
+    }
+
+    /* SECTION 01: COVER PHOTO BANNER */
+    .profile-cover {
+      position: relative;
+      width: 100%;
+      height: 175px;
+      overflow: hidden;
+      background-color: #0a0e11;
+    }
+
+    .profile-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .profile-cover::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+    }
+
+    /* SECTION 02: HEADER PROFILE & SOCIAL ROW */
+    .profile-header {
+      padding: 0 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      margin-top: -48px;
+      position: relative;
+      width: 96px;
+      height: 96px;
+      z-index: 2;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      pointer-events: none;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+    }
+
+    .avatar-img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid #FFFFFF;
+      object-fit: cover;
+      object-position: center 15%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      display: block;
+    }
+
+    .handle-row {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .handle-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #A0AEC0;
+      letter-spacing: -0.01em;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background-color: var(--verified-badge-bg);
+      border-radius: 50%;
+      color: var(--verified-badge-icon);
+      flex-shrink: 0;
+    }
+
+    .verified-badge svg {
+      width: 10px;
+      height: 10px;
+      fill: currentColor;
+    }
+
+    .profile-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-top: 8px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .profile-name span {
+      font-weight: 400;
+      color: #CBD5E1;
+      font-size: 1.15rem;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .profile-bio {
+      font-size: 13px;
+      color: #D6D6D6;
+      margin-top: 8px;
+      max-width: 340px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .social-icons-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .social-link-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .social-link-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .social-link-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* SECTION 03: CARDS STACK */
+    .cards-stack {
+      padding: 12px 18px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bio-card {
+      position: relative;
+      width: 100%;
+      min-height: 155px;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius-card);
+      padding: 20px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 16px 35px -4px rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none;
+    }
+
+    .bio-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      box-shadow: 0 22px 45px -4px rgba(0, 0, 0, 0.55);
+    }
+
+    .card-content-left {
+      width: 58%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 115px;
+      z-index: 2;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--card-text-title);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .card-subtitle {
+      font-family: Verdana, sans-serif;
+      font-size: 11px;
+      color: var(--card-text-body);
+      line-height: 1.45;
+    }
+
+    .card-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #FFFFFF;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.15s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Variação Card 1 - Agendamentos */
+    #cardAgendamentos .card-action-btn {
+      background-color: #25D366;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    }
+    #cardAgendamentos:hover .card-action-btn {
+      background-color: #20BA59;
+    }
+
+    /* Variação Card 2 - Portal */
+    #cardAppNutri .card-action-btn {
+      background-color: var(--btn-black);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+    #cardAppNutri:hover .card-action-btn {
+      background-color: var(--btn-black-hover);
+    }
+
+    /* Variação Card 3 - Escritório */
+    #cardConsultorio .card-action-btn {
+      background-color: #EA4335;
+      box-shadow: 0 4px 14px rgba(234, 67, 53, 0.35);
+    }
+    #cardConsultorio:hover .card-action-btn {
+      background-color: #D33426;
+    }
+
+    .card-action-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .card-media-right {
+      width: 36%;
+      height: 115px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .card-media-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* Mobile Phone Mockup (Widget do Card Portal do Cliente) */
+    .phone-mockup-wrapper {
+      position: absolute;
+      right: 12px;
+      bottom: -22px;
+      width: 116px;
+      height: 175px;
+      background: #000000;
+      border-radius: 18px;
+      border: 3px solid #333333;
+      transform: rotate(-3deg);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #121212;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .phone-notch {
+      width: 32px;
+      height: 6px;
+      background: #000000;
+      border-radius: 0 0 4px 4px;
+      margin: 0 auto 4px;
+    }
+
+    .phone-widget-header {
+      font-size: 7px;
+      color: #999999;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .phone-widget-card {
+      background: #1E1E1E;
+      border-radius: 6px;
+      padding: 6px;
+      border: 1px solid #2D2D2D;
+    }
+
+    .phone-widget-title {
+      font-size: 8px;
+      color: #FFFFFF;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .phone-widget-tag {
+      font-size: 6px;
+      color: #25D366;
+      background: rgba(37, 211, 102, 0.15);
+      padding: 2px 4px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    .phone-progress-bar {
+      width: 100%;
+      height: 3px;
+      background: #333333;
+      border-radius: 2px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+
+    .phone-progress-fill {
+      width: 100%;
+      height: 100%;
+      background: #25D366;
+      border-radius: 2px;
+    }
+
+    /* SECTION 04: MODAL OVERLAY & POP-UP SYSTEM */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 390px;
+      border-radius: 28px;
+      padding: 24px 22px;
+      color: #000000;
+      position: relative;
+      transform: scale(0.92) translateY(15px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #F1F1F1;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: #333333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background-color 0.2s, transform 0.15s;
+    }
+
+    .modal-close-btn:hover {
+      background: #E2E2E2;
+      transform: scale(1.08);
+    }
+
+    .modal-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #718096;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .modal-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .modal-img-hero {
+      width: 100%;
+      height: 160px;
+      border-radius: 16px;
+      object-fit: cover;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: block;
+    }
+
+    .modal-desc {
+      font-size: 12.5px;
+      color: #4A5568;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .modal-options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .modal-option-pill {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 14px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .modal-option-pill:hover {
+      background: #EDF2F7;
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+    }
+
+    .modal-option-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1A202C;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-option-sub {
+      font-size: 11px;
+      color: #718096;
+      margin-top: 3px;
+    }
+
+    .modal-cta-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      background-color: var(--btn-black);
+      color: #FFFFFF;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.15s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .modal-cta-main:hover {
+      background-color: var(--btn-black-hover);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container Mobile Centralizado -->
+  <div class="mobile-container">
+
+    <!-- SECTION 01: COVER PHOTO BANNER -->
+    <div class="profile-cover">
+      <img 
+        src="https://i.postimg.cc/ZKBR0JMh/Chat-GPT-Image-2-de-ago-de-2026-16-58-06.png" 
+        alt="Dr. Jorge Hunky Capa" 
+        class="profile-cover-img"
+        referrerpolicy="no-referrer"
+      />
+    </div>
+
+    <!-- SECTION 02: HEADER PROFILE & SOCIAL ROW -->
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring"></div>
+        <img 
+          src="https://i.postimg.cc/XJMyLpB0/pexels-pavel-danilyuk-8112114-(1).jpg" 
+          alt="Dr. Jorge Hunky" 
+          class="avatar-img"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+
+      <div class="handle-row">
+        <span class="handle-text">@drjorgehunky.adv</span>
+        <div class="verified-badge" title="Verificado">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+      </div>
+
+      <h1 class="profile-name">
+        Dr. Jorge Hunky
+        <span>| Advogado Criminalista</span>
+      </h1>
+
+      <p class="profile-bio">
+        Defesa técnica especializada, atuação em crimes de alta complexidade e habeas corpus
+      </p>
+
+      <div class="social-icons-row">
+        <a href="https://instagram.com/drjorgehunky.adv" target="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20gostaria%20de%20uma%20consulta%20jurídica." target="_blank" rel="noopener noreferrer" class="social-link-btn" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- SECTION 03: CARDS STACK -->
+    <main class="cards-stack">
+      <!-- Card 1 - Agendamentos -->
+      <div class="bio-card" id="cardAgendamentos">
+        <div class="card-content-left">
+          <div>
+            <h2 class="card-title">Agendamentos</h2>
+            <p class="card-subtitle">Marque uma consulta criminal on-line ✦</p>
+          </div>
+          <button class="card-action-btn" type="button">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            Agendar consulta
+          </button>
+        </div>
+        <div class="card-media-right">
+          <img 
+            src="https://i.postimg.cc/3JJXq0N4/pexels-pavel-danilyuk-8112113.jpg" 
+            alt="Agendamentos" 
+            class="card-media-bg"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+      </div>
+
+      <!-- Card 2 - Portal do Cliente / Atuação Criminal -->
+      <div class="bio-card" id="cardAppNutri">
+        <div class="card-content-left">
+          <div>
+            <h2 class="card-title">Portal do Cliente</h2>
+            <p class="card-subtitle">Acompanhe seus processos e habeas corpus em tempo real ✦</p>
+          </div>
+          <button class="card-action-btn" type="button">
+            <svg viewBox="0 0 24 24"><path d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19 5 17.59z"/></svg>
+            Acessar portal
+          </button>
+        </div>
+        <!-- Phone Mockup Widget -->
+        <div class="phone-mockup-wrapper">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-widget-header">Painel Criminal</div>
+            <div class="phone-widget-card">
+              <div class="phone-widget-title">Defesa Criminal & HC</div>
+              <div class="phone-widget-tag">Petição protocolada</div>
+              <div class="phone-progress-bar">
+                <div class="phone-progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 - Escritório Salvador -->
+      <div class="bio-card" id="cardConsultorio">
+        <div class="card-content-left">
+          <div>
+            <h2 class="card-title">Escritório</h2>
+            <p class="card-subtitle">Edifício Paulo Ioneda, sala 0909<br/>Rua Ioneda, 222. Salvador.</p>
+          </div>
+          <button class="card-action-btn" type="button">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Abrir no maps
+          </button>
+        </div>
+        <div class="card-media-right">
+          <img 
+            src="https://i.postimg.cc/SN6WjL5R/60338b1c2d01354595d756b5678a215b.jpg" 
+            alt="Escritório Salvador" 
+            class="card-media-bg"
+            style="object-position: center 40%;"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- SECTION 04: MODAL OVERLAY SYSTEM -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-container" id="modalContainer">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Fechar Modal">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT & ANIMATION BEHAVIOR -->
+  <script>
+    // Gerenciador do Sistema de Modal
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalContainer = document.getElementById('modalContainer');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    function openModal(html) {
+      modalContent.innerHTML = html;
+      modalOverlay.classList.add('active');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+
+    // Estruturas dos Modais
+    const modalData = {
+      agendamentos: `
+        <span class="modal-badge">DEFESA CRIMINAL E URGÊNCIA</span>
+        <h2 class="modal-heading">Agendamentos On-line</h2>
+        <img src="https://i.postimg.cc/kgRbrQm4/pexels-pavel-danilyuk-8112203.jpg" class="modal-img-hero" alt="Agendamento" referrerpolicy="no-referrer" />
+        <p class="modal-desc">Atendimento presencial e on-line com total sigilo. Análise técnica de inquéritos, atuação em flagrantes, habeas corpus e defesa especializada em todas as instâncias.</p>
+        <div class="modal-options-stack">
+          <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20gostaria%20de%20uma%20Consulta%20Criminal%20On-line." target="_blank" rel="noopener noreferrer" class="modal-option-pill">
+            <div class="modal-option-title">⚖️ Consulta Criminal On-line</div>
+            <div class="modal-option-sub">Videochamada reservada • Atendimento nacional e emergencial</div>
+          </a>
+          <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20gostaria%20de%20agendar%20um%20Atendimento%20Presencial%20em%20Salvador." target="_blank" rel="noopener noreferrer" class="modal-option-pill">
+            <div class="modal-option-title">📍 Atendimento Presencial</div>
+            <div class="modal-option-sub">Escritório Salvador • Edifício Paulo Ioneda</div>
+          </a>
+        </div>
+        <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20preciso%20de%20atendimento%20jurídico." target="_blank" rel="noopener noreferrer" class="modal-cta-main">
+          Falar com Dr. Jorge Hunky no WhatsApp
+        </a>
+      `,
+      portal: `
+        <span class="modal-badge">ÁREAS DE ATUAÇÃO CRIMINAL</span>
+        <h2 class="modal-heading">Portal do Cliente</h2>
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=600" class="modal-img-hero" alt="Portal Jurídico" referrerpolicy="no-referrer" />
+        <p class="modal-desc">Defesa em crimes financeiros, lavagem de dinheiro, crimes contra a vida, atuação perante os Tribunais Superiores (STJ e STF) e acompanhamento em flagrantes e inquéritos policiais.</p>
+        <div class="modal-options-stack">
+          <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20gostaria%20de%20consultoria%20em%20Crimes%20Financeiros." target="_blank" rel="noopener noreferrer" class="modal-option-pill">
+            <div class="modal-option-title">📜 Crimes Financeiros & Colarinho Branco</div>
+            <div class="modal-option-sub">Atuação estratégica em investigações complexas</div>
+          </a>
+          <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20preciso%20de%20atendimento%20urgente%20para%20Flagrante/Habeas%20Corpus." target="_blank" rel="noopener noreferrer" class="modal-option-pill">
+            <div class="modal-option-title">🚨 Prisões, Flagrantes & Habeas Corpus</div>
+            <div class="modal-option-sub">Atendimento emergencial 24 horas</div>
+          </a>
+        </div>
+        <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20solicito%20uma%20análise%20de%20caso." target="_blank" rel="noopener noreferrer" class="modal-cta-main">
+          Solicitar Análise de Caso no WhatsApp
+        </a>
+      `,
+      escritorio: `
+        <span class="modal-badge">LOCALIZAÇÃO & ATENDIMENTO</span>
+        <h2 class="modal-heading">Escritório Salvador</h2>
+        <img src="https://i.postimg.cc/SN6WjL5R/60338b1c2d01354595d756b5678a215b.jpg" class="modal-img-hero" style="object-position: center 40%;" alt="Escritório Salvador" referrerpolicy="no-referrer" />
+        <p class="modal-desc"><strong>Edifício Paulo Ioneda, Sala 0909</strong><br/>Rua Ioneda, 222 • Salvador - BA<br/><br/>Estacionamento corporativo com manobrista. Atendimento com hora marcada e plantão criminal de emergência.</p>
+        <div class="modal-options-stack">
+          <a href="https://maps.google.com/?q=Rua+Ioneda+222+Salvador" target="_blank" rel="noopener noreferrer" class="modal-option-pill">
+            <div class="modal-option-title">🗺️ Google Maps</div>
+            <div class="modal-option-sub">Navegar com rotas do Google</div>
+          </a>
+          <a href="https://waze.com/ul?q=Rua+Ioneda+222+Salvador" target="_blank" rel="noopener noreferrer" class="modal-option-pill">
+            <div class="modal-option-title">🚗 Waze</div>
+            <div class="modal-option-sub">Navegar com GPS Waze</div>
+          </a>
+        </div>
+        <a href="https://wa.me/5571999999999?text=Olá%20Dr.%20Jorge,%20tenho%20dúvidas%20sobre%20o%20acesso%20ao%20escritório." target="_blank" rel="noopener noreferrer" class="modal-cta-main">
+          Dúvidas de Acesso pelo WhatsApp
+        </a>
+      `
+    };
+
+    // Event Listeners nos Cards
+    document.getElementById('cardAgendamentos').addEventListener('click', () => {
+      openModal(modalData.agendamentos);
+    });
+
+    document.getElementById('cardAppNutri').addEventListener('click', () => {
+      openModal(modalData.portal);
+    });
+
+    document.getElementById('cardConsultorio').addEventListener('click', () => {
+      openModal(modalData.escritorio);
+    });
+  </script>
+</body>
+</html>

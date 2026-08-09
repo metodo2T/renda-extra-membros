@@ -1,0 +1,6 @@
+{
+  "name": "Link da Bio - Elegança Editorial",
+  "description": "Página de Link da Bio profissional, elegante, responsiva e editorial com apresentação, serviços, FAQ e WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

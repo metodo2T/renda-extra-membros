@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return originalFetch;
+            },
+            set: function(val) {
+              originalFetch = val;
+            }
+          });
+        } catch (e) {
+          console.warn('Unable to define custom window.fetch setter:', e);
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link na Bio - Transforme seu Instagram</title>
+    <meta name="description" content="Estratégias práticas de Tráfego Pago + Orgânico + IA para escalar seu negócio." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script>
+      // Trick React Router into rendering the root path, while keeping asset paths correct
+      if (window.location.pathname !== '/') {
+        window.history.replaceState(null, '', '/');
+      }
+    </script>
+    <script type="module" crossorigin src="/templates/pagina-03/assets/index-Bn85nTA6.js"></script>
+    <link rel="stylesheet" crossorigin href="/templates/pagina-03/assets/index-CEW37-Nh.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+

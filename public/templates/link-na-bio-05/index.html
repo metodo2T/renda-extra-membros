@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Link na Bio - Transforme seu Instagram</title>
+  <meta name="description" content="Estratégias práticas de Tráfego Pago + Orgânico + IA para escalar seu negócio." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    history.replaceState(null, '', '/');
+    try {
+      let _fetch = window.fetch;
+      Object.defineProperty(window, 'fetch', {
+        configurable: true,
+        enumerable: true,
+        get() { return _fetch; },
+        set(v) { _fetch = v; }
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- Google Fonts: Montserrat & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-primary: #030303;
+      --bg-header: rgba(6, 6, 6, 0.88);
+      --bg-card: #0a0a0a;
+      --bg-card-alt: #080808;
+      --accent-amber: #d97706;
+      --accent-amber-light: #ffb259;
+      --accent-amber-glow: #ffedb3;
+      --whatsapp-green: #25D366;
+      --whatsapp-dark: #128C7E;
+      --whatsapp-hover: #20bd5a;
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --text-dark: #71717a;
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      --border-dark: rgba(39, 39, 42, 0.8);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --max-content-width: 1000px;
+      --max-reading-width: 700px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-primary);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, rgba(217, 119, 6, 0.06) 0%, transparent 50%);
+      background-attachment: fixed;
+      padding-top: 130px;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-content-width);
+      padding: 0 1.25rem;
+      margin: 0 auto;
+    }
+
+    .reading-container {
+      width: 100%;
+      max-width: var(--max-reading-width);
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       SECTION 1: FIXED DUAL-BAR GLASSMORPHIC HEADER
+       ========================================================================== */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--bg-header);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-top {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .brand-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .brand-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--accent-amber);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* WhatsApp Button Shimmer */
+    .btn-whatsapp-top {
+      background: linear-gradient(135deg, var(--whatsapp-green), var(--whatsapp-dark));
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+
+    .btn-whatsapp-top::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: rotate(25deg);
+      animation: shimmerBtn 3.5s infinite;
+    }
+
+    @keyframes shimmerBtn {
+      0% { left: -70%; }
+      30%, 100% { left: 140%; }
+    }
+
+    .btn-whatsapp-top:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.55);
+    }
+
+    /* Header Nav Tabs */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.5rem 0;
+      scrollbar-width: none;
+    }
+    .header-nav::-webkit-scrollbar { display: none; }
+
+    .nav-tab-link {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-tab-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-tab-link:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-tab-link:hover svg {
+      transform: translateY(-1px);
+      color: var(--accent-amber);
+    }
+
+    /* ==========================================================================
+       SECTION 2: HERO COVER & PROFILE
+       ========================================================================== */
+    .hero-section {
+      width: 100%;
+      max-width: var(--max-content-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    @media (min-width: 768px) {
+      .hero-video-wrapper {
+        height: 350px;
+      }
+    }
+
+    .hero-cover-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3, 3, 3, 0.1) 0%, rgba(3, 3, 3, 0.6) 60%, rgba(3, 3, 3, 0.98) 100%);
+      pointer-events: none;
+    }
+
+    /* Profile Avatar */
+    .hero-profile-avatar-wrap {
+      position: relative;
+      margin-top: -65px;
+      z-index: 10;
+    }
+
+    @media (min-width: 640px) {
+      .hero-profile-avatar-wrap {
+        margin-top: -80px;
+      }
+    }
+
+    .hero-profile-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 4px solid #030303;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 25px rgba(217, 119, 6, 0.35);
+      transition: transform 0.3s ease;
+    }
+
+    @media (min-width: 640px) {
+      .hero-profile-avatar {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    .hero-profile-avatar:hover {
+      transform: scale(1.04);
+    }
+
+    .hero-name {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-top: 1rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    @media (min-width: 640px) {
+      .hero-name {
+        font-size: 2.5rem;
+      }
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--accent-amber-light);
+      margin-top: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ==========================================================================
+       SECTION 3: STATS COUNTERS
+       ========================================================================== */
+    .stats-section {
+      width: 100%;
+      max-width: 680px;
+      margin: 2.5rem auto 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stats-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .stats-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-amber), transparent);
+    }
+
+    .stats-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(217, 119, 6, 0.4);
+    }
+
+    .stats-icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(217, 119, 6, 0.12);
+      color: var(--accent-amber);
+      margin-bottom: 0.6rem;
+    }
+
+    .stats-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent-amber-glow) 0%, var(--accent-amber-light) 50%, var(--accent-amber) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .stats-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+
+    /* ==========================================================================
+       SECTION COMMON TITLES
+       ========================================================================== */
+    .section-title-wrap {
+      text-align: center;
+      margin: 4.5rem auto 2rem auto;
+    }
+
+    .section-subtitle-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    .glow-line {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-amber), transparent);
+    }
+
+    .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-amber);
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 2.35rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 4: PRÓXIMAS TURMAS PRESENCIAIS (#turmas)
+       ========================================================================== */
+    .city-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .city-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .city-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .city-card.active-turma:hover {
+      transform: translateY(-4px);
+      border-color: var(--whatsapp-green);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.2);
+    }
+
+    .city-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .city-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .city-card:hover .city-img {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    .city-overlay-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .city-overlay-badge .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--whatsapp-green);
+      box-shadow: 0 0 8px var(--whatsapp-green);
+    }
+
+    /* Locked Sold Out */
+    .city-card.sold-out {
+      opacity: 0.65;
+      filter: grayscale(0.85);
+    }
+
+    .city-card.sold-out:hover {
+      filter: grayscale(0.6);
+    }
+
+    .city-card.sold-out .city-img {
+      opacity: 0.4;
+    }
+
+    .lock-overlay-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .lock-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .city-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .city-header-info {
+      margin-bottom: 1rem;
+    }
+
+    .city-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .city-date {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-amber-light);
+    }
+
+    .btn-city-cta {
+      width: 100%;
+      background: linear-gradient(135deg, var(--whatsapp-green), var(--whatsapp-dark));
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-city-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-city-disabled {
+      width: 100%;
+      background: #1f1f23;
+      color: var(--text-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: not-allowed;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* ==========================================================================
+       SECTION 5: CONHEÇA O MÉTODO 2T PRESENCIAL (#sobre)
+       ========================================================================== */
+    .about-card-wrap {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    @media (min-width: 768px) {
+      .about-card-wrap {
+        padding: 2.5rem;
+      }
+    }
+
+    .classroom-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .classroom-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-text-lead {
+      font-size: 1.05rem;
+      color: #e4e4e7;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .about-text-lead strong {
+      color: var(--accent-amber-light);
+    }
+
+    .curriculum-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .curriculum-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .curriculum-col {
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+
+    .curriculum-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .curriculum-header h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .curriculum-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .curriculum-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: #d4d4d8;
+      line-height: 1.45;
+    }
+
+    .curriculum-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .icon-amber { color: var(--accent-amber); }
+    .icon-green { color: var(--whatsapp-green); }
+
+    /* ==========================================================================
+       SECTION 6: NOSSOS SERVIÇOS (#servicos)
+       ========================================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(217, 119, 6, 0.5);
+    }
+
+    .service-img-wrap {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .service-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-img {
+      transform: scale(1.05);
+    }
+
+    .service-body {
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .service-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
+    }
+
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-service {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--accent-amber);
+      color: var(--accent-amber-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-service:hover {
+      background: var(--accent-amber);
+      color: #030303;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+    }
+
+    /* ==========================================================================
+       SECTION 7: PERGUNTAS FREQUENTES (#faq)
+       ========================================================================== */
+    .faq-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .faq-item.is-open {
+      border-color: rgba(217, 119, 6, 0.4);
+      background: #0e0e0e;
+    }
+
+    .faq-header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-question {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      padding-right: 1rem;
+    }
+
+    .faq-chevron {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-amber);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .faq-item.is-open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      font-size: 0.85rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION 8: FOOTER
+       ========================================================================== */
+    .site-footer {
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 5rem;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      background: #020202;
+    }
+
+    .footer-cnpj {
+      font-size: 0.75rem;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SECTION 1: FIXED DUAL-BAR GLASSMORPHIC HEADER
+       ========================================================================== -->
+  <header class="fixed-header">
+    <div class="container">
+      
+      <!-- Top Branding + WhatsApp Bar -->
+      <div class="header-top">
+        <a href="#" class="brand-block">
+          <span class="brand-name">Bruno César</span>
+          <span class="brand-tag">MÉTODO 2T</span>
+        </a>
+
+        <a href="https://wa.me/554499688125" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-top">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>FALE CONOSCO</span>
+        </a>
+      </div>
+
+      <!-- Bottom Smooth-Scroll Navigation Tabs -->
+      <nav class="header-nav">
+        <a href="#turmas" class="nav-tab-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Turmas Presenciais</span>
+        </a>
+        <a href="#sobre" class="nav-tab-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Sobre o Método</span>
+        </a>
+        <a href="#servicos" class="nav-tab-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>Serviços</span>
+        </a>
+        <a href="#faq" class="nav-tab-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>FAQ</span>
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       SECTION 2: HERO COVER & PROFILE
+       ========================================================================== -->
+  <main class="container">
+    
+    <section class="hero-section">
+      <!-- Looping Video Cover -->
+      <div class="hero-video-wrapper">
+        <video 
+          class="hero-cover-video" 
+          autoplay 
+          loop 
+          muted 
+          playsinline
+          poster="https://i.postimg.cc/qMnYYdg4/IMG_5745.jpg"
+        >
+          <source src="https://res.cloudinary.com/dvhswjuep/video/upload/q_auto/f_auto/v1779321196/copy_F5D17F38-5E6F-43C3-9DDA-CFF7B95EB43F_potnx4.mov" type="video/mp4" />
+        </video>
+        <div class="hero-video-overlay"></div>
+      </div>
+
+      <!-- Avatar Sobreposto -->
+      <div class="hero-profile-avatar-wrap">
+        <img 
+          src="https://i.postimg.cc/qMnYYdg4/IMG_5745.jpg" 
+          alt="Bruno César" 
+          class="hero-profile-avatar"
+          referrerpolicy="no-referrer"
+          loading="eager"
+        />
+      </div>
+
+      <h1 class="hero-name">Bruno César</h1>
+      <p class="hero-tagline">Especialista em Tráfego Pago e Orgânico</p>
+
+      <!-- SECTION 3: STATS COUNTERS -->
+      <div class="stats-section">
+        <!-- Card 1 -->
+        <div class="stats-card">
+          <div class="stats-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+              <path d="M4 22h16"></path>
+              <path d="M10 14.66V17c0 .55-.45 1-1 1H7.5"></path>
+              <path d="M14 14.66V17c0 .55.45 1 1 1h1.5"></path>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+          </div>
+          <div class="stats-number" data-target="30" id="counter-edicoes">0</div>
+          <div class="stats-label">EDIÇÕES PRESENCIAIS</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="stats-card">
+          <div class="stats-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="stats-number" data-target="1000" id="counter-alunos">0</div>
+          <div class="stats-label">ALUNOS FORMADOS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4: PRÓXIMAS TURMAS PRESENCIAIS (#turmas)
+         ========================================================================== -->
+    <section id="turmas">
+      <div class="section-title-wrap">
+        <div class="section-subtitle-bar">
+          <span class="glow-line"></span>
+          <span class="section-tag">MÉTODO 2T</span>
+          <span class="glow-line"></span>
+        </div>
+        <h2 class="section-title">Próximas Turmas Presenciais</h2>
+      </div>
+
+      <div class="city-grid">
+
+        <!-- Card 1: Cascavel/PR (Ativa) -->
+        <div class="city-card active-turma">
+          <div class="city-img-wrap">
+            <img 
+              src="https://i.postimg.cc/Nf4S8g3H/istockphoto-1872366972-612x612.jpg" 
+              alt="Turma Presencial Cascavel/PR" 
+              class="city-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+            <div class="city-overlay-badge">
+              <span class="pulse-dot"></span>
+              <span>1ª edição</span>
+            </div>
+          </div>
+          <div class="city-body">
+            <div class="city-header-info">
+              <h3 class="city-name">Cascavel / PR</h3>
+              <p class="city-date">22 e 23 de Agosto</p>
+            </div>
+            <a href="https://wa.me/554499688125?text=Ol%C3%A1%20Bruno,%20quero%20garantir%20minha%20vaga%20na%20turma%20de%20Cascavel!" target="_blank" rel="noopener noreferrer" class="btn-city-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              Garanta sua vaga
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Balneário Camboriú/SC (Ativa) -->
+        <div class="city-card active-turma">
+          <div class="city-img-wrap">
+            <img 
+              src="https://i.postimg.cc/rwmPpCF3/360-F-592430747-Yt-Wr-HAf0RFrf-WEvdr-FEi-Smcv-Zo-ZG442N.jpg" 
+              alt="Turma Presencial Balneário Camboriú/SC" 
+              class="city-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+            <div class="city-overlay-badge">
+              <span class="pulse-dot"></span>
+              <span>2ª turma</span>
+            </div>
+          </div>
+          <div class="city-body">
+            <div class="city-header-info">
+              <h3 class="city-name">Balneário Camboriú / SC</h3>
+              <p class="city-date">29 e 30 de Agosto</p>
+            </div>
+            <a href="https://wa.me/554499688125?text=Ol%C3%A1%20Bruno,%20quero%20garantir%20minha%20vaga%20na%20turma%20de%20Balne%C3%A1rio%20Cambori%C3%BA!" target="_blank" rel="noopener noreferrer" class="btn-city-cta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              Garanta sua vaga
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Campinas/SP (Esgotado) -->
+        <div class="city-card sold-out">
+          <div class="city-img-wrap">
+            <img 
+              src="https://i.postimg.cc/kX9r7bbj/240-F-358616030-cq-Cg-ZVgq-URfmov-KNBa9rvvs-U7jt-Bfrd7.jpg" 
+              alt="Turma Campinas/SP" 
+              class="city-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+            <div class="lock-overlay-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span class="lock-tag">Esgotado</span>
+            </div>
+          </div>
+          <div class="city-body">
+            <div class="city-header-info">
+              <h3 class="city-name">Campinas / SP</h3>
+              <p class="city-date">25 e 26 de Julho • 1ª edição</p>
+            </div>
+            <div class="btn-city-disabled">
+              <span>Turma Esgotada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Foz do Iguaçu/PR (Esgotado) -->
+        <div class="city-card sold-out">
+          <div class="city-img-wrap">
+            <img 
+              src="https://i.postimg.cc/8kR3Xz0c/istockphoto-488388458-612x612.jpg" 
+              alt="Turma Foz do Iguaçu/PR" 
+              class="city-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+            <div class="lock-overlay-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span class="lock-tag">Esgotado</span>
+            </div>
+          </div>
+          <div class="city-body">
+            <div class="city-header-info">
+              <h3 class="city-name">Foz do Iguaçu / PR</h3>
+              <p class="city-date">11 e 12 de Julho • 3ª edição</p>
+            </div>
+            <div class="btn-city-disabled">
+              <span>Turma Esgotada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Maringá/PR (Esgotado) -->
+        <div class="city-card sold-out">
+          <div class="city-img-wrap">
+            <img 
+              src="https://i.postimg.cc/TY8dg1Wt/360-F-1915916746-q5e3gs-X6u-Vcb-Zl-Njh-Lmxnvv2j3o-JKy-EE.jpg" 
+              alt="Turma Maringá/PR" 
+              class="city-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+            <div class="lock-overlay-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span class="lock-tag">Esgotado</span>
+            </div>
+          </div>
+          <div class="city-body">
+            <div class="city-header-info">
+              <h3 class="city-name">Maringá / PR</h3>
+              <p class="city-date">06 e 07 de Junho • 11ª edição</p>
+            </div>
+            <div class="btn-city-disabled">
+              <span>Turma Esgotada</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5: CONHEÇA O MÉTODO 2T PRESENCIAL (#sobre)
+         ========================================================================== -->
+    <section id="sobre">
+      <div class="section-title-wrap">
+        <div class="section-subtitle-bar">
+          <span class="glow-line"></span>
+          <span class="section-tag">IMERSÃO PRÁTICA</span>
+          <span class="glow-line"></span>
+        </div>
+        <h2 class="section-title">Conheça O Método 2T Presencial</h2>
+      </div>
+
+      <div class="about-card-wrap">
+        
+        <div class="classroom-img-wrap">
+          <img 
+            src="https://i.postimg.cc/hjbJ6mmM/IMG-2224.jpg" 
+            alt="Turma Presencial Método 2T" 
+            class="classroom-img"
+            referrerpolicy="no-referrer"
+            loading="lazy"
+          />
+        </div>
+
+        <p class="about-text-lead">
+          O <strong>Método 2T</strong> é um curso 100% prático, destinado para empresários que cansaram de perder dinheiro com agências e querem aprender a fazer o próprio tráfego pago.
+        </p>
+        <p class="about-text-lead">
+          Também é ideal para pessoas que desejam criar uma renda extra trabalhando com tráfego pago e social media.
+        </p>
+
+        <!-- Curriculum Grid (2 Colunas) -->
+        <div class="curriculum-grid">
+          
+          <!-- Coluna 1: O que você vai aprender -->
+          <div class="curriculum-col">
+            <div class="curriculum-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber">
+                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+              </svg>
+              <h4>O que você vai aprender</h4>
+            </div>
+
+            <ul class="curriculum-list">
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Tráfego Pago (Meta Ads + Google Ads)</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Estrutura completa de campanhas</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Criação de criativos que vendem</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Tráfego Orgânico + conteúdo estratégico</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Uso de IA para acelerar resultados</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Criação de site + eBook</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-amber"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Como trabalhar como gestor de tráfego ou social media</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Coluna 2: Bônus exclusivos -->
+          <div class="curriculum-col">
+            <div class="curriculum-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-green">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <h4>Bônus exclusivos</h4>
+            </div>
+
+            <ul class="curriculum-list">
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-green"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Aula de GPTs</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-green"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>03 meses de acompanhamento individual</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-green"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Templates + materiais práticos</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-green"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Certificado de Conclusão</span>
+              </li>
+              <li class="curriculum-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-green"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Coffee Break e Networking VIP</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 6: NOSSOS SERVIÇOS (#servicos)
+         ========================================================================== -->
+    <section id="servicos">
+      <div class="section-title-wrap">
+        <div class="section-subtitle-bar">
+          <span class="glow-line"></span>
+          <span class="section-tag">SOLUÇÕES COMPLETAS</span>
+          <span class="glow-line"></span>
+        </div>
+        <h2 class="section-title">Nossos Serviços</h2>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Serviço 1: Curso Online -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img 
+              src="https://i.postimg.cc/J7cDR1FQ/Copia-de-Copia-de-REV-PV-MODELO-02.jpg" 
+              alt="Curso Online Método 2T" 
+              class="service-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div>
+              <h3 class="service-title">Curso Online Método 2T</h3>
+              <p class="service-desc">
+                Aprenda do zero a fazer anúncios que vendem na internet. Passo a passo validado por +900 alunos.
+              </p>
+            </div>
+            <a href="https://online.metododoist.com.br" target="_blank" rel="noopener noreferrer" class="btn-service">
+              <span>ACESSAR CURSO</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Serviço 2: Delivery Lucrativo -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img 
+              src="https://i.postimg.cc/Xv0nh8nT/IMG-5950.jpg" 
+              alt="Delivery Lucrativo" 
+              class="service-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div>
+              <h3 class="service-title">Delivery Lucrativo</h3>
+              <p class="service-desc">
+                Técnicas simples e diretas para você atrair pessoas e lotar o seu delivery de pedidos.
+              </p>
+            </div>
+            <a href="https://delivery.metododoist.com.br/" target="_blank" rel="noopener noreferrer" class="btn-service">
+              <span>SAIBA MAIS</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Serviço 3: Contrate Nossa Agência -->
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img 
+              src="https://i.postimg.cc/5N5KrzyZ/142b363d-279c-4ca8-9ff1-d6396398510e.jpg" 
+              alt="Contrate Nossa Agência" 
+              class="service-img"
+              referrerpolicy="no-referrer"
+              loading="lazy"
+            />
+          </div>
+          <div class="service-body">
+            <div>
+              <h3 class="service-title">Contrate Nossa Agência</h3>
+              <p class="service-desc">
+                Deixe os anúncios da sua empresa com a gente e veja o número de clientes multiplicar.
+              </p>
+            </div>
+            <a href="https://wa.me/554499688125?text=Ol%C3%A1%20Bruno,%20gostaria%20de%20saber%20mais%20sobre%20a%20sua%20Ag%C3%AAncia." target="_blank" rel="noopener noreferrer" class="btn-service">
+              <span>FALAR COM AGÊNCIA</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 7: PERGUNTAS FREQUENTES (#faq)
+         ========================================================================== -->
+    <section id="faq" class="reading-container">
+      <div class="section-title-wrap">
+        <div class="section-subtitle-bar">
+          <span class="glow-line"></span>
+          <span class="section-tag">TIRE SUAS DÚVIDAS</span>
+          <span class="glow-line"></span>
+        </div>
+        <h2 class="section-title">Perguntas Frequentes</h2>
+      </div>
+
+      <div class="faq-stack">
+
+        <!-- FAQ Item 1 -->
+        <div class="faq-item is-open">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <h3 class="faq-question">O que é o Método 2T?</h3>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-answer-wrap" style="max-height: 200px;">
+            <p class="faq-answer">
+              O Método 2T é um treinamento completo focado em gerar resultados reais e escaláveis através de anúncios online e estratégias digitais.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <h3 class="faq-question">Preciso ter experiência prévia para participar?</h3>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-answer-wrap">
+            <p class="faq-answer">
+              Não. Nossos cursos e treinamentos são desenhados tanto para iniciantes absolutos quanto para quem já tem alguma experiência e quer aprimorar os resultados.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <h3 class="faq-question">Para quem é indicado o curso?</h3>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-answer-wrap">
+            <p class="faq-answer">
+              Especialmente para empreendedores, donos de negócios locais, prestadores de serviço e futuros gestores de tráfego que querem dominar as vendas na internet.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <h3 class="faq-question">Como funciona a contratação da Agência?</h3>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-answer-wrap">
+            <p class="faq-answer">
+              Nossa equipe cuida de toda a operação de anúncios da sua empresa. Entre em contato pelo WhatsApp para agendarmos uma reunião e entendermos o seu momento.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <h3 class="faq-question">O curso online oferece suporte?</h3>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-answer-wrap">
+            <p class="faq-answer">
+              Sim! Você terá acesso a uma comunidade exclusiva para tirar dúvidas, além de suporte direto com nossa equipe especializada.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       SECTION 8: FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-cnpj">CNPJ: 59.341546/0001-59</p>
+      <p class="footer-copy">© 2026 Método 2T. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT & ANIMATION BEHAVIOR
+       ========================================================================== -->
+  <script>
+    // FAQ Accordion Controller
+    function toggleFaq(headerElement) {
+      const item = headerElement.parentElement;
+      const answerWrap = item.querySelector('.faq-answer-wrap');
+      const isOpen = item.classList.contains('is-open');
+
+      // Fecha todos os outros itens
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('is-open');
+          const wrap = otherItem.querySelector('.faq-answer-wrap');
+          if (wrap) wrap.style.maxHeight = '0px';
+        }
+      });
+
+      // Alterna o estado do item clicado
+      if (isOpen) {
+        item.classList.remove('is-open');
+        answerWrap.style.maxHeight = '0px';
+      } else {
+        item.classList.add('is-open');
+        answerWrap.style.maxHeight = (answerWrap.scrollHeight + 20) + 'px';
+      }
+    }
+
+    // Inicializa a altura do item FAQ aberto por padrão
+    window.addEventListener('DOMContentLoaded', () => {
+      const openFaq = document.querySelector('.faq-item.is-open .faq-answer-wrap');
+      if (openFaq) {
+        openFaq.style.maxHeight = (openFaq.scrollHeight + 20) + 'px';
+      }
+    });
+
+    // Smooth Scroll Navigation com Offset do Header Fixo
+    document.querySelectorAll('.nav-tab-link, a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            const headerOffset = 135;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // Looping Stats Counters Engine (Animação Contínua 0 -> Meta -> Pausa 1.5s -> Loop)
+    function startLoopingCounter(elementId, targetValue, duration = 2000, suffix = '+') {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+
+      let startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        
+        // Easing out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentCount = Math.floor(easeProgress * targetValue);
+
+        el.textContent = currentCount.toLocaleString('pt-BR') + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          // Pausa de 1.5s antes de reiniciar o loop
+          setTimeout(() => {
+            startTime = null;
+            requestAnimationFrame(step);
+          }, 1500);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    // Inicia os contadores quando o DOM estiver pronto
+    window.addEventListener('DOMContentLoaded', () => {
+      startLoopingCounter('counter-edicoes', 30, 1800, '+');
+      startLoopingCounter('counter-alunos', 1000, 2200, '+');
+    });
+  </script>
+</body>
+</html>

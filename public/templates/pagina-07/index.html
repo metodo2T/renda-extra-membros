@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Aprenda a Reverter Prisões Preventivas</title>
+  <meta name="description" content="Um passo a passo objetivo para atuar com segurança desde o primeiro minuto na audiência de custódia e evitar os erros que mantêm réus presos." />
+
+  <!-- Script defensivo de roteamento -->
+  <script>
+    history.replaceState(null, '', '/');
+    try {
+      let _fetch = window.fetch;
+      Object.defineProperty(window, 'fetch', {
+        configurable: true,
+        enumerable: true,
+        get() { return _fetch; },
+        set(v) { _fetch = v; }
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- Google Fonts: Sora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- GSAP 3.13.0 & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --gold: #c99a3d;
+      --gold-light: #f1cd77;
+      --ink: #4b4b4b;
+      --muted: #696969;
+      --paper: #f1f0ed;
+      --philosophy-bg: #f5efe2;
+      --philosophy-ink: #4b4b4b;
+      --philosophy-muted: #696969;
+      --philosophy-accent: #c99a3d;
+      --word-dim: 0.18;
+      --process-bg: #f5efe2;
+      --process-card: #fbfaf6;
+      --process-ink: #4b4b4b;
+      --process-muted: #696969;
+      --process-accent: #c99a3d;
+      --effect-gap: 2.5rem;
+      --font-display: "Sora", Arial, Helvetica, sans-serif;
+      --font-body: "Sora", Arial, Helvetica, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      min-width: 320px;
+      scroll-behavior: smooth;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--ink);
+      background-color: var(--paper);
+      font-family: var(--font-body);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       REUSABLE BUTTONS
+       ========================================================================== */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #21170b;
+      font-family: var(--font-body);
+      font-weight: 700;
+      border: 1px solid rgba(108, 77, 24, 0.2);
+      box-shadow: 0 18px 42px rgba(140, 95, 20, 0.22);
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      outline: none;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 48px rgba(140, 95, 20, 0.32);
+      filter: saturate(1.05);
+    }
+
+    .btn-gold:focus-visible {
+      outline: 3px solid rgba(201, 154, 61, 0.38);
+      outline-offset: 4px;
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO (Sticky)
+       ========================================================================== */
+    section.hero {
+      position: sticky;
+      top: 0;
+      z-index: 0;
+      isolation: isolate;
+      overflow: hidden;
+      transform-origin: center center;
+      will-change: filter, transform, opacity;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: clamp(34px, 6vw, 78px) clamp(20px, 5.4vw, 78px);
+      background: var(--paper);
+    }
+
+    .hero__video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    .hero__content {
+      width: min(54vw, 820px);
+      min-width: 560px;
+      padding-top: clamp(0px, 2vh, 22px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__eyebrow {
+      margin: 0 0 10px;
+      color: #777777;
+      font-size: clamp(0.62rem, 0.62vw, 0.78rem);
+      font-weight: 600;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero__title {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(2.28rem, 3.35vw, 3.6rem);
+      font-weight: 500;
+      line-height: 0.98;
+      max-width: 18ch;
+      text-wrap: balance;
+    }
+
+    .hero__title-accent {
+      display: inline;
+      font-family: var(--font-display);
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--ink);
+    }
+
+    .hero__subtitle {
+      max-width: 610px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: clamp(0.9rem, 1vw, 1.08rem);
+      font-weight: 400;
+      line-height: 1.48;
+    }
+
+    .hero__cta {
+      min-height: 46px;
+      margin-top: 22px;
+      padding: 0 24px;
+      border-radius: 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      section.hero {
+        min-height: 760px;
+        align-items: flex-start;
+        padding-top: 58px;
+      }
+      .hero__video-wrap {
+        height: 74%;
+        top: auto;
+        bottom: 0;
+        transform: translateX(-68%);
+      }
+      .hero__video {
+        object-fit: contain;
+        object-position: center bottom;
+      }
+      .hero__content {
+        width: min(74vw, 620px);
+        min-width: 0;
+      }
+      .hero__title {
+        font-size: clamp(1.9rem, 4.45vw, 2.55rem);
+        max-width: 17ch;
+      }
+    }
+
+    @media (max-width: 560px) {
+      section.hero {
+        min-height: 720px;
+        padding: 42px 20px;
+      }
+      .hero__video-wrap {
+        height: 58%;
+        transform: translateX(-60%);
+      }
+      .hero__content {
+        max-width: 355px;
+      }
+      .hero__eyebrow {
+        margin-bottom: 12px;
+      }
+      .hero__title {
+        font-size: clamp(1.74rem, 7.45vw, 2.22rem);
+        line-height: 1;
+        max-width: 100%;
+      }
+      .hero__subtitle {
+        margin-top: 18px;
+        font-size: 1rem;
+        line-height: 1.46;
+      }
+      .hero__cta {
+        width: 100%;
+        min-height: 52px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 2: PHILOSOPHY WORD REVEAL
+       ========================================================================== */
+    section.philosophy {
+      position: relative;
+      z-index: 2;
+      min-height: 220vh;
+      background-color: var(--philosophy-bg);
+      color: var(--philosophy-ink);
+    }
+
+    .philosophy__sticky {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(48px, 8vh, 88px) 20px;
+    }
+
+    .philosophy__inner {
+      width: min(72ch, 100%);
+      margin: 0 auto;
+    }
+
+    .philosophy__heading {
+      margin: 0;
+      font-size: clamp(1.62rem, 2.72vw, 2.95rem);
+      font-weight: 400;
+      line-height: 1.08;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .word {
+      display: inline-block;
+      margin-right: 0.16em;
+      opacity: var(--word-dim);
+      will-change: opacity;
+      transition: opacity 0.15s ease;
+    }
+
+    .word--emphasis {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .philosophy__sticky {
+        padding: 64px 20px;
+      }
+      .philosophy__heading {
+        font-size: clamp(1.58rem, 6.8vw, 2.45rem);
+        line-height: 1.08;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 3: PROCESS / THREE STEPS
+       ========================================================================== */
+    section.process-effect-section {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      background-color: var(--process-bg);
+      padding: 1.125rem 0.9375rem 3.75rem;
+    }
+
+    @media (min-width: 1024px) {
+      section.process-effect-section {
+        padding-bottom: 10rem;
+      }
+    }
+
+    .process-effect-grid-lines {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .process-effect-grid-lines {
+        display: grid;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 3.75rem;
+        padding-inline: 0.9375rem;
+        pointer-events: none;
+      }
+      .process-effect-center-rails {
+        grid-column: 5 / 9;
+        border-left: 1px solid rgba(201, 154, 61, 0.5);
+        border-right: 1px solid rgba(201, 154, 61, 0.5);
+      }
+    }
+
+    .process-kicker-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .process-effect-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      column-gap: var(--effect-gap);
+      margin-top: 3.125rem;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 1024px) {
+      .process-effect-grid {
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 3.75rem;
+        margin-top: 5.625rem;
+      }
+    }
+
+    .process-copy-col {
+      grid-column: 1 / -1;
+    }
+
+    @media (min-width: 1024px) {
+      .process-copy-col {
+        grid-column: 1 / 7;
+      }
+    }
+
+    .process-title-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-title-bg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 50%;
+      background-color: var(--process-bg);
+      transform: translateY(-50%);
+    }
+
+    .effect-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(3.15rem, 7.35vw, 5.55rem);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 560px) {
+      .effect-title {
+        font-size: clamp(2.6rem, 11.5vw, 3.4rem);
+      }
+    }
+
+    .effect-subtitle {
+      grid-column: 2 / -1;
+      max-width: 30rem;
+      margin: 5rem 0 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.33;
+    }
+
+    @media (min-width: 1024px) {
+      .effect-subtitle {
+        grid-column: 2 / span 3;
+        margin-top: 2.875rem;
+        padding-right: 3.4375rem;
+      }
+    }
+
+    /* Cards Wrapper */
+    .process-cards-wrap {
+      grid-column: 1 / -1;
+      display: grid;
+      align-content: start;
+      row-gap: 1.25em;
+      margin-top: 4.125rem;
+    }
+
+    @media (min-width: 1024px) {
+      .process-cards-wrap {
+        grid-column: 7 / span 6;
+        row-gap: 2em;
+        margin-top: 0;
+      }
+    }
+
+    .effect-card {
+      background: var(--process-card);
+      color: var(--process-ink);
+      border: 1px solid rgba(201, 154, 61, 0.8);
+      border-radius: 0;
+      padding: 0.625rem 1rem 1.25rem;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    @media (min-width: 1024px) {
+      .effect-card {
+        padding: 0.625rem 1.375rem 1.375rem;
+      }
+    }
+
+    .effect-card__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--gold);
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    @media (min-width: 1024px) {
+      .effect-card__heading {
+        font-size: 1.875rem;
+      }
+    }
+
+    .effect-card__heading h3 {
+      margin: 0;
+      font-size: inherit;
+      font-weight: 700;
+    }
+
+    .effect-card hr {
+      border: none;
+      border-top: 1px solid rgba(201, 154, 61, 0.75);
+      margin-block: 0.5rem 1.25rem;
+    }
+
+    .effect-card hr.final-rule {
+      margin-block: 1.75rem 0;
+    }
+
+    .effect-card p {
+      max-width: 22rem;
+      margin: 0;
+      padding-right: 2rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.33;
+    }
+
+    @media (min-width: 1024px) {
+      .effect-card p {
+        padding-right: 3.75rem;
+      }
+    }
+
+    .effect-card p strong {
+      color: var(--ink);
+      font-size: 1.04rem;
+      font-weight: 700;
+      line-height: 1.2;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Text reveal classes */
+    .line-split {
+      overflow: hidden;
+      margin-bottom: -0.1em;
+      padding-bottom: 0.1em;
+    }
+
+    .char-split {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+
+    /* ==========================================================================
+       SECTION 4: OUTCOMES / RESULTADOS
+       ========================================================================== */
+    section.outcomes {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      padding: clamp(76px, 10vw, 150px) clamp(20px, 5.4vw, 78px);
+      background: linear-gradient(90deg, rgba(245,239,226,0.86) 0%, rgba(241,240,237,1) 50%, rgba(245,239,226,0.86) 100%);
+    }
+
+    section.outcomes::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://res.cloudinary.com/dalwymbky/image/upload/v1783170030/i1_k3q50x.jpg') center/cover no-repeat;
+      filter: blur(8px) saturate(0.96);
+      transform: scale(1.06);
+      opacity: 0.78;
+      z-index: -2;
+    }
+
+    section.outcomes::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(245,239,226,0.7) 0%, rgba(241,240,237,0.92) 100%);
+      z-index: -1;
+    }
+
+    .outcomes__inner {
+      display: grid;
+      gap: clamp(34px, 5vw, 54px);
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .outcomes__header {
+      display: grid;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .outcomes__eyebrow {
+      margin: 0 0 14px;
+      color: var(--gold);
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .outcomes__title {
+      max-width: 18ch;
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(2.1rem, 4vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.02;
+    }
+
+    .outcomes__title::after {
+      content: '';
+      display: block;
+      width: 180px;
+      max-width: 52%;
+      height: 1px;
+      margin: 22px auto 0;
+      background: rgba(201, 154, 61, 0.7);
+    }
+
+    .outcomes__list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .outcome-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      min-height: 100%;
+      padding: 28px 24px 30px;
+      text-align: center;
+      border: 1px solid rgba(201, 154, 61, 0.42);
+      border-radius: 0;
+      background: rgba(251, 250, 246, 0.72);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .outcome-item__num {
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 2.9rem);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .outcome-item__bar {
+      width: 64px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      margin-top: 16px;
+    }
+
+    .outcome-item p {
+      max-width: 18ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(0.98rem, 1vw, 1.06rem);
+      line-height: 1.5;
+    }
+
+    .outcomes__cta-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .outcomes__cta {
+      min-height: 52px;
+      padding: 0 28px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .outcomes__list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      section.outcomes {
+        padding: 72px 20px;
+      }
+      .outcomes__title {
+        max-width: 14ch;
+        font-size: clamp(1.9rem, 7.2vw, 2.7rem);
+      }
+      .outcomes__title::after {
+        width: 132px;
+        margin-top: 18px;
+      }
+      .outcomes__list {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .outcome-item {
+        padding: 24px 18px 26px;
+      }
+      .outcomes__cta {
+        width: 100%;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 5: OFFER / PRICING
+       ========================================================================== */
+    section.offer {
+      position: relative;
+      z-index: 1;
+      padding: clamp(78px, 10vw, 150px) clamp(20px, 5.4vw, 78px);
+      background: linear-gradient(180deg, rgba(245,239,226,0.65), rgba(241,240,237,0.98)), var(--paper);
+    }
+
+    .offer__inner {
+      display: flex;
+      justify-content: center;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    @media (max-width: 920px) {
+      .offer__inner {
+        width: 100%;
+      }
+    }
+
+    .offer__card {
+      width: min(100%, 430px);
+      padding: clamp(24px, 3vw, 34px);
+      border: 1px solid rgba(201, 154, 61, 0.72);
+      border-radius: 0;
+      background: rgba(251, 250, 246, 0.96);
+      box-shadow: 0 24px 60px rgba(133, 104, 48, 0.08);
+    }
+
+    .offer__tag {
+      margin: 0;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .offer__price-block {
+      display: grid;
+      gap: 6px;
+      margin-top: 18px;
+    }
+
+    .offer__price-prefix {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .offer__price-main {
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 3.4rem);
+      font-weight: 700;
+      line-height: 0.95;
+    }
+
+    .offer__price-full {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .offer__list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin: 28px 0 0;
+      padding: 0;
+    }
+
+    .offer__list li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .offer__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--gold);
+    }
+
+    .offer__cta {
+      width: 100%;
+      min-height: 56px;
+      margin-top: 30px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .offer__note {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      section.offer {
+        padding: 72px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero" id="hero-section" aria-labelledby="hero-title">
+    <div class="hero__video-wrap">
+      <video class="hero__video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="https://res.cloudinary.com/dalwymbky/video/upload/v1783170031/hero2_zkooqn.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Audiência de Custódia</p>
+      <h1 class="hero__title" id="hero-title">
+        Aprenda a reverter prisões preventivas já na <span class="hero__title-accent">audiência de custódia</span>
+      </h1>
+      <p class="hero__subtitle">
+        Um passo a passo objetivo para atuar com segurança desde o primeiro minuto e evitar os erros que mantêm réus presos por falha da defesa, não por falta de provas.
+      </p>
+      <a class="btn-gold hero__cta" href="#metodo" aria-label="Quero conhecer o método">
+        Quero conhecer o método
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 2: PHILOSOPHY WORD REVEAL -->
+  <section class="philosophy" id="bloco-2" data-screen-label="Audiência de Custódia">
+    <div class="philosophy__sticky">
+      <div class="philosophy__inner">
+        <h2 class="philosophy__heading" data-split="words">
+          Você estudou Direito Penal, mas ninguém te ensinou o que fazer quando a liberdade de alguém depende da sua próxima frase. Na audiência, cada palavra pesa
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PROCESS / THREE STEPS -->
+  <section class="process-effect-section" id="bloco-3" data-effect="processo-cards-scroll-reveal">
+    <div class="process-effect-grid-lines" aria-hidden="true">
+      <div class="process-effect-center-rails"></div>
+    </div>
+
+    <div class="process-kicker-row">
+      <span>etapas</span>
+      <span>03 passos</span>
+    </div>
+
+    <div class="process-effect-grid">
+      <div class="process-copy-col">
+        <div class="process-title-wrap">
+          <div class="process-title-bg"></div>
+          <h2 class="effect-title split-text">O método em três passos</h2>
+        </div>
+        <p class="effect-subtitle split-text">
+          Um roteiro objetivo para chegar à audiência com leitura, estratégia e segurança em cada decisão.
+        </p>
+      </div>
+
+      <div class="process-cards-wrap">
+        <!-- Card 1 -->
+        <article class="effect-card">
+          <div class="effect-card__heading">
+            <h3>Passo 1</h3>
+            <span>01</span>
+          </div>
+          <hr />
+          <p>
+            <strong>A preparação que começa antes da audiência</strong>
+            Como analisar o auto de prisão; o que identificar antes de entrar na sala; os detalhes que podem fortalecer sua defesa.
+          </p>
+          <hr class="final-rule" />
+        </article>
+
+        <!-- Card 2 -->
+        <article class="effect-card">
+          <div class="effect-card__heading">
+            <h3>Passo 2</h3>
+            <span>02</span>
+          </div>
+          <hr />
+          <p>
+            <strong>O roteiro completo da audiência</strong>
+            Como iniciar sua atuação; quais argumentos apresentar; quando insistir na liberdade provisória; quais erros nunca cometer.
+          </p>
+          <hr class="final-rule" />
+        </article>
+
+        <!-- Card 3 -->
+        <article class="effect-card">
+          <div class="effect-card__heading">
+            <h3>Passo 3</h3>
+            <span>03</span>
+          </div>
+          <hr />
+          <p>
+            <strong>Estratégias que aumentam suas chances de sucesso</strong>
+            Quais fundamentos utilizar; como construir uma defesa mais convincente; como transmitir segurança perante juiz e Ministério Público.
+          </p>
+          <hr class="final-rule" />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: OUTCOMES / RESULTADOS -->
+  <section class="outcomes" id="bloco-4">
+    <div class="outcomes__inner">
+      <div class="outcomes__header">
+        <p class="outcomes__eyebrow">Resultados</p>
+        <h2 class="outcomes__title">Ao concluir o treinamento você será capaz de:</h2>
+      </div>
+
+      <div class="outcomes__list">
+        <article class="outcome-item">
+          <span class="outcome-item__num">01</span>
+          <div class="outcome-item__bar"></div>
+          <p>Identificar pontos frágeis no auto de prisão e transformar detalhes técnicos em argumentos defensivos mais consistentes.</p>
+        </article>
+
+        <article class="outcome-item">
+          <span class="outcome-item__num">02</span>
+          <div class="outcome-item__bar"></div>
+          <p>Conduzir sua fala na audiência com ordem, clareza e segurança, sem depender de improviso no momento decisivo.</p>
+        </article>
+
+        <article class="outcome-item">
+          <span class="outcome-item__num">03</span>
+          <div class="outcome-item__bar"></div>
+          <p>Escolher os fundamentos adequados para sustentar liberdade provisória, relaxamento da prisão ou medidas cautelares.</p>
+        </article>
+
+        <article class="outcome-item">
+          <span class="outcome-item__num">04</span>
+          <div class="outcome-item__bar"></div>
+          <p>Evitar erros comuns que enfraquecem a defesa e aumentam o risco de manutenção da prisão preventiva.</p>
+        </article>
+      </div>
+
+      <div class="outcomes__cta-wrap">
+        <a class="btn-gold outcomes__cta" href="#hero-title">
+          Quero começar agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: OFFER / PRICING -->
+  <section class="offer" id="metodo">
+    <div class="offer__inner">
+      <aside class="offer__card" aria-label="Detalhes da oferta">
+        <p class="offer__tag">Acesso imediato</p>
+        <div class="offer__price-block">
+          <span class="offer__price-prefix">12x de</span>
+          <span class="offer__price-main">R$ 19,70</span>
+          <span class="offer__price-full">ou R$ 197,00 à vista</span>
+        </div>
+
+        <ul class="offer__list">
+          <li>Módulo completo do método em 3 passos</li>
+          <li>Checklist prático para pré-audiência</li>
+          <li>Estrutura de argumentos para pedidos de liberdade</li>
+          <li>Acesso por 12 meses para assistir no seu ritmo</li>
+        </ul>
+
+        <a class="btn-gold offer__cta" href="#hero-title">
+          Quero garantir minha vaga
+        </a>
+
+        <p class="offer__note">
+          Pagamento seguro e acesso liberado logo após a confirmação.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT ANIMATIONS & INTERACTIONS -->
+  <script>
+    document.documentElement.classList.add('js');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // Respect Reduced Motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Register GSAP plugins
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Hero scroll effect: blur, opacity, scale tied to philosophy section
+        if (!prefersReducedMotion) {
+          const hero = document.querySelector('section.hero');
+          const philosophy = document.querySelector('section.philosophy');
+
+          if (hero && philosophy) {
+            gsap.to(hero, {
+              filter: 'blur(14px)',
+              opacity: 0.58,
+              scale: 1.025,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: philosophy,
+                start: 'top bottom',
+                end: 'top top',
+                scrub: true
+              }
+            });
+          }
+        }
+
+        // 2. Philosophy Word Reveal
+        const philosophyHeading = document.querySelector('.philosophy__heading[data-split="words"]');
+        if (philosophyHeading) {
+          const text = philosophyHeading.textContent.trim();
+          const words = text.split(/\s+/);
+          
+          // Emphasis phrases definition
+          const emphasisPhrases = [
+            'direito penal',
+            'liberdade de alguém',
+            'liberdade de alguem',
+            'próxima frase',
+            'proxima frase',
+            'cada palavra pesa'
+          ];
+
+          // Normalize helper
+          const normalize = (str) => str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+
+          philosophyHeading.innerHTML = '';
+          const wordSpans = [];
+
+          words.forEach((wordText, i) => {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = wordText + ' ';
+            philosophyHeading.appendChild(span);
+            wordSpans.push({ el: span, text: wordText });
+          });
+
+          // Match emphasis phrases across word spans
+          for (let i = 0; i < wordSpans.length; i++) {
+            for (const phrase of emphasisPhrases) {
+              const phraseWords = phrase.split(' ');
+              let match = true;
+              for (let k = 0; k < phraseWords.length; k++) {
+                if (i + k >= wordSpans.length || normalize(wordSpans[i + k].text) !== normalize(phraseWords[k])) {
+                  match = false;
+                  break;
+                }
+              }
+              if (match) {
+                for (let k = 0; k < phraseWords.length; k++) {
+                  wordSpans[i + k].el.classList.add('word--emphasis');
+                }
+              }
+            }
+          }
+
+          if (prefersReducedMotion) {
+            document.querySelectorAll('.word').forEach(w => w.style.opacity = '1');
+            document.querySelector('section.philosophy').style.minHeight = '100vh';
+          } else {
+            const elements = document.querySelectorAll('.word');
+            gsap.to(elements, {
+              opacity: 1,
+              ease: 'none',
+              stagger: 0.5,
+              scrollTrigger: {
+                trigger: 'section.philosophy',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true
+              }
+            });
+          }
+        }
+
+        // 3. Process Section Text & Card Motion
+        const initProcessMotion = () => {
+          // Process Cards Motion
+          const cards = gsap.utils.toArray('.effect-card');
+          const isDesktop = window.innerWidth >= 1024;
+          const xStep = isDesktop ? 150 : 75;
+          const yStep = isDesktop ? 200 : 100;
+
+          cards.forEach((card, index) => {
+            const sign = index % 2 === 0 ? 1 : -1;
+            const rot = sign * (10 + (index * 5));
+            const startX = (index + 1) * xStep;
+            const startY = (index + 1) * yStep;
+
+            gsap.fromTo(card, 
+              {
+                x: startX,
+                y: startY,
+                rotation: rot
+              },
+              {
+                x: 0,
+                y: 0,
+                rotation: 0,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: 'section.process-effect-section',
+                  start: 'top bottom',
+                  end: isDesktop ? 'bottom 50%' : 'bottom bottom',
+                  scrub: true
+                }
+              }
+            );
+          });
+
+          // Title & Subtitle Entrance
+          const title = document.querySelector('.effect-title');
+          const subtitle = document.querySelector('.effect-subtitle');
+
+          if (title) {
+            gsap.from(title, {
+              y: 60,
+              opacity: 0,
+              duration: 0.8,
+              ease: 'power4.out',
+              scrollTrigger: {
+                trigger: title,
+                start: 'top 80%',
+                once: true
+              }
+            });
+          }
+
+          if (subtitle) {
+            gsap.from(subtitle, {
+              y: 40,
+              opacity: 0,
+              duration: 0.8,
+              ease: 'power4.out',
+              scrollTrigger: {
+                trigger: subtitle,
+                start: 'top 80%',
+                once: true
+              }
+            });
+          }
+        };
+
+        initProcessMotion();
+
+        // 4. Outcomes Cards Entrance
+        if (!prefersReducedMotion) {
+          const outcomeItems = gsap.utils.toArray('.outcome-item');
+          if (outcomeItems.length > 0) {
+            gsap.from(outcomeItems, {
+              y: 36,
+              opacity: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              stagger: 0.14,
+              scrollTrigger: {
+                trigger: '.outcomes__list',
+                start: 'top 78%',
+                once: true
+              }
+            });
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Violão do Zero — Aprenda a tocar violão</title>
+  <meta name="description" content="Aprenda a tocar violão do zero com um método prático e direto ao ponto" />
+  <script>
+    try { history.replaceState(null, '', '/'); } catch(e) {}
+  </script>
+
+  <!-- Google Fonts & Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    @font-face {
+      font-family: 'Degular';
+      src: local('Degular'), local('Plus Jakarta Sans'), local('Inter'), sans-serif;
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Degular';
+      src: local('Degular-Medium'), local('Plus Jakarta Sans SemiBold'), local('Inter-Medium'), sans-serif;
+      font-weight: 500;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Degular';
+      src: local('Degular-Bold'), local('Plus Jakarta Sans Bold'), local('Inter-Bold'), sans-serif;
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-page: #0D0816;
+      --bg-secondary: #100A1A;
+      --card-surface: #12141a;
+      --card-dark: rgba(8, 10, 15, 0.96);
+      --purple-accent: #9b5cff;
+      --purple-soft: #c084fc;
+      --purple-pale: #D8B4FE;
+      --purple-subtle: #F3E8FF;
+      --text-white: #ffffff;
+      --text-body: #E5E5E5;
+      --text-body-muted: rgba(255, 255, 255, 0.80);
+      --text-muted: rgba(255, 255, 255, 0.52);
+      --text-subtle: rgba(255, 255, 255, 0.35);
+      --red-danger: #FF4545;
+      --red-soft: #ff4d4f;
+      --star-yellow: #FFD800;
+      --font-main: 'Degular', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      background-color: var(--bg-page);
+    }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-page);
+      color: var(--text-white);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--purple-accent);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--purple-soft);
+    }
+
+    p {
+      margin-bottom: 0;
+      text-wrap: balance;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* REVEAL SYSTEM */
+    .pna-reveal {
+      opacity: 0;
+      transform: translateY(28px) scale(0.985);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--pna-delay, 0s);
+    }
+    .pna-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* PRIMARY CTA BUTTON */
+    .primary-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #000000;
+      font-family: var(--font-main);
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.4;
+      padding: 20px 40px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.18), 0 0 30px rgba(155, 92, 255, 0.25);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      width: auto;
+      margin: 0 auto;
+    }
+    .primary-cta.sentence-case {
+      text-transform: none;
+      font-size: 17px;
+    }
+    .primary-cta:hover {
+      background: #f4eeff;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.28), 0 0 45px rgba(155, 92, 255, 0.45);
+    }
+    .primary-cta:active {
+      transform: translateY(1px) scale(0.98);
+    }
+    .primary-cta .cta-lightning {
+      width: 15px;
+      height: 22px;
+      fill: #000000;
+      flex-shrink: 0;
+    }
+
+    /* SECTION 1: HERO */
+    .hero-section {
+      min-height: 95vh;
+      background: #000000;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 120px 24px 70px;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      width: 430px;
+      height: 430px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.56) 0%, rgba(155, 92, 255, 0.34) 42%, rgba(13, 8, 22, 0) 78%);
+      border-radius: 50%;
+      filter: blur(165px);
+      opacity: 0.62;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .dotted-surface {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .dotted-surface.is-ready {
+      opacity: 1;
+    }
+    .dotted-surface canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .hero-title {
+      font-size: clamp(34px, 5.2vw, 52px);
+      line-height: 1.08;
+      font-weight: 400;
+      color: #ffffff;
+      max-width: 920px;
+      letter-spacing: -0.02em;
+    }
+    .hero-title .highlight-purple {
+      color: var(--purple-accent);
+      font-weight: 500;
+      text-shadow: 0 0 35px rgba(155, 92, 255, 0.45);
+    }
+    .hero-paragraph {
+      font-size: clamp(16px, 1.8vw, 20px);
+      line-height: 1.55;
+      font-weight: 400;
+      color: var(--text-body);
+      max-width: 780px;
+    }
+    .hero-price-note {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.35;
+      color: #ffffff;
+      margin-top: 4px;
+    }
+    .hero-price-note .price-val {
+      color: var(--purple-accent);
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(155, 92, 255, 0.4);
+    }
+    .hero-ratings {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    .hero-ratings svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--star-yellow);
+    }
+
+    /* SECTION 2: TESTIMONIALS MARQUEE */
+    .marquee-section {
+      background-color: var(--bg-page);
+      padding: 60px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .marquee-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 38px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+    .marquee-mask {
+      width: 100%;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: marqueeScroll 36s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-card {
+      width: 320px;
+      background: rgba(18, 20, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+    }
+    .testimonial-stars svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--star-yellow);
+    }
+    .testimonial-quote {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--text-body-muted);
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 12px;
+    }
+    .testimonial-author strong {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .testimonial-author span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* SECTION 3: BEFORE / AFTER COMPARISON */
+    .compare-section {
+      background-color: var(--bg-page);
+      padding: 72px 24px 80px;
+      position: relative;
+    }
+    .compare-container {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+    .compare-title {
+      font-size: clamp(26px, 3.4vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #ffffff;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .compare-card {
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+    .compare-card.left {
+      background: rgba(10, 4, 4, 0.92);
+      border: 1px solid rgba(255, 69, 69, 0.28);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 32px rgba(255, 69, 69, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    .compare-card.right {
+      background: rgba(3, 8, 16, 0.94);
+      border: 1px solid rgba(155, 92, 255, 0.30);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 38px rgba(155, 92, 255, 0.12), inset 0 1px 0 rgba(155, 92, 255, 0.10);
+      opacity: 0;
+      transform: translateY(72px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.15s;
+    }
+    .compare-card.right.pna-in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .compare-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+    .compare-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .compare-card.left .compare-icon-wrap {
+      background: rgba(255, 69, 69, 0.15);
+      border: 1px solid rgba(255, 69, 69, 0.4);
+      color: var(--red-danger);
+    }
+    .compare-card.right .compare-icon-wrap {
+      background: rgba(155, 92, 255, 0.18);
+      border: 1px solid rgba(155, 92, 255, 0.4);
+      color: var(--purple-accent);
+    }
+    .compare-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .compare-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: clamp(14px, 1.4vw, 16px);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.80);
+    }
+    .compare-list li svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .compare-card.left .compare-list li svg {
+      fill: var(--red-danger);
+    }
+    .compare-card.right .compare-list li svg {
+      fill: var(--purple-accent);
+    }
+
+    /* SECTION 4: CTA DIVIDER */
+    .cta-divider-section {
+      background: var(--bg-page);
+      padding: 20px 24px 60px;
+      text-align: center;
+    }
+
+    /* SECTION 5: URGENCY IMPACT BLOCK */
+    .pna-impact-section {
+      background: var(--bg-page);
+      padding: 72px 24px;
+      position: relative;
+    }
+    .impact-shell {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(18, 14, 28, 0.95), rgba(9, 6, 15, 0.98));
+      border: 1px solid rgba(155, 92, 255, 0.25);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(155, 92, 255, 0.12);
+    }
+    .impact-title {
+      font-size: clamp(24px, 3.2vw, 40px);
+      line-height: 1.2;
+      font-weight: 700;
+      color: #ffffff;
+      max-width: 820px;
+    }
+    .impact-title .danger-highlight {
+      color: var(--red-danger);
+      text-shadow: 0 0 20px rgba(255, 69, 69, 0.35);
+    }
+    .impact-subtitle {
+      font-size: clamp(16px, 1.8vw, 18px);
+      color: var(--text-body);
+      max-width: 680px;
+    }
+    .impact-flow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+    .impact-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+    .impact-chip.danger {
+      background: rgba(255, 69, 69, 0.12);
+      border-color: rgba(255, 69, 69, 0.35);
+      color: var(--red-danger);
+    }
+    .flow-arrow {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .impact-closing {
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 600;
+      color: var(--purple-pale);
+      text-shadow: 0 0 15px rgba(192, 132, 252, 0.3);
+    }
+
+    /* SECTION 6: METHOD / 3 STEPS */
+    .method-section {
+      background: var(--bg-page);
+      padding: 80px 24px;
+      position: relative;
+    }
+    .method-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .method-header {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .method-title {
+      font-size: clamp(26px, 3.4vw, 42px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+    .method-desc {
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height: 1.6;
+      color: var(--text-body);
+    }
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pna2-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(7, 9, 13, 0.90), rgba(3, 4, 7, 0.86));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.48), 0 0 26px rgba(155, 92, 255, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px) saturate(130%);
+      padding: 38px 28px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .pna2-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(155, 92, 255, 0.45);
+    }
+    /* Lamp Beam */
+    .pna2-card::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -120px;
+      width: 170%;
+      height: 220px;
+      transform: translateX(-50%);
+      background: 
+        conic-gradient(from 205deg at 37% 0%, rgba(155, 92, 255, 0.42), rgba(155, 92, 255, 0) 36%),
+        conic-gradient(from -25deg at 63% 0%, rgba(155, 92, 255, 0.42), rgba(155, 92, 255, 0) 36%);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .pna2-card.lamp-on::before {
+      opacity: 0.84;
+      animation: cardLampBeam 4.8s ease-in-out infinite alternate;
+    }
+    /* Lamp Glow */
+    .pna2-card::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 84%;
+      height: 72px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at top, rgba(192, 132, 252, 0.35) 0%, rgba(155, 92, 255, 0.15) 50%, transparent 80%),
+                  linear-gradient(to bottom, rgba(255, 255, 255, 0.12), transparent);
+      filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .pna2-card.lamp-on::after {
+      opacity: 0.9;
+      animation: cardLampGlow 4.8s ease-in-out infinite alternate;
+    }
+    @keyframes cardLampBeam {
+      0% {
+        opacity: 0.62;
+        transform: translateX(-50%) translateY(0);
+      }
+      100% {
+        opacity: 0.94;
+        transform: translateX(-50%) translateY(7px);
+      }
+    }
+    @keyframes cardLampGlow {
+      0% {
+        opacity: 0.58;
+        transform: translateX(-50%) scaleX(0.93);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1.02);
+      }
+    }
+    .pna2-card-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pna2-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--purple-accent);
+      letter-spacing: -0.03em;
+      text-shadow: 0 0 20px rgba(155, 92, 255, 0.4);
+    }
+    .pna2-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+    .pna2-copy {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-body-muted);
+    }
+
+    /* SECTION 7: DELIVERABLES GRID */
+    .deliverables-section {
+      background: var(--bg-page);
+      padding: 80px 24px;
+      position: relative;
+    }
+    .deliverables-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .deliverables-tag {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--purple-soft);
+      text-transform: uppercase;
+    }
+    .deliverables-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.15;
+      max-width: 800px;
+    }
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: 100%;
+      margin-top: 36px;
+    }
+    .deliverable-card {
+      background: linear-gradient(180deg, rgba(24, 24, 27, 0.70) 0%, rgba(9, 9, 11, 0.92) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 18px;
+      padding: 24px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .deliverable-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(155, 92, 255, 0.15);
+    }
+    .deliverable-icon-box {
+      width: 58px;
+      height: 58px;
+      background: rgba(39, 39, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 11px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .deliverable-icon-box svg {
+      width: 24px;
+      height: 24px;
+      fill: rgba(255, 255, 255, 0.85);
+    }
+    .deliverable-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .deliverable-card-desc {
+      font-size: 15px;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    /* SECTION 8: PRE-OFFER VALUE CARD */
+    .preoferta-section {
+      background: var(--bg-page);
+      padding: 72px 24px 80px;
+    }
+    .preoferta-card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--card-surface);
+      border: 1px solid rgba(192, 132, 252, 0.15);
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+      padding: 48px 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .preoferta-header {
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.55;
+      color: var(--text-white);
+    }
+    .preoferta-header strong {
+      color: var(--purple-soft);
+    }
+    .preoferta-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .preoferta-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-body-muted);
+    }
+    .preoferta-list li strong {
+      color: var(--purple-pale);
+    }
+    .preoferta-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple-accent);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .preoferta-closing {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--purple-pale);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 18px;
+    }
+
+    /* SECTION 9: OFFER / PRICING */
+    .offer-section {
+      background: linear-gradient(180deg, #0D0816 0%, #120B1E 50%, #0D0816 100%);
+      padding: 80px 24px;
+      position: relative;
+    }
+    .offer-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(18, 14, 28, 0.95), rgba(9, 6, 15, 0.98));
+      border: 1px solid rgba(155, 92, 255, 0.35);
+      border-radius: 24px;
+      padding: 52px 42px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(155, 92, 255, 0.18);
+    }
+    .offer-heading {
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #ffffff;
+      max-width: 540px;
+    }
+    .offer-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 480px;
+      text-align: left;
+    }
+    .offer-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .offer-check-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(155, 92, 255, 0.18);
+      border: 1px solid rgba(155, 92, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .offer-check-circle svg {
+      width: 12px;
+      height: 12px;
+      fill: var(--purple-accent);
+    }
+    .price-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .old-price {
+      font-size: clamp(20px, 1.4vw, 26px);
+      font-weight: 600;
+      color: var(--red-soft);
+      text-decoration: line-through 2px var(--red-soft);
+    }
+    .por-apenas {
+      font-size: clamp(18px, 1.2vw, 22px);
+      font-weight: 900;
+      color: var(--purple-soft);
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 16px rgba(192, 132, 252, 0.45);
+      text-transform: lowercase;
+    }
+    .current-price {
+      font-size: clamp(66px, 7vw, 104px);
+      font-weight: 800;
+      line-height: 0.95;
+      color: var(--purple-accent);
+      text-shadow: 0 0 35px rgba(155, 92, 255, 0.45);
+    }
+
+    /* SECTION 10: GUARANTEE */
+    .guarantee-section {
+      background: linear-gradient(180deg, #0D0816 0%, #100A1A 46%, #0D0816 100%);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .guarantee-container {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .guarantee-seal-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .guarantee-seal-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.34) 0%, rgba(155, 92, 255, 0.18) 46%, rgba(13, 8, 22, 0) 78%);
+      box-shadow: 0 0 34px rgba(192, 132, 252, 0.24);
+      z-index: 0;
+    }
+    .guarantee-seal {
+      width: clamp(180px, 20vw, 290px);
+      height: auto;
+      position: relative;
+      z-index: 1;
+      filter: saturate(1.12) brightness(1.05) contrast(1.03) drop-shadow(0 0 22px rgba(192, 132, 252, 0.28));
+    }
+    .guarantee-title {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .guarantee-text {
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height: 1.6;
+      color: var(--text-body);
+      max-width: 620px;
+    }
+
+    /* SECTION 11: FAQ */
+    .faq-novo-wrap {
+      background: var(--bg-page);
+      padding: 86px 16px 80px;
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+    }
+    .faq-container {
+      max-width: 820px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .faq-title {
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.06;
+      font-weight: 700;
+      color: #ffffff;
+      text-align: center;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-novo-item {
+      background: linear-gradient(140deg, rgba(8, 10, 15, 0.96), rgba(4, 6, 10, 0.97));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 18px 22px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .faq-novo-item:hover {
+      transform: translateY(-1px);
+      border-color: rgba(155, 92, 255, 0.45);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(155, 92, 255, 0.12);
+    }
+    .faq-novo-item summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: clamp(17px, 1.3vw, 20px);
+      font-weight: 600;
+      color: #ffffff;
+      user-select: none;
+    }
+    .faq-novo-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-toggle-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--purple-soft);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .faq-novo-item[open] .faq-toggle-icon {
+      transform: rotate(45deg);
+      background: rgba(155, 92, 255, 0.25);
+    }
+    .faq-answer {
+      margin-top: 14px;
+      font-size: clamp(14.5px, 1.05vw, 17px);
+      line-height: 1.58;
+      color: var(--text-body-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 12px;
+    }
+
+    /* SECTION 12: MINIMAL FOOTER */
+    .minimal-footer {
+      background: #08050e;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 50px 24px 60px;
+      text-align: center;
+    }
+    .footer-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+    .footer-brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+    }
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+    .social-btn:hover {
+      background: rgba(155, 92, 255, 0.25);
+      border-color: var(--purple-accent);
+      transform: translateY(-2px);
+    }
+    .social-btn svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--text-subtle);
+    }
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 767px) {
+      .hero-section {
+        padding: 90px 16px 50px;
+      }
+      .compare-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .compare-card {
+        padding: 28px 20px;
+      }
+      .impact-shell {
+        padding: 30px 18px;
+      }
+      .impact-chip {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+      .preoferta-card {
+        padding: 32px 22px;
+      }
+      .offer-card {
+        padding: 38px 20px;
+      }
+      .guarantee-seal {
+        width: clamp(150px, 48vw, 220px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================
+       SECTION 1: HERO / THREE.JS DOTTED SURFACE
+  ======================================================== -->
+  <section class="hero-section" id="hero">
+    <div id="dotted-surface-s01" class="dotted-surface" aria-hidden="true"></div>
+
+    <div class="hero-container">
+      <h1 class="hero-title">
+        Aprenda a tocar violão do zero e toque suas <span class="highlight-purple">músicas favoritas</span> em semanas
+      </h1>
+
+      <p class="hero-paragraph">
+        Com o Violão do Zero, você recebe um método estruturado e progressivo, aprende no seu ritmo e começa a tocar músicas reais em pouco tempo. Não precisa ter experiência musical, não precisa de instrumento caro e não precisa começar sem direção.
+      </p>
+
+      <a class="primary-cta sentence-case" href="#valor">
+        <svg class="cta-lightning" viewBox="0 0 16 27" fill="currentColor">
+          <path d="M9.5 0L0 15.5H7.5L6.5 27L16 11.5H8.5L9.5 0Z" />
+        </svg>
+        <span>Quero começar a tocar violão</span>
+      </a>
+
+      <div class="hero-price-note">
+        Garanta seu acesso por apenas <span class="price-val">R$ 49</span>
+      </div>
+
+      <div class="hero-ratings" aria-label="Avaliação 5 estrelas">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 2: TESTIMONIALS MARQUEE
+  ======================================================== -->
+  <section class="marquee-section" id="pna-modelos-title-section">
+    <h2 class="marquee-title">Veja o que estao falando</h2>
+    <div class="marquee-mask">
+      <div class="marquee-track">
+        <!-- 5 Cards Originais -->
+        <article class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Eu nunca consegui passar dos acordes basicos sozinho. Em poucas semanas ja toquei minha primeira musica completa."</p>
+          <div class="testimonial-author">
+            <strong>Rafael M.</strong>
+            <span>Aluno iniciante</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"As aulas sao diretas e praticas. Parei de me sentir perdido e hoje treino com um plano claro."</p>
+          <div class="testimonial-author">
+            <strong>Camila T.</strong>
+            <span>Aluna do curso</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Com 20 minutos por dia ja senti evolucao. O metodo respeita meu ritmo e isso fez toda diferenca."</p>
+          <div class="testimonial-author">
+            <strong>Joao P.</strong>
+            <span>Aluno iniciante</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Gostei porque nao fica so na teoria. Cada aula ja traz exercicio e aplicacao na musica."</p>
+          <div class="testimonial-author">
+            <strong>Marina S.</strong>
+            <span>Aluna do curso</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Eu achava que precisava de professor presencial. O passo a passo online funcionou muito bem pra mim."</p>
+          <div class="testimonial-author">
+            <strong>Diego L.</strong>
+            <span>Aluno iniciante</span>
+          </div>
+        </article>
+
+        <!-- 5 Duplicatas para Loop Contínuo -->
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Eu nunca consegui passar dos acordes basicos sozinho. Em poucas semanas ja toquei minha primeira musica completa."</p>
+          <div class="testimonial-author">
+            <strong>Rafael M.</strong>
+            <span>Aluno iniciante</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"As aulas sao diretas e praticas. Parei de me sentir perdido e hoje treino com um plano claro."</p>
+          <div class="testimonial-author">
+            <strong>Camila T.</strong>
+            <span>Aluna do curso</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Com 20 minutos por dia ja senti evolucao. O metodo respeita meu ritmo e isso fez toda diferenca."</p>
+          <div class="testimonial-author">
+            <strong>Joao P.</strong>
+            <span>Aluno iniciante</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Gostei porque nao fica so na teoria. Cada aula ja traz exercicio e aplicacao na musica."</p>
+          <div class="testimonial-author">
+            <strong>Marina S.</strong>
+            <span>Aluna do curso</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-quote">"Eu achava que precisava de professor presencial. O passo a passo online funcionou muito bem pra mim."</p>
+          <div class="testimonial-author">
+            <strong>Diego L.</strong>
+            <span>Aluno iniciante</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 3: BEFORE / AFTER COMPARISON
+  ======================================================== -->
+  <section class="compare-section" id="pna-compare-section">
+    <div class="compare-container">
+      <h2 class="compare-title">O que muda com o Violão do Zero</h2>
+
+      <div class="compare-grid">
+        <!-- Card Esquerda (Antes / Dor) -->
+        <div class="compare-card left pna-reveal" style="--pna-delay: 0s;">
+          <div class="compare-header">
+            <div class="compare-icon-wrap">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            </div>
+            <h3>Se você…</h3>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              <span>Já perdeu horas assistindo tutoriais no YouTube e terminou o dia com a sensação de “não aprendi nada de verdade”.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              <span>Tentou aprender sozinho, travou nos acordes básicos e acabou desistindo no meio do caminho.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              <span>Já olhou pro seu violão parado no canto do quarto e pensou “nunca vou conseguir tocar”.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              <span>Quer aprender mas não tem tempo nem dinheiro para pagar aulas presenciais todo mês.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card Direita (Depois / Solução) -->
+        <div class="compare-card right" id="compare-card-right">
+          <div class="compare-header">
+            <div class="compare-icon-wrap">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </div>
+            <h3>Com o Violão do Zero você vai</h3>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Tocar suas músicas favoritas sem precisar de professor particular.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Parar de ficar preso nos mesmos acordes e evoluir de verdade com um passo a passo claro.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Aprender com exercícios práticos e progressivos que respeitam o seu ritmo.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span>Desenvolver técnica correta desde o início e tocar com confiança.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 4: CTA BUTTON DIVIDER
+  ======================================================== -->
+  <section class="cta-divider-section">
+    <a class="primary-cta sentence-case" href="#valor">
+      <svg class="cta-lightning" viewBox="0 0 16 27" fill="currentColor">
+        <path d="M9.5 0L0 15.5H7.5L6.5 27L16 11.5H8.5L9.5 0Z" />
+      </svg>
+      <span>Quero começar a tocar violão</span>
+    </a>
+  </section>
+
+  <!-- ========================================================
+       SECTION 5: URGENCY IMPACT BLOCK
+  ======================================================== -->
+  <section class="pna-impact-section">
+    <div class="impact-shell pna-reveal" style="--pna-delay: 0.1s;">
+      <h2 class="impact-title">
+        Enquanto você adia, outro dia passa sem que você toque uma única nota no <span class="danger-highlight">violão parado na sua casa</span>.
+      </h2>
+
+      <p class="impact-subtitle">
+        Cada dia que você empurra para amanhã o aprendizado, é isso que acontece:
+      </p>
+
+      <div class="impact-flow-row">
+        <div class="impact-chip">VONTADE</div>
+        <span class="flow-arrow">→</span>
+        <div class="impact-chip danger">PROCRASTINAÇÃO</div>
+        <span class="flow-arrow">→</span>
+        <div class="impact-chip danger">DESISTÊNCIA</div>
+      </div>
+
+      <p class="impact-closing">
+        Não deixe para amanhã o violão que você pode começar a tocar hoje
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 6: METHOD / 3 STEPS
+  ======================================================== -->
+  <section class="method-section" id="pna2-section">
+    <div class="method-container">
+      <div class="method-header pna-reveal" style="--pna-delay: 0.1s;">
+        <h2 class="method-title">Veja como o método funciona na prática</h2>
+        <p class="method-desc">
+          Eu já organizei o caminho de aprendizado para você: aulas em sequência lógica, exercícios práticos e uma progressão que respeita o seu ritmo. Sua única tarefa é praticar e evoluir.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <!-- Step 01 -->
+        <div class="pna2-card">
+          <div class="pna2-card-content">
+            <span class="pna2-num">01</span>
+            <h3 class="pna2-title">Assista as primeiras aulas</h3>
+            <p class="pna2-copy">Começa pelo módulo introdutório com postura correta, afinação e os primeiros acordes essenciais.</p>
+          </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="pna2-card">
+          <div class="pna2-card-content">
+            <span class="pna2-num">02</span>
+            <h3 class="pna2-title">Pratique os exercícios guiados</h3>
+            <p class="pna2-copy">Siga os exercícios práticos de cada módulo e vá desenvolvendo dedilhado, ritmo e coordenação.</p>
+          </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="pna2-card">
+          <div class="pna2-card-content">
+            <span class="pna2-num">03</span>
+            <h3 class="pna2-title">Toque suas primeiras músicas</h3>
+            <p class="pna2-copy">Com os fundamentos no lugar, você já consegue tocar músicas completas e continuar evoluindo sozinho.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 7: DELIVERABLES GRID
+  ======================================================== -->
+  <section class="deliverables-section" id="deliverables">
+    <div class="deliverables-container">
+      <span class="deliverables-tag">[ O QUE VOCÊ RECEBE ]</span>
+      <h2 class="deliverables-title">Tudo o que você precisa está aqui dentro.</h2>
+
+      <div class="deliverables-grid">
+        <!-- Card 1 -->
+        <div class="deliverable-card pna-reveal" style="--pna-delay: 0s;">
+          <div class="deliverable-icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="deliverable-card-title">Aulas em vídeo com progressão clara</h3>
+            <p class="deliverable-card-desc">Você recebe um curso completo, estruturado do zero ao intermediário, com aulas práticas e objetivas.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="deliverable-card pna-reveal" style="--pna-delay: 0.1s;">
+          <div class="deliverable-icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="deliverable-card-title">Cifras e tablaturas das músicas</h3>
+            <p class="deliverable-card-desc">Acesse todas as cifras e tablaturas das músicas ensinadas no curso para praticar quando quiser.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="deliverable-card pna-reveal" style="--pna-delay: 0.2s;">
+          <div class="deliverable-icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="deliverable-card-title">Guia de Postura e Técnica</h3>
+            <p class="deliverable-card-desc">Um guia completo com fotos e dicas para desenvolver técnica correta desde o início e evitar lesões.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="deliverable-card pna-reveal" style="--pna-delay: 0.3s;">
+          <div class="deliverable-icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="deliverable-card-title">Trilha de Progressão Semanal</h3>
+            <p class="deliverable-card-desc">Uma sequência organizada de exercícios e músicas para você saber exatamente o que praticar a cada semana.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 8: PRE-OFFER VALUE CARD
+  ======================================================== -->
+  <section class="preoferta-section" id="preoferta">
+    <div class="preoferta-card pna-reveal" style="--pna-delay: 0.1s;">
+      <p class="preoferta-header">
+        Quando finalizei o Violão do Zero, me disseram que eu deveria cobrar no mínimo <strong>R$ 197</strong> … e sendo sincero, faria todo o sentido. Afinal:
+      </p>
+
+      <ul class="preoferta-list">
+        <li>
+          <span class="preoferta-bullet"></span>
+          <span>Um professor particular cobra pelo menos <strong>R$ 120</strong> por hora de aula presencial</span>
+        </li>
+        <li>
+          <span class="preoferta-bullet"></span>
+          <span>Aplicativos de aprendizado custam mais de <strong>R$ 60/mês</strong> — e o resultado ainda fica superficial</span>
+        </li>
+        <li>
+          <span class="preoferta-bullet"></span>
+          <span>Tentar aprender sozinho com vídeos aleatórios no YouTube vai te demandar vários meses sem sair do lugar</span>
+        </li>
+      </ul>
+
+      <p class="preoferta-closing">
+        Mas eu não queria que o preço fosse um obstáculo para quem quer aprender a tocar de verdade.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 9: OFFER / PRICING
+  ======================================================== -->
+  <section class="offer-section" id="valor">
+    <div class="offer-card pna-reveal" style="--pna-delay: 0.15s;">
+      <h2 class="offer-heading">Hoje você pode aprender violão com uma condição especial:</h2>
+
+      <ul class="offer-checklist">
+        <li>
+          <div class="offer-check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <span>Aulas em vídeo com progressão clara</span>
+        </li>
+        <li>
+          <div class="offer-check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <span>Cifras e tablaturas das músicas</span>
+        </li>
+        <li>
+          <div class="offer-check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <span>Guia de Postura e Técnica</span>
+        </li>
+        <li>
+          <div class="offer-check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <span>Acesso durante 1 ano a todas as atualizações</span>
+        </li>
+        <li>
+          <div class="offer-check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <span>7 dias de garantia</span>
+        </li>
+      </ul>
+
+      <div class="price-box">
+        <span class="old-price">de R$147</span>
+        <span class="por-apenas">por apenas</span>
+        <span class="current-price">R$49</span>
+      </div>
+
+      <a class="primary-cta" href="#" target="_blank" rel="noopener noreferrer">
+        <svg class="cta-lightning" viewBox="0 0 16 27" fill="currentColor">
+          <path d="M9.5 0L0 15.5H7.5L6.5 27L16 11.5H8.5L9.5 0Z" />
+        </svg>
+        <span>QUERO APROVEITAR ESSA OFERTA</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 10: GUARANTEE
+  ======================================================== -->
+  <section class="guarantee-section" id="garantia">
+    <div class="guarantee-container pna-reveal" style="--pna-delay: 0.1s;">
+      <div class="guarantee-seal-wrap">
+        <img 
+          src="https://res.cloudinary.com/dalwymbky/image/upload/v1782391166/garantia_gqpidc.svg" 
+          alt="Selo de Garantia de 7 Dias" 
+          class="guarantee-seal"
+          width="416"
+          height="416"
+          loading="lazy"
+        />
+      </div>
+
+      <h2 class="guarantee-title">Garantia total</h2>
+
+      <p class="guarantee-text">
+        Você tem 7 dias de garantia pra acessar tudo e ver com os seus próprios olhos. Se sentir que não é pra você, é só solicitar o reembolso e eu devolvo 100% do seu dinheiro.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 11: FAQ
+  ======================================================== -->
+  <section class="faq-novo-wrap" id="faq">
+    <div class="faq-container">
+      <h2 class="faq-title">Perguntas frequentes</h2>
+
+      <div class="faq-list">
+        <!-- Item 1 -->
+        <details class="faq-novo-item pna-reveal" style="--pna-delay: 0s;">
+          <summary>
+            <span>Preciso ter experiência musical para começar?</span>
+            <span class="faq-toggle-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Não. O Violão do Zero foi criado justamente para quem nunca tocou um instrumento antes. Você começa pela postura correta, afinação e os primeiros acordes, de forma progressiva e sem pular etapas.
+          </div>
+        </details>
+
+        <!-- Item 2 -->
+        <details class="faq-novo-item pna-reveal" style="--pna-delay: 0.08s;">
+          <summary>
+            <span>E se eu já sei um pouco de violão?</span>
+            <span class="faq-toggle-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            O curso começa do zero, mas a progressão é rápida. Se você já tem alguma base, vai avançar pelos primeiros módulos mais rápido e se beneficiar especialmente dos módulos de técnica, ritmo e repertório.
+          </div>
+        </details>
+
+        <!-- Item 3 -->
+        <details class="faq-novo-item pna-reveal" style="--pna-delay: 0.16s;">
+          <summary>
+            <span>Quanto tempo preciso praticar por dia?</span>
+            <span class="faq-toggle-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Você decide o seu ritmo. Com apenas 20 a 30 minutos por dia já consegue evoluir visivelmente em poucas semanas. O importante é a consistência, não a intensidade.
+          </div>
+        </details>
+
+        <!-- Item 4 -->
+        <details class="faq-novo-item pna-reveal" style="--pna-delay: 0.24s;">
+          <summary>
+            <span>Preciso de um violão específico para começar?</span>
+            <span class="faq-toggle-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Não. Qualquer violão em boas condições funciona. Não é necessário ter um instrumento caro para aprender.
+          </div>
+        </details>
+
+        <!-- Item 5 -->
+        <details class="faq-novo-item pna-reveal" style="--pna-delay: 0.32s;">
+          <summary>
+            <span>Quanto tempo eu tenho de acesso?</span>
+            <span class="faq-toggle-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            Você tem 1 ano de acesso garantido. Isso inclui todas as atualizações e os novos conteúdos que eu adicionar ao curso nesse período.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 12: MINIMAL FOOTER
+  ======================================================== -->
+  <footer class="minimal-footer">
+    <div class="footer-container">
+      <div class="footer-brand">VIOLÃO DO ZERO ®</div>
+
+      <div class="footer-socials" aria-label="Redes sociais">
+        <!-- Behance -->
+        <a href="#" class="social-btn" title="Behance" aria-label="Behance">
+          <svg viewBox="0 0 24 24"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.171 3-3.455 0-5.555-2.477-5.555-5.966 0-3.398 2.062-6.034 5.419-6.034 3.447 0 5.099 2.502 5.099 5.555 0 .61-.077 1.215-.17 1.624h-8.083c.123 1.942 1.439 3.011 3.238 3.011 1.488 0 2.457-.655 2.879-1.19l2.344 0zm-7.986-3.821h5.811c-.139-1.503-1.107-2.417-2.739-2.417-1.583 0-2.822.842-3.072 2.417zm-10.74-6.179h6.143c1.066 0 1.954.195 2.664.586.71.391 1.066 1.055 1.066 1.992 0 .695-.246 1.262-.738 1.7-.492.438-1.137.668-1.934.691 1.043.125 1.832.484 2.367 1.078.535.594.803 1.344.803 2.25 0 1.062-.395 1.918-1.184 2.566-.789.648-1.848.973-3.176.973h-6.011v-11.836zm2.441 4.707h2.891c.672 0 1.176-.117 1.512-.352.336-.234.504-.602.504-1.102 0-.469-.172-.816-.516-1.043-.344-.227-.871-.34-1.582-.34h-2.809v2.837zm0 4.883h3.047c.789 0 1.379-.148 1.77-.445.391-.297.586-.742.586-1.336 0-.586-.215-1.023-.645-1.312-.43-.289-1.074-.434-1.934-.434h-2.824v3.527z"/></svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="#" class="social-btn" title="WhatsApp" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.882-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.285-.143-1.689-.834-1.95-.929-.26-.095-.45-.143-.639.143-.19.286-.736.929-.902 1.118-.167.19-.333.214-.618.071-.285-.143-1.207-.445-2.299-1.419-.85-.759-1.424-1.696-1.591-1.982-.167-.285-.018-.44.125-.582.128-.128.285-.333.428-.499.143-.167.19-.285.285-.476.095-.19.048-.357-.024-.5-.071-.143-.639-1.541-.875-2.108-.23-.553-.464-.477-.639-.486-.165-.008-.354-.008-.544-.008s-.499.071-.76.357c-.26.286-1 .976-1 2.381 0 1.405 1.023 2.761 1.166 2.951.143.19 2.013 3.074 4.877 4.312.682.295 1.215.471 1.63.603.685.218 1.309.187 1.802.114.549-.081 1.689-.69 1.927-1.356.237-.666.237-1.237.166-1.356-.07-.119-.26-.19-.545-.333z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" class="social-btn" title="YouTube" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Politica de Privacidade</a>
+        <span>•</span>
+        <a href="#">Termos de uso</a>
+      </div>
+
+      <p class="footer-copyright">
+        Direitos Autorais © 2026. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       JAVASCRIPT & THREE.JS DOTTED SURFACE
+  ======================================================== -->
+  <script>
+    // ----------------------------------------------------
+    // THREE.JS PROCEDURAL DOTTED WAVE HERO
+    // ----------------------------------------------------
+    class DottedSurfaceHero {
+      constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        if (!this.container || typeof THREE === 'undefined') return;
+
+        this.count = 0;
+        this.isPaused = false;
+        this.reqId = null;
+
+        this.init();
+      }
+
+      init() {
+        const isMobile = window.innerWidth < 768;
+        this.options = {
+          separation: isMobile ? 170 : 150,
+          amountX: isMobile ? 28 : 40,
+          amountY: isMobile ? 44 : 60,
+          dotSize: isMobile ? 7 : 8,
+          waveAmpX: 50,
+          waveAmpY: 50,
+          speed: 0.1
+        };
+
+        const width = this.container.clientWidth || window.innerWidth;
+        const height = this.container.clientHeight || window.innerHeight;
+
+        // Scene & Fog
+        this.scene = new THREE.Scene();
+        this.scene.fog = new THREE.Fog(0x0d0816, 2000, 10000);
+
+        // Camera
+        this.camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
+        this.camera.position.set(0, 355, 1220);
+
+        // Renderer
+        this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        this.renderer.setSize(width, height);
+        this.renderer.setClearColor(0x0d0816, 0);
+
+        this.container.innerHTML = '';
+        this.container.appendChild(this.renderer.domElement);
+
+        // Geometry with centered grid
+        const numParticles = this.options.amountX * this.options.amountY;
+        const positions = new Float32Array(numParticles * 3);
+        const colors = new Float32Array(numParticles * 3);
+
+        let i = 0;
+        let c = 0;
+        for (let ix = 0; ix < this.options.amountX; ix++) {
+          for (let iy = 0; iy < this.options.amountY; iy++) {
+            positions[i] = ix * this.options.separation - (this.options.amountX * this.options.separation) / 2;
+            positions[i + 1] = 0;
+            positions[i + 2] = iy * this.options.separation - (this.options.amountY * this.options.separation) / 2;
+
+            // Soft purple color [0.75, 0.55, 1.0]
+            colors[c] = 0.75;
+            colors[c + 1] = 0.55;
+            colors[c + 2] = 1.0;
+
+            i += 3;
+            c += 3;
+          }
+        }
+
+        this.geometry = new THREE.BufferGeometry();
+        this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        this.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        // Material
+        this.material = new THREE.PointsMaterial({
+          size: this.options.dotSize,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.55,
+          sizeAttenuation: true
+        });
+
+        this.particles = new THREE.Points(this.geometry, this.material);
+        this.scene.add(this.particles);
+
+        // Resize Listener
+        this.onResize = this.onResize.bind(this);
+        window.addEventListener('resize', this.onResize);
+
+        // Visibility Change Listener
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            this.isPaused = true;
+          } else {
+            this.isPaused = false;
+            this.animate();
+          }
+        });
+
+        // Reduced Motion check
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // First render & reveal
+        this.renderer.render(this.scene, this.camera);
+        this.container.classList.add('is-ready');
+
+        if (!prefersReducedMotion) {
+          this.animate = this.animate.bind(this);
+          this.animate();
+        }
+      }
+
+      animate() {
+        if (this.isPaused) return;
+
+        const positions = this.geometry.attributes.position.array;
+        let i = 0;
+        for (let ix = 0; ix < this.options.amountX; ix++) {
+          for (let iy = 0; iy < this.options.amountY; iy++) {
+            positions[i + 1] = 
+              Math.sin((ix + this.count) * 0.3) * this.options.waveAmpX +
+              Math.sin((iy + this.count) * 0.5) * this.options.waveAmpY;
+            i += 3;
+          }
+        }
+        this.geometry.attributes.position.needsUpdate = true;
+
+        this.renderer.render(this.scene, this.camera);
+        this.count += this.options.speed;
+
+        this.reqId = requestAnimationFrame(this.animate);
+      }
+
+      onResize() {
+        if (!this.renderer || !this.camera || !this.container) return;
+        const width = this.container.clientWidth || window.innerWidth;
+        const height = this.container.clientHeight || window.innerHeight;
+
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(width, height);
+      }
+    }
+
+    // Initialize WebGL Hero
+    document.addEventListener('DOMContentLoaded', () => {
+      new DottedSurfaceHero('dotted-surface-s01');
+
+      // ----------------------------------------------------
+      // INTERSECTION OBSERVER REVEALS & LAMP BEAMS
+      // ----------------------------------------------------
+      const revealElements = document.querySelectorAll('.pna-reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // Comparison Card Right Reveal
+      const compareRight = document.getElementById('compare-card-right');
+      if (compareRight) {
+        const compObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('pna-in-view');
+            }
+          });
+        }, { threshold: 0.2 });
+        compObserver.observe(compareRight);
+      }
+
+      // Method 3D Lamp Reveal
+      const lampCards = document.querySelectorAll('.pna2-card');
+      const lampObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('lamp-on');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      lampCards.forEach(card => lampObserver.observe(card));
+
+      // FAQ accordion plus/minus toggle update
+      document.querySelectorAll('.faq-novo-item').forEach(item => {
+        item.addEventListener('toggle', () => {
+          const icon = item.querySelector('.faq-toggle-icon');
+          if (icon) {
+            icon.textContent = item.open ? '−' : '+';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

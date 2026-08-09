@@ -1,0 +1,6 @@
+{
+  "name": "[DOMINE IA NO TRABALHO] — Aumente sua produtividade",
+  "description": "Aprenda a usar a inteligência artificial no seu dia a dia de forma simples, prática e com estratégia, para automatizar tarefas repetitivas e se destacar no mercado.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

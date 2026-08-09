@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Treino em Casa - Treinos para fazer em casa com consistencia</title>
+  <meta name="keywords" content="treino em casa, treino para emagrecer, exercicios em casa, treino sem academia, plano de treino, condicionamento fisico, treino guiado">
+  <meta name="description" content="Projeto Treino em Casa - Treinos práticos e guiados de 15 a 30 minutos para transformar seu corpo sem academia.">
+  
+  <!-- Mandatory history replaceState fix for iframe preview inside Replicador -->
+  <script>try{history.replaceState(null,'','/');}catch(e){}</script>
+
+  <!-- Google Fonts: DM Sans, Petrona, Jersey 10, Shadows Into Light -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Jersey+10&family=Petrona:ital,wght@0,100..900;1,100..900&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+  <style>
+    /* DESIGN TOKENS & RESET */
+    :root {
+      --juicy-dark: #070707;
+      --juicy-card-bg: #1c1b1b;
+      --juicy-card-dark: #181818;
+      --battery-full: #76b545;
+      --battery-good: #a8d15f;
+      --battery-medium: #f5a623;
+      --battery-low: #f56423;
+      --battery-critical: #d0021b;
+      --gradient-green: #76b545;
+      --gradient-dark-green: #5dc988;
+      --gradient-lime: #a8d15f;
+      --gradient-teal: #4a9b7e;
+      --gradient-emerald: #3dbd8f;
+      --bg-gradient-juicy-darker: linear-gradient(135deg, #5a9129 0%, #76b545 45%, #3dbd8f 100%);
+      
+      --reveal-distance: 28px;
+      --reveal-duration: .8s;
+      --reveal-ease: cubic-bezier(.22,.61,.36,1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow: initial !important;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      max-width: 100%;
+      overflow-x: hidden !important;
+      overflow-y: scroll !important;
+      margin: 0;
+      background: #070707;
+      color: #ffffff;
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #__nuxt, #__nuxt > div, .craveless-bg, .craveless-bg > div {
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+    .craveless-bg {
+      position: relative;
+      min-height: 100vh;
+      background: #070707;
+      color: #fff;
+      overflow: visible;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+    }
+
+    /* TYPOGRAPHY HELPERS */
+    .font-serif {
+      font-family: "Petrona", Georgia, "Times New Roman", serif !important;
+    }
+
+    .font-pixel {
+      font-family: "Jersey 10", "Times New Roman", serif !important;
+    }
+
+    .font-handwritten {
+      font-family: "Shadows Into Light", cursive !important;
+    }
+
+    /* MASKED BORDER OVERLAYS */
+    .masked-border-green {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(134,239,172,.4) 0%, rgba(255,255,255,.25) 15%, rgba(255,255,255,.1) 30%, transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 2;
+    }
+
+    .masked-border-red {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(239,68,68,.30) 0%, rgba(255,255,255,.15) 25%, transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 2;
+    }
+
+    .masked-border-offer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(134,239,172,.5) 0%, rgba(255,255,255,.3) 20%, rgba(255,255,255,.15) 40%, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 2;
+    }
+
+    .masked-border-badge {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(134,239,172,.6) 0%, rgba(255,255,255,.3) 20%, rgba(255,255,255,.15) 40%, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 2;
+    }
+
+    /* BUTTONS */
+    .bg-gradient-juicy-darker {
+      background: linear-gradient(135deg, #5a9129 0%, #76b545 45%, #3dbd8f 100%);
+    }
+
+    .cta-button {
+      position: relative;
+      display: inline-block;
+      border-radius: 999px;
+      padding: 16px 32px;
+      font-weight: 600;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #5a9129 0%, #76b545 45%, #3dbd8f 100%);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.5), 0 0 0 4px rgba(255,255,255,.1);
+      text-shadow: 0px 1px 3px rgba(0,0,0,.2), 0px 1px 0px rgba(0,0,0,.1);
+      transition: all 200ms ease;
+      text-align: center;
+    }
+
+    .cta-button:hover {
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.25), 0 0 0 10px rgba(255,255,255,.12);
+    }
+
+    .cta-button:hover .button-overlay {
+      opacity: 0.15;
+    }
+
+    .cta-button:active {
+      transform: translateY(0.5px);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.25), 0 0 0 4px rgba(255,255,255,.1);
+    }
+
+    .button-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: #ffffff;
+      opacity: 0;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    /* Mobile Hero CTA */
+    .mobile-hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin: 32px 0;
+      width: 100%;
+      padding: 0 16px;
+    }
+
+    .mobile-hero-btn {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #16a34a, #059669);
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.4);
+      cursor: pointer;
+      text-align: center;
+      transition: transform 200ms ease;
+    }
+
+    .mobile-hero-btn:active {
+      transform: translateY(1px);
+    }
+
+    .desktop-hero-cta {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .mobile-hero-cta {
+        display: none !important;
+      }
+      .desktop-hero-cta {
+        display: flex !important;
+      }
+    }
+
+    /* CTA PULSE RINGS */
+    .cta-pulse {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .cta-pulse::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: inherit;
+      border: 1px solid rgba(134,239,172,.4);
+      opacity: 0;
+      transform: scale(.92);
+      pointer-events: none;
+      animation: ctaPulseRing 2.8s ease-out infinite;
+      animation-delay: var(--pulse-delay, 0s);
+    }
+
+    @keyframes ctaPulseRing {
+      0% {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      20% {
+        opacity: 0.45;
+      }
+      70%, 100% {
+        opacity: 0;
+        transform: scale(1.14);
+      }
+    }
+
+    /* METHOD BORDER GRADIENT CARD */
+    .border-gradient {
+      background-clip: padding-box;
+      border: 2px solid transparent;
+      position: relative;
+    }
+
+    .border-gradient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: -2px;
+      border-radius: inherit;
+      z-index: -1;
+      background: linear-gradient(180deg, #303030 15%, #181818);
+      transition: background 0.2s ease;
+    }
+
+    .border-gradient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: -2px;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(30deg, #76b545, #a8d15f, #5dc988);
+      mix-blend-mode: plus-lighter;
+      opacity: 0.05;
+      transition: opacity 0.2s ease;
+    }
+
+    .border-gradient:hover::after {
+      opacity: 0.15;
+    }
+
+    .border-gradient:hover::before {
+      background: linear-gradient(180deg, #404040 15%, #181818);
+    }
+
+    /* PIXEL ICONS (CSS MASKS) */
+    .pixel-icon {
+      display: inline-block;
+      background-color: currentColor;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .i-pixelarticons\:mood-sad {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 2h20v20H2V2zm2 2v16h16V4H4zm4 4h2v2H8V8zm8 0h-2v2h2V8zm-2 8H8v-2h6v2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 2h20v20H2V2zm2 2v16h16V4H4zm4 4h2v2H8V8zm8 0h-2v2h2V8zm-2 8H8v-2h6v2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:mood-happy {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 2h20v20H2V2zm2 2v16h16V4H4zm4 4h2v2H8V8zm8 0h-2v2h2V8zm-8 6h2v2h4v-2h2v2h-2v2H8v-2H6v-2h2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 2h20v20H2V2zm2 2v16h16V4H4zm4 4h2v2H8V8zm8 0h-2v2h2V8zm-8 6h2v2h4v-2h2v2h-2v2H8v-2H6v-2h2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:close {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5 5h2v2H5V5zm4 4H7V7h2v2zm2 2H9V9h2v2zm2 0h-2v2h2v-2zm2-2h-2V9h2V7h2v2h-2v2zm2-2V5h2v2h-2v2h-2zm0 8h2v2h-2v-2zm-2 2h2v-2h-2v2zm-2 2h-2v-2h2v2zm-4 0v-2H9v2H7v-2h2v-2H7v-2H5v2h2v2h2v2h2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5 5h2v2H5V5zm4 4H7V7h2v2zm2 2H9V9h2v2zm2 0h-2v2h2v-2zm2-2h-2V9h2V7h2v2h-2v2zm2-2V5h2v2h-2v2h-2zm0 8h2v2h-2v-2zm-2 2h2v-2h-2v2zm-2 2h-2v-2h2v2zm-4 0v-2H9v2H7v-2h2v-2H7v-2H5v2h2v2h2v2h2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:battery-charging {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 6h14v2H4V6zm14 2h2v8h-2v2H4v-2H2V8h2V6h14v2zm-6 2h2v2h-2v-2zm-2 2h2v2H8v-2h2zm2 2h2v2h-2v-2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 6h14v2H4V6zm14 2h2v8h-2v2H4v-2H2V8h2V6h14v2zm-6 2h2v2h-2v-2zm-2 2h2v2H8v-2h2zm2 2h2v2h-2v-2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:chart-delete {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 2h2v18h18v2H2V2zm17 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2h-2V8zm2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm-6-2h-2v2h2v-2zm-4 4h2v6H9v-6zm-4 2h2v4H5v-4z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 2h2v18h18v2H2V2zm17 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2h-2V8zm2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm-6-2h-2v2h2v-2zm-4 4h2v6H9v-6zm-4 2h2v4H5v-4z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:code {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M8 5h2v2H8V5zM6 7h2v2H6V7zM4 9h2v2H4V9zm0 4h2v2H4v-2zm2 2h2v2H6v-2zm2 2h2v2H8v-2zm8-12h-2v2h2V5zm2 2h-2v2h2V7zm2 2h-2v2h2V9zm0 4h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M8 5h2v2H8V5zM6 7h2v2H6V7zM4 9h2v2H4V9zm0 4h2v2H4v-2zm2 2h2v2H6v-2zm2 2h2v2H8v-2zm8-12h-2v2h2V5zm2 2h-2v2h2V7zm2 2h-2v2h2V9zm0 4h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:visible {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 9h2v2H2V9zm2 2h2v2H4v-2zm2 2h2v2H6v-2zm2 2h8v2H8v-2zm8-2h2v-2h-2v2zm2-2h2V9h-2v2zm2-2h2V7h-2v2zM8 9h8V7H8v2zm2 2h4v2h-4v-2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 9h2v2H2V9zm2 2h2v2H4v-2zm2 2h2v2H6v-2zm2 2h8v2H8v-2zm8-2h2v-2h-2v2zm2-2h2V9h-2v2zm2-2h2V7h-2v2zM8 9h8V7H8v2zm2 2h4v2h-4v-2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:heart {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6 3h4v2H6V3zm8 0h4v2h-4V3zM4 5h2v4H4V5zm16 0h-2v4h2V5zM2 9h2v4H2V9zm20 0h-2v4h2V9zm-2 4h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2-2H8v-2h2v2zm-2-2H6v-2h2v2zm-2-2H4v-2h2v2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6 3h4v2H6V3zm8 0h4v2h-4V3zM4 5h2v4H4V5zm16 0h-2v4h2V5zM2 9h2v4H2V9zm20 0h-2v4h2V9zm-2 4h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2-2H8v-2h2v2zm-2-2H6v-2h2v2zm-2-2H4v-2h2v2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:zap {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13 2h-2v6h2V2zm-2 6H7v2h4V8zm-4 4h4v2H7v-2zm6 0h4v2h-4v-2zm-2 4h4v2h-4v-2zm2 4h2v-2h-2v2zm-4-2H9v2h2v-2zm0-4h2v2h-2v-2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13 2h-2v6h2V2zm-2 6H7v2h4V8zm-4 4h4v2H7v-2zm6 0h4v2h-4v-2zm-2 4h4v2h-4v-2zm2 4h2v-2h-2v2zm-4-2H9v2h2v-2zm0-4h2v2h-2v-2z'/%3E%3C/svg%3E");
+    }
+
+    .i-pixelarticons\:eye-closed {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 13h2v2H2v-2zm2-2h2v2H4v-2zm2-2h2v2H6V9zm2-2h8v2H8V7zm8 2h2v2h-2V9zm2 2h2v2h-2v-2zm2 2h2v2h-2v-2zM4 17h2v-2H4v2zm4 2h2v-2H8v2zm6 0h2v-2h-2v2zm4-2h2v-2h-2v2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 13h2v2H2v-2zm2-2h2v2H4v-2zm2-2h2v2H6V9zm2-2h8v2H8V7zm8 2h2v2h-2V9zm2 2h2v2h-2v-2zm2 2h2v2h-2v-2zM4 17h2v-2H4v2zm4 2h2v-2H8v2zm6 0h2v-2h-2v2zm4-2h2v-2h-2v2z'/%3E%3C/svg%3E");
+    }
+
+    .i-streamline-pixel\:computers-devices-electronics-laptop {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 3h16v12H4V3zm2 2v8h12V5H6zM1 17h22v4H1v-4zm8 1h6v1H9v-1z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 3h16v12H4V3zm2 2v8h12V5H6zM1 17h22v4H1v-4zm8 1h6v1H9v-1z'/%3E%3C/svg%3E");
+    }
+
+    .i-streamline-pixel\:business-products-deal-handshake {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 7h5v2H2V7zm15 0h5v2h-5V7zm-8 2h6v2H9V9zm-2 2h2v2H7v-2zm8 0h2v2h-2v-2zm-6 2h6v2H9v-2zm-1 2h8v2H8v-2zm2 2h4v2h-4v-2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M2 7h5v2H2V7zm15 0h5v2h-5V7zm-8 2h6v2H9V9zm-2 2h2v2H7v-2zm8 0h2v2h-2v-2zm-6 2h6v2H9v-2zm-1 2h8v2H8v-2zm2 2h4v2h-4v-2z'/%3E%3C/svg%3E");
+    }
+
+    .i-streamline-pixel\:business-product-report-present-grahp {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 3h18v12H3V3zm2 2v8h14V5H5zm2 6h2v-2H7v2zm4 0h2v-4h-2v4zm4 0h2v-6h-2v6zm-8 6h10v2H7v-2zm5 2h2v3h-2v-3z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 3h18v12H3V3zm2 2v8h14V5H5zm2 6h2v-2H7v2zm4 0h2v-4h-2v4zm4 0h2v-6h-2v6zm-8 6h10v2H7v-2zm5 2h2v3h-2v-3z'/%3E%3C/svg%3E");
+    }
+
+    .i-streamline-pixel\:interface-essential-heart-favorite {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 3h6v2H4V3zm10 0h6v2h-6V3zM2 5h2v6H2V5zm20 0h-2v6h2V5zm-2 6h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2-2H8v-2h2v2zm-2-2H6v-2h2v2zm-2-2H4v-2h2v2z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 3h6v2H4V3zm10 0h6v2h-6V3zM2 5h2v6H2V5zm20 0h-2v6h2V5zm-2 6h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2-2H8v-2h2v2zm-2-2H6v-2h2v2zm-2-2H4v-2h2v2z'/%3E%3C/svg%3E");
+    }
+
+    /* SCROLL REVEAL SYSTEM */
+    .scroll-reveal {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+      transition-property: opacity, transform, filter;
+      transition-duration: var(--reveal-duration);
+      transition-timing-function: var(--reveal-ease);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .js-scroll-reveal .scroll-reveal {
+      opacity: 0;
+      transform: translate3d(0, var(--reveal-distance), 0) scale(.985);
+      filter: blur(8px);
+      will-change: opacity, transform, filter;
+    }
+
+    .js-scroll-reveal .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    .reveal-left {
+      transform: translate3d(-36px, 14px, 0) scale(.985) !important;
+    }
+
+    .reveal-right {
+      transform: translate3d(36px, 14px, 0) scale(.985) !important;
+    }
+
+    .reveal-zoom {
+      transform: translate3d(0, 36px, 0) scale(.94) !important;
+    }
+
+    .reveal-card.is-visible {
+      transition-duration: .95s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-reveal, .js-scroll-reveal .scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+      }
+      .cta-pulse::after {
+        animation: none !important;
+      }
+    }
+
+    /* GENERAL UTILITY CONTAINERS */
+    .section-container-narrow {
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    .section-container-mid {
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+
+    .section-container-wide {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    .section-container-full {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    .section-container-max {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="craveless-bg">
+    <div class="min-h-screen text-white font-sans overflow-x-hidden" style="min-height: 100vh; position: relative;">
+
+      <!-- COMPONENT: FIXED BACKGROUND GLOW FIELD -->
+      <div class="fixed inset-0 -z-10 pointer-events-none" style="position: fixed; inset: 0; z-index: -10; pointer-events: none; overflow: hidden;">
+        <!-- Layer 1: Left green circle -->
+        <div style="position: absolute; width: 500px; height: 500px; background: #76b545; border-radius: 999px; filter: blur(150px); opacity: 0.40; left: calc(50% - 400px); top: -200px;"></div>
+        <!-- Layer 2: Right lime circle -->
+        <div style="position: absolute; width: 800px; height: 800px; background: #a8d15f; border-radius: 999px; filter: blur(150px); opacity: 0.10; right: calc(50% - 600px); top: -400px;"></div>
+        <!-- Layer 3: Central oval gradient -->
+        <div style="position: absolute; width: 1400px; height: 1000px; background: linear-gradient(135deg, rgba(74,222,128,.25), rgba(52,211,153,.20), rgba(163,230,53,.15)); border-radius: 999px; filter: blur(250px); opacity: 0.50; left: 50%; top: 15%; transform: translateX(-50%);"></div>
+        <!-- Layer 4: Transparent decorative canvas -->
+        <canvas class="absolute inset-0 pointer-events-none" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.02;"></canvas>
+      </div>
+
+      <!-- SECTION 1: HERO -->
+      <section style="position: relative; min-height: calc(100vh - 56px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem 1.5rem 2.5rem; text-align: center;">
+        
+        <!-- Hero decorative dual glows -->
+        <div style="position: relative; margin-bottom: 1.5rem; margin-top: 2rem; width: 100%; max-width: 64rem;">
+          <div style="position: absolute; width: 400px; height: 400px; background: linear-gradient(135deg, rgba(34,197,94,.60), rgba(16,185,129,.40), transparent); border-radius: 999px; filter: blur(140px); left: -160px; top: -168px; pointer-events: none;"></div>
+          <div style="position: absolute; width: 400px; height: 400px; background: linear-gradient(225deg, rgba(163,230,53,.50), rgba(74,222,128,.30), transparent); border-radius: 999px; filter: blur(140px); right: -160px; top: -168px; pointer-events: none;"></div>
+
+          <h1 class="font-serif" style="font-weight: 200; text-align: center; font-size: clamp(28px, 6vw, 72px); letter-spacing: -0.03em; line-height: 1.12; max-width: 64rem; margin: 0 auto 20px;">
+            Treine em casa com <span style="font-weight: 500;">acompanhamento guiado</span>
+            <div style="margin-top: clamp(6px, 1.2vw, 12px); letter-spacing: -0.04em;">
+              e construa o corpo que voce quer <span style="font-weight: 500;">sem depender de academia.</span>
+            </div>
+          </h1>
+
+          <p style="font-family: 'DM Sans', sans-serif; font-size: clamp(14px, 2.5vw, 24px); line-height: 1.6; max-width: 48rem; margin: 0 auto 32px; color: rgba(255,255,255,.65);">
+            Mesmo com rotina corrida, voce segue treinos de 15 a 30 minutos com metodo claro para perder gordura, definir e ganhar condicionamento.
+          </p>
+        </div>
+
+        <!-- Desktop CTA -->
+        <div class="desktop-hero-cta">
+          <a href="{{CTA_LINK}}">
+            <button class="cta-button" type="button">
+              <span style="position: relative; z-index: 10;">Quero comecar meus treinos</span>
+              <div class="button-overlay"></div>
+            </button>
+          </a>
+          <div style="font-size: 14px; color: rgba(255,255,255,.50); font-weight: 500;">
+            Acesso imediato por apenas R$ 49
+          </div>
+        </div>
+
+        <!-- Mobile CTA -->
+        <div class="mobile-hero-cta">
+          <a href="{{CTA_LINK}}" style="width: 100%;">
+            <button class="mobile-hero-btn cta-button" type="button">
+              <span>Quero comecar meus treinos</span>
+            </button>
+          </a>
+          <div style="font-size: 14px; color: rgba(255,255,255,.50); font-weight: 500;">
+            Acesso imediato por apenas R$ 49
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: BEFORE / AFTER COMPARISON -->
+      <section id="o-que-muda" style="position: relative; padding: 0 24px; margin-top: clamp(32px, 5vw, 48px);">
+        <div class="section-container-wide">
+          <div style="text-align: center; font-weight: 500; font-size: clamp(20px, 4vw, 36px); line-height: 1.2;">
+            O que muda com o<br>
+            <span class="font-pixel" style="font-size: clamp(30px, 6vw, 48px); color: #4ade80; display: inline-block; margin-top: 4px;">Projeto Treino em Casa</span>
+          </div>
+
+          <!-- Comparison Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: clamp(40px, 5vw, 48px);">
+            
+            <!-- Left Card: Pain points -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden;">
+              <div style="position: absolute; inset: 0; border-radius: 24px; background: linear-gradient(135deg, rgba(69,10,10,.40), rgba(127,29,29,.20)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"></div>
+              <div class="masked-border-red"></div>
+
+              <div style="position: relative; z-index: 1; padding: 32px;">
+                <div style="width: 48px; height: 48px; border-radius: 16px; background: rgba(239,68,68,.20); display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                  <span class="pixel-icon i-pixelarticons:mood-sad" style="width: 28px; height: 28px; color: #f87171;"></span>
+                </div>
+
+                <div style="font-size: 24px; font-weight: 600; color: rgba(254,202,202,.90); margin-bottom: 24px;">
+                  Se voce...
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.70);">
+                    <span class="pixel-icon i-pixelarticons:close" style="width: 20px; height: 20px; color: #f87171; margin-top: 3px;"></span>
+                    <span>Comeca a treinar por alguns dias e para por falta de direcao.</span>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.70);">
+                    <span class="pixel-icon i-pixelarticons:battery-charging" style="width: 20px; height: 20px; color: #f87171; margin-top: 3px;"></span>
+                    <span>Nao sabe quais exercicios fazer nem em que ordem.</span>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.70);">
+                    <span class="pixel-icon i-pixelarticons:chart-delete" style="width: 20px; height: 20px; color: #f87171; margin-top: 3px;"></span>
+                    <span>Tem pouco tempo e acha que so academia da resultado.</span>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.70);">
+                    <span class="pixel-icon i-pixelarticons:code" style="width: 20px; height: 20px; color: #f87171; margin-top: 3px;"></span>
+                    <span>Quer treinar em casa, mas sem arriscar execucao errada.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Card: Outcomes -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden;">
+              <div style="position: absolute; inset: 0; border-radius: 24px; background: linear-gradient(135deg, rgba(5,46,22,.40), rgba(6,78,59,.20)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"></div>
+              <div class="masked-border-green"></div>
+
+              <div style="position: relative; z-index: 1; padding: 32px;">
+                <div style="width: 48px; height: 48px; border-radius: 16px; background: rgba(34,197,94,.20); display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                  <span class="pixel-icon i-pixelarticons:mood-happy" style="width: 28px; height: 28px; color: #4ade80;"></span>
+                </div>
+
+                <div style="font-size: 24px; font-weight: 600; color: rgba(187,247,208,.90); margin-bottom: 24px;">
+                  Com o Projeto Treino em Casa voce vai
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.90); font-weight: 500;">
+                    <span class="pixel-icon i-pixelarticons:visible" style="width: 20px; height: 20px; color: #4ade80; margin-top: 3px;"></span>
+                    <span>Seguir um plano pronto de treinos para fazer em casa.</span>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.90); font-weight: 500;">
+                    <span class="pixel-icon i-pixelarticons:heart" style="width: 20px; height: 20px; color: #4ade80; margin-top: 3px;"></span>
+                    <span>Treinar em sessoes curtas, mesmo com rotina corrida.</span>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.90); font-weight: 500;">
+                    <span class="pixel-icon i-pixelarticons:zap" style="width: 20px; height: 20px; color: #4ade80; margin-top: 3px;"></span>
+                    <span>Aprender a executar os movimentos com seguranca e tecnica.</span>
+                  </div>
+                  <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.625; color: rgba(255,255,255,.90); font-weight: 500;">
+                    <span class="pixel-icon i-pixelarticons:eye-closed" style="width: 20px; height: 20px; color: #4ade80; margin-top: 3px;"></span>
+                    <span>Evoluir com consistencia e ver resultado no espelho.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Section CTA -->
+          <div style="margin-top: 32px; text-align: center;">
+            <a href="{{CTA_LINK}}">
+              <button class="cta-button" type="button">
+                <span style="position: relative; z-index: 10;">QUERO COMECAR HOJE</span>
+                <div class="button-overlay"></div>
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: FOUR-WEEK OUTCOMES -->
+      <section style="padding: 80px 24px;">
+        <div class="section-container-max">
+          <div style="text-align: center; margin-bottom: 48px;">
+            <h2 style="font-size: clamp(30px, 4vw, 36px); font-weight: 500; margin-bottom: 16px;">
+              O que voce pode conquistar em <span class="font-pixel" style="font-size: clamp(40px, 5vw, 48px); color: #4ade80;">4 semanas</span>
+            </h2>
+            <p style="font-size: 19px; color: rgba(255,255,255,.70); max-width: 48rem; margin: 0 auto; line-height: 1.6;">
+              Sem promessas milagrosas: aqui voce segue um plano realista para evoluir com consistencia e enxergar progresso no espelho e na disposicao.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+            
+            <!-- Card 1 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-pixelarticons:zap" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Mais energia no dia a dia</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Treinos curtos que melhoram folego, mobilidade e disposicao para sua rotina.</p>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-pixelarticons:visible" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Corpo mais definido</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Com frequencia e progressao, voce comeca a notar mudancas reais em postura e composicao corporal.</p>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-pixelarticons:heart" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Rotina que voce consegue manter</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Nada de plano impossivel: voce treina no seu ritmo e cria consistencia sem se punir.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: RESULTS UNLOCK / SUPPORT MATERIALS -->
+      <section style="padding: 64px 24px;">
+        <div class="section-container-full">
+          <div style="text-align: center; margin-bottom: 32px;">
+            <h2 style="font-size: clamp(30px, 4vw, 36px); font-weight: 500; margin-bottom: 16px;">
+              O que destrava seus resultados mais rapido
+            </h2>
+            <p style="font-size: 18px; color: rgba(255,255,255,.70); max-width: 48rem; margin: 0 auto; line-height: 1.6;">
+              Voce entra com acesso completo ao metodo e ainda recebe materiais de apoio para nao quebrar a consistencia nas primeiras semanas.
+            </p>
+          </div>
+
+          <!-- Small Cards Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 32px;">
+            <div style="border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.20);">
+              <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #4ade80;">Calendario semanal pronto</div>
+              <div style="font-size: 15px; color: rgba(255,255,255,.70);">Para voce saber exatamente quando e o que treinar.</div>
+            </div>
+
+            <div style="border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.20);">
+              <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #4ade80;">Guia de execucao segura</div>
+              <div style="font-size: 15px; color: rgba(255,255,255,.70);">Movimentos explicados para evitar erro e treinar com confianca.</div>
+            </div>
+
+            <div style="border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.20);">
+              <div style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #4ade80;">Plano anti-desistencia</div>
+              <div style="font-size: 15px; color: rgba(255,255,255,.70);">Checklist simples para manter frequencia mesmo nos dias corridos.</div>
+            </div>
+          </div>
+
+          <div style="text-align: center; font-size: 17px; font-weight: 500; color: rgba(255,255,255,.90);">
+            Se voce aplicar por 30 dias, sua rotina de treino deixa de ser tentativa e vira processo.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: HOW IT WORKS -->
+      <section id="como-funciona" style="padding: 80px 24px; margin-top: 40px; background: linear-gradient(to bottom, transparent, rgba(0,0,0,.20));">
+        <div class="section-container-max">
+          <div style="text-align: center; margin-bottom: 48px;">
+            <h2 style="font-size: clamp(30px, 4vw, 36px); font-weight: 500; margin-bottom: 16px;">
+              <span class="font-pixel" style="font-size: clamp(40px, 5vw, 48px); color: #4ade80;">Veja como funciona</span> na pratica
+            </h2>
+            <p style="font-size: 19px; color: rgba(255,255,255,.70); max-width: 42rem; margin: 0 auto; line-height: 1.6;">
+              Em poucos passos, voce sai da improvisacao e entra em uma rotina pratica que gera resultado de verdade.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+            
+            <!-- Step 1 -->
+            <div class="border-gradient" style="border-radius: 24px; overflow: hidden; background: rgba(28,27,27,.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 80px 32px 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="font-pixel" style="font-size: 40px; color: #4ade80; display: block; margin-bottom: 16px; line-height: 1;">01</span>
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Acesse o plano completo</h3>
+                <p style="color: rgba(255,255,255,.90); line-height: 1.6;">Entre na area de alunos e veja exatamente o que fazer em cada dia.</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="border-gradient" style="border-radius: 24px; overflow: hidden; background: rgba(28,27,27,.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 80px 32px 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="font-pixel" style="font-size: 40px; color: #4ade80; display: block; margin-bottom: 16px; line-height: 1;">02</span>
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Siga os treinos guiados</h3>
+                <p style="color: rgba(255,255,255,.90); line-height: 1.6;">Treinos objetivos de 15 a 30 minutos, com orientacao simples para executar com seguranca.</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="border-gradient" style="border-radius: 24px; overflow: hidden; background: rgba(28,27,27,.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 80px 32px 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="font-pixel" style="font-size: 40px; color: #4ade80; display: block; margin-bottom: 16px; line-height: 1;">03</span>
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Evolua semana a semana</h3>
+                <p style="color: rgba(255,255,255,.90); line-height: 1.6;">Acompanhe sua evolucao, ajuste a intensidade e mantenha resultados reais no seu ritmo.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: DELIVERABLES -->
+      <section id="o-que-recebe" style="padding: 80px 24px;">
+        <div class="section-container-full">
+          <div style="text-align: center; margin-bottom: 48px;">
+            <h2 class="font-pixel" style="font-size: clamp(40px, 6vw, 48px); font-weight: 500; margin-bottom: 16px; color: #4ade80;">
+              // o que voce recebe
+            </h2>
+            <p style="font-size: 19px; color: rgba(255,255,255,.70); max-width: 42rem; margin: 0 auto;">
+              Tudo o que voce precisa para sair do zero e manter consistencia.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-bottom: 48px;">
+            
+            <!-- Deliverable 1 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-streamline-pixel:computers-devices-electronics-laptop" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Plano de treinos em casa</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Treinos organizados por nivel e objetivo para voce saber exatamente o que fazer.</p>
+              </div>
+            </div>
+
+            <!-- Deliverable 2 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-streamline-pixel:business-products-deal-handshake" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Videos de execucao dos exercicios</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Aprenda postura, ritmo e tecnica para treinar com seguranca e evitar erros comuns.</p>
+              </div>
+            </div>
+
+            <!-- Deliverable 3 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-streamline-pixel:business-product-report-present-grahp" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Progressao para iniciantes e intermediarios</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Evolua semana a semana com orientacoes claras para nao estagnar nos resultados.</p>
+              </div>
+            </div>
+
+            <!-- Deliverable 4 -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(24,24,24,.80), rgba(24,24,24,.60)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 32px;">
+              <div class="masked-border-green"></div>
+              <div style="position: relative; z-index: 1;">
+                <span class="pixel-icon i-streamline-pixel:interface-essential-heart-favorite" style="width: 40px; height: 40px; color: #4ade80; margin-bottom: 16px;"></span>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #ffffff;">Checklist de rotina e consistencia</h3>
+                <p style="color: rgba(255,255,255,.70); line-height: 1.6;">Um plano simples para manter frequencia mesmo com pouco tempo durante a semana.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: OFFER / PRICING -->
+      <section id="preco" style="padding: clamp(64px, 8vw, 80px) 24px;">
+        <div class="section-container-mid">
+          
+          <!-- Special offer badge -->
+          <div style="display: flex; justify-content: center; margin-bottom: 32px;">
+            <div style="position: relative; border-radius: 999px; padding: 6px 18px; background: linear-gradient(90deg, rgba(34,197,94,.20), rgba(16,185,129,.20)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+              <div class="masked-border-badge"></div>
+              <span style="font-size: 14px; font-weight: 600; color: #4ade80; position: relative; z-index: 1;">Oferta especial</span>
+            </div>
+          </div>
+
+          <!-- Offer Card -->
+          <div style="position: relative; border-radius: 24px; padding: clamp(24px, 5vw, 36px); background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); max-width: 36rem; margin: 0 auto; text-align: center;">
+            <div class="masked-border-offer"></div>
+
+            <!-- Immediate access pill (desktop) -->
+            <div class="offer-top-badge" style="display: none; position: absolute; top: 16px; right: 16px; background: linear-gradient(90deg, #16a34a, #059669); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 999px; z-index: 10; letter-spacing: 0.05em;">
+              ACESSO IMEDIATO
+            </div>
+
+            <div style="position: relative; z-index: 1;">
+              <h3 style="font-size: clamp(22px, 4vw, 30px); font-weight: 500; margin-bottom: 12px; line-height: 1.25; color: #ffffff;">
+                Hoje voce pode comecar a treinar em casa com uma condicao especial.
+              </h3>
+              <p style="color: rgba(255,255,255,.70); font-size: 15px; margin-bottom: 28px;">
+                Acesso imediato, sem mensalidade e com risco zero por 7 dias.
+              </p>
+
+              <!-- Checklist -->
+              <div style="display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 32px;">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <svg style="width: 20px; height: 20px; color: #76b545; flex-shrink: 0; margin-top: 2px;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span style="font-size: 15px; color: rgba(255,255,255,.90);">Plano de treinos em casa</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <svg style="width: 20px; height: 20px; color: #76b545; flex-shrink: 0; margin-top: 2px;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span style="font-size: 15px; color: rgba(255,255,255,.90);">Videos curtos com execucao passo a passo</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <svg style="width: 20px; height: 20px; color: #76b545; flex-shrink: 0; margin-top: 2px;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span style="font-size: 15px; color: rgba(255,255,255,.90);">Progressao semanal para evoluir com seguranca</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <svg style="width: 20px; height: 20px; color: #76b545; flex-shrink: 0; margin-top: 2px;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span style="font-size: 15px; color: rgba(255,255,255,.90);">Acesso durante 1 ano a todas as atualizacoes</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                  <svg style="width: 20px; height: 20px; color: #76b545; flex-shrink: 0; margin-top: 2px;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span style="font-size: 15px; color: rgba(255,255,255,.90);">7 dias de garantia</span>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div style="margin-bottom: 28px;">
+                <div style="font-size: 20px; font-weight: 500; color: rgba(255,255,255,.40); text-decoration: line-through; margin-bottom: 4px;">
+                  de R$147
+                </div>
+                <div style="font-size: 14px; font-weight: 600; color: #4ade80; margin-bottom: 4px; letter-spacing: 0.1em;">
+                  POR APENAS
+                </div>
+                <div style="font-size: 60px; font-weight: 700; color: #76b545; line-height: 1; letter-spacing: -0.04em;">
+                  R$49
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <div style="width: 100%;">
+                <a href="{{CTA_LINK}}" style="display: block; width: 100%;">
+                  <button class="cta-button" style="width: 100%;" type="button">
+                    <span style="position: relative; z-index: 10;">QUERO COMECAR MEUS TREINOS</span>
+                    <div class="button-overlay"></div>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: GUARANTEE -->
+      <section style="padding: 48px 24px;">
+        <div class="section-container-narrow">
+          <div style="position: relative; border-radius: 24px; padding: 32px; background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); text-align: center;">
+            <div class="masked-border-green"></div>
+
+            <div style="position: relative; z-index: 1;">
+              <span class="pixel-icon i-streamline-pixel:interface-essential-heart-favorite" style="width: 48px; height: 48px; color: #4ade80; margin-bottom: 16px;"></span>
+              <h3 style="font-size: clamp(24px, 4vw, 30px); font-weight: 600; margin-bottom: 16px; color: #ffffff;">
+                Garantia total
+              </h3>
+              <p style="font-size: clamp(16px, 2.5vw, 18px); line-height: 1.6; color: rgba(255,255,255,.70);">
+                Voce tem 7 dias para testar o programa completo. Se nao se adaptar, e so pedir reembolso e devolvemos 100% do valor.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: FAQ -->
+      <section id="faq" style="padding: 80px 24px;">
+        <div class="section-container-mid">
+          <div style="text-align: center; margin-bottom: 64px;">
+            <h2 style="font-size: clamp(36px, 5vw, 48px); font-weight: 500;">
+              Perguntas<br class="faq-mobile-br"> <span style="font-weight: 700;">frequentes.</span>
+            </h2>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            
+            <!-- FAQ 1 -->
+            <details style="position: relative; border-radius: 24px; padding: 24px; background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+              <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 18px; font-weight: 600; color: #ffffff;">
+                <span>Preciso de academia ou equipamentos caros para comecar?</span>
+                <svg class="faq-chevron" style="width: 20px; height: 20px; color: rgba(255,255,255,.50); transition: transform 200ms ease; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </summary>
+              <p style="margin-top: 16px; color: rgba(255,255,255,.60); line-height: 1.6;">
+                Nao. Voce pode comecar com pouco espaco e usando o peso do proprio corpo. Se tiver acessorios simples, melhor ainda.
+              </p>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details style="position: relative; border-radius: 24px; padding: 24px; background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+              <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 18px; font-weight: 600; color: #ffffff;">
+                <span>Sou iniciante. Vou conseguir acompanhar os treinos?</span>
+                <svg class="faq-chevron" style="width: 20px; height: 20px; color: rgba(255,255,255,.50); transition: transform 200ms ease; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </summary>
+              <p style="margin-top: 16px; color: rgba(255,255,255,.60); line-height: 1.6;">
+                Sim. O plano comeca do basico, com evolucao gradual. Voce avanca no seu ritmo, com orientacao clara em cada etapa.
+              </p>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details style="position: relative; border-radius: 24px; padding: 24px; background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+              <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 18px; font-weight: 600; color: #ffffff;">
+                <span>Quanto tempo por dia eu preciso para treinar?</span>
+                <svg class="faq-chevron" style="width: 20px; height: 20px; color: rgba(255,255,255,.50); transition: transform 200ms ease; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </summary>
+              <p style="margin-top: 16px; color: rgba(255,255,255,.60); line-height: 1.6;">
+                De 15 a 30 minutos por treino ja e suficiente para ter resultado quando voce mantem consistencia.
+              </p>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details style="position: relative; border-radius: 24px; padding: 24px; background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+              <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 18px; font-weight: 600; color: #ffffff;">
+                <span>Quantas vezes por semana devo treinar?</span>
+                <svg class="faq-chevron" style="width: 20px; height: 20px; color: rgba(255,255,255,.50); transition: transform 200ms ease; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </summary>
+              <p style="margin-top: 16px; color: rgba(255,255,255,.60); line-height: 1.6;">
+                A recomendacao e treinar de 3 a 5 vezes por semana, conforme seu nivel e disponibilidade.
+              </p>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details style="position: relative; border-radius: 24px; padding: 24px; background: rgba(28,27,27,.4); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+              <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 18px; font-weight: 600; color: #ffffff;">
+                <span>Por quanto tempo tenho acesso e como funciona a garantia?</span>
+                <svg class="faq-chevron" style="width: 20px; height: 20px; color: rgba(255,255,255,.50); transition: transform 200ms ease; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </summary>
+              <p style="margin-top: 16px; color: rgba(255,255,255,.60); line-height: 1.6;">
+                Voce tem 1 ano de acesso com atualizacoes. E ainda conta com 7 dias de garantia para testar sem risco.
+              </p>
+            </details>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: FINAL CTA -->
+      <section style="padding: 80px 24px;">
+        <div class="section-container-wide">
+          <div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, rgba(22,163,74,.20), rgba(5,150,105,.15), transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: clamp(48px, 6vw, 64px) clamp(16px, 4vw, 64px); text-align: center;">
+            <div class="masked-border-offer"></div>
+
+            <div style="position: relative; z-index: 1;">
+              <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 500; margin-bottom: 20px; line-height: 1.15;">
+                Pare de adiar.<br style="display: block;">
+                <span class="font-serif" style="font-size: clamp(38px, 6vw, 60px); color: #ffffff; letter-spacing: -0.03em;">Seu treino pode comecar hoje.</span>
+              </h2>
+
+              <p style="font-size: clamp(14px, 2.5vw, 20px); color: rgba(255,255,255,.70); max-width: 42rem; margin: 0 auto 40px; line-height: 1.6;">
+                Treinos guiados, progressao clara e rotina objetiva - tudo o que voce precisa para transformar seu corpo sem sair de casa.
+              </p>
+
+              <div>
+                <a href="{{CTA_LINK}}">
+                  <button class="cta-button" type="button">
+                    <span style="position: relative; z-index: 10;">QUERO COMECAR HOJE</span>
+                    <div class="button-overlay"></div>
+                  </button>
+                </a>
+              </div>
+
+              <div style="font-size: 14px; color: rgba(255,255,255,.50); margin-top: 20px; font-weight: 500;">
+                7 dias de garantia - Acesso imediato - Apenas R$49
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <style>
+    /* Summary chevron rotation */
+    details[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    @media (min-width: 640px) {
+      .offer-top-badge {
+        display: block !important;
+      }
+      .faq-mobile-br {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <!-- SCROLL REVEAL & PULSE JAVASCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const shouldAnimate = !prefersReduced && document.visibilityState === "visible" && "IntersectionObserver" in window;
+
+      if (shouldAnimate) {
+        document.documentElement.classList.add('js-scroll-reveal');
+
+        // Register sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach((sec, sIdx) => {
+          if (sIdx > 0) {
+            sec.classList.add('scroll-reveal', 'reveal-zoom');
+            sec.style.setProperty('--reveal-delay', `${Math.min(sIdx * 45, 220)}ms`);
+          }
+
+          // Register cards
+          const cards = sec.querySelectorAll('.grid > div, [style*="grid-template-columns"] > div, details');
+          cards.forEach((card, cIdx) => {
+            card.classList.add('scroll-reveal', 'reveal-card');
+            if (cIdx % 3 === 0) card.classList.add('reveal-left');
+            else if (cIdx % 3 === 1) card.classList.add('reveal-right');
+            card.style.setProperty('--reveal-delay', `${90 + cIdx * 70}ms`);
+          });
+
+          // Register text blocks
+          const headings = sec.querySelectorAll('h2, h3, p');
+          headings.forEach((heading, hIdx) => {
+            if (hIdx < 5) {
+              heading.classList.add('scroll-reveal');
+              heading.style.setProperty('--reveal-delay', `${80 + hIdx * 60}ms`);
+            }
+          });
+        });
+
+        // IntersectionObserver
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.18,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Safety fallback to reveal everything
+        setTimeout(() => {
+          document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('is-visible'));
+        }, 1800);
+      }
+
+      // CTA Pulse ring initialization
+      const ctaButtons = document.querySelectorAll('a[href="{{CTA_LINK}}"] button, button.cta-button, .mobile-hero-btn');
+      ctaButtons.forEach((btn, idx) => {
+        btn.classList.add('cta-pulse');
+        btn.style.setProperty('--pulse-delay', `${(idx % 4) * 0.35}s`);
+      });
+    });
+  </script>
+</body>
+</html>

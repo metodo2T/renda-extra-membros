@@ -1,0 +1,6 @@
+{
+  "name": "Link na Bio - Maria Santos",
+  "description": "Página de Links na Bio para Maria Santos - Social Media.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
