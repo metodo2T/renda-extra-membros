@@ -234,7 +234,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
             title="Alterar Capa (Apenas Admin)"
           >
             <Pencil className="w-4 h-4" />
-            <span className="text-sm font-bold uppercase tracking-wider">Trocar Capa</span>
+            <span className="text-sm font-bold uppercase tracking-wider">Trocar Capa (Responsiva)</span>
           </button>
         )}
       </div>
@@ -275,10 +275,11 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                           setTempModuleCoverUrl(finalCover); 
                           setTempModuleDesc(finalDesc); 
                         }}
-                        className="p-2 bg-black/80 hover:bg-cyan-600 text-white rounded-lg backdrop-blur-md transition border border-gray-700"
-                        title="Editar Módulo"
+                        className="px-3 py-2 bg-black/80 hover:bg-cyan-600 text-white rounded-lg backdrop-blur-md transition border border-gray-700 flex items-center gap-2 text-xs font-bold"
+                        title="Editar Módulo (Capa 1024x1536)"
                       >
-                        <Pencil className="w-4 h-4" />
+                        <Pencil className="w-3.5 h-3.5" />
+                        <span>Editar (1024x1536)</span>
                       </button>
                     </div>
                   )}
@@ -378,10 +379,11 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                               setTempLessonTitle(finalTitulo);
                               setEditingLessonId(aula.id);
                             }}
-                            className="absolute top-2 right-2 z-20 bg-cyan-600 hover:bg-cyan-500 text-white p-2 rounded-lg transition-all flex items-center shadow-lg border border-cyan-400/30"
-                            title="Alterar Capa e Título da Aula"
+                            className="absolute top-2 right-2 z-20 bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 shadow-lg border border-cyan-400/30 text-[10px] font-bold"
+                            title="Alterar Capa (1024x1536) e Título da Aula"
                           >
-                            <Pencil className="w-4 h-4" />
+                            <Pencil className="w-3 h-3" />
+                            <span>1024x1536</span>
                           </button>
                         )}
 
