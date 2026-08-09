@@ -228,7 +228,7 @@ export function PromptLibraryTab() {
                 className="group cursor-pointer rounded-xl overflow-hidden bg-[#050505] border border-[#6b21a8] shadow-[0_0_15px_rgba(107,33,168,0.4)] hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] hover:-translate-y-1 transition-all duration-300 flex flex-col"
                 onClick={() => setSelectedPrompt(prompt)}
               >
-                <div className="relative aspect-[9/16] w-full overflow-hidden bg-[#111] flex items-center justify-center">
+                <div className="relative aspect-[2/3] w-full overflow-hidden bg-[#111] flex items-center justify-center">
                   <img src={prompt.imageUrl} className="absolute inset-0 w-full h-full object-cover opacity-40 blur-xl scale-110 group-hover:scale-125 transition duration-700" loading="lazy" />
                   <img 
                     src={prompt.imageUrl} 
