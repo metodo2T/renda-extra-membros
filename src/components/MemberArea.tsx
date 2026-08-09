@@ -142,38 +142,38 @@ export function MemberArea({ user }: Props) {
         </header>
 
         {/* Mobile Navigation Bar (Bottom) - visível apenas em telas menores */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0f0f0f] border-t border-gray-800 z-50 flex justify-around items-center h-16 px-4">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0f0f0f]/95 backdrop-blur-md border-t border-gray-800 z-50 flex overflow-x-auto no-scrollbar items-center h-16 px-6 gap-8 snap-x">
           <button 
             onClick={() => setActiveTab('inicio')}
-            className={`flex flex-col items-center gap-1 transition ${activeTab === 'inicio' ? 'text-cyan-400' : 'text-gray-500'}`}
+            className={`shrink-0 snap-center flex flex-col items-center gap-1 transition ${activeTab === 'inicio' ? 'text-cyan-400' : 'text-gray-500'}`}
           >
             <PlaySquare className="w-5 h-5" />
             <span className="text-[10px] font-medium text-center leading-tight">Início</span>
           </button>
           <button 
             onClick={() => setActiveTab('modelos')}
-            className={`flex flex-col items-center gap-1 transition ${activeTab === 'modelos' ? 'text-cyan-400' : 'text-gray-500'}`}
+            className={`shrink-0 snap-center flex flex-col items-center gap-1 transition ${activeTab === 'modelos' ? 'text-cyan-400' : 'text-gray-500'}`}
           >
             <LayoutDashboard className="w-5 h-5" />
             <span className="text-[10px] font-medium text-center leading-tight">Páginas<br/>com IA</span>
           </button>
           <button 
             onClick={() => setActiveTab('link-na-bio')}
-            className={`flex flex-col items-center gap-1 transition ${activeTab === 'link-na-bio' ? 'text-cyan-400' : 'text-gray-500'}`}
+            className={`shrink-0 snap-center flex flex-col items-center gap-1 transition ${activeTab === 'link-na-bio' ? 'text-cyan-400' : 'text-gray-500'}`}
           >
             <Link2 className="w-5 h-5" />
             <span className="text-[10px] font-medium text-center leading-tight">Link na Bio</span>
           </button>
           <button 
             onClick={() => setActiveTab('fotos')}
-            className={`flex flex-col items-center gap-1 transition ${activeTab === 'fotos' ? 'text-cyan-400' : 'text-gray-500'}`}
+            className={`shrink-0 snap-center flex flex-col items-center gap-1 transition ${activeTab === 'fotos' ? 'text-cyan-400' : 'text-gray-500'}`}
           >
             <ImageIcon className="w-5 h-5" />
             <span className="text-[10px] font-medium text-center leading-tight">Imagens<br/>com IA</span>
           </button>
           <button 
             onClick={() => setActiveTab('elementos')}
-            className={`flex flex-col items-center gap-1 transition ${activeTab === 'elementos' ? 'text-cyan-400' : 'text-gray-500'}`}
+            className={`shrink-0 snap-center flex flex-col items-center gap-1 transition ${activeTab === 'elementos' ? 'text-cyan-400' : 'text-gray-500'}`}
           >
             <Layers className="w-5 h-5" />
             <span className="text-[10px] font-medium">Elementos</span>
@@ -181,7 +181,7 @@ export function MemberArea({ user }: Props) {
           {isAdmin && (
             <button 
               onClick={() => setActiveTab('admin')}
-              className={`flex flex-col items-center gap-1 transition ${activeTab === 'admin' ? 'text-purple-400' : 'text-gray-500 hover:text-purple-400'}`}
+              className={`shrink-0 snap-center flex flex-col items-center gap-1 transition ${activeTab === 'admin' ? 'text-purple-400' : 'text-gray-500 hover:text-purple-400'}`}
             >
               <Settings className="w-5 h-5" />
               <span className="text-[10px] font-medium">Admin</span>
@@ -189,7 +189,7 @@ export function MemberArea({ user }: Props) {
           )}
           <button 
             onClick={handleLogout}
-            className="flex flex-col items-center gap-1 text-gray-500 hover:text-red-400 transition"
+            className="shrink-0 snap-center flex flex-col items-center gap-1 text-gray-500 hover:text-red-400 transition"
           >
             <LogOut className="w-5 h-5" />
             <span className="text-[10px] font-medium">Sair</span>

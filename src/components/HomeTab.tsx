@@ -214,7 +214,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
     <div className="w-full max-w-[1400px] mx-auto space-y-12">
       
       {/* Capa Principal da Área de Aulas (Substituindo o antigo banner Bônus) */}
-      <div className="relative w-full aspect-[21/9] md:aspect-[4/1] rounded-2xl overflow-hidden border border-gray-700 shadow-2xl flex items-center justify-center bg-gray-900">
+      <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[4/1] rounded-2xl overflow-hidden border border-gray-700 shadow-2xl flex items-center justify-center bg-gray-900">
         <img 
           src={coverUrl} 
           alt="Capa Início/Aulas" 
@@ -283,7 +283,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                     </div>
                   )}
 
-                  <div className="relative aspect-[4/3] sm:aspect-[3/4] w-full overflow-hidden bg-black">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
                     {finalCover ? (
                       <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700" />
                     ) : (
