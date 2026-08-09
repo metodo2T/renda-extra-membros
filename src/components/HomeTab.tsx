@@ -217,8 +217,13 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
       <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[4/1] rounded-2xl overflow-hidden border border-gray-700 shadow-2xl flex items-center justify-center bg-gray-900">
         <img 
           src={coverUrl} 
+          alt="Capa Background" 
+          className="absolute inset-0 w-full h-full object-cover opacity-30 blur-2xl scale-110"
+        />
+        <img 
+          src={coverUrl} 
           alt="Capa Início/Aulas" 
-          className="absolute inset-0 w-full h-full object-cover"
+          className="relative z-10 w-full h-full object-contain"
         />
         {/* Overlay escuro sutil para garantir que a capa não fique muito clara com o tema dark */}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent pointer-events-none"></div>
@@ -283,9 +288,12 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                     </div>
                   )}
 
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-black flex items-center justify-center">
                     {finalCover ? (
-                      <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700" />
+                      <>
+                        <img src={finalCover} className="absolute inset-0 w-full h-full object-cover opacity-40 blur-xl scale-110 group-hover:scale-125 transition duration-700" />
+                        <img src={finalCover} alt={finalTitle} className="relative z-10 w-full h-full object-contain group-hover:scale-105 transition duration-700" />
+                      </>
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-[#1a1a1a]">
                         <Play className="w-16 h-16 text-cyan-900/50 group-hover:text-cyan-800/80 transition" />
