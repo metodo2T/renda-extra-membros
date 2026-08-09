@@ -147,7 +147,7 @@ export function ModelsTab({ category = 'Todos', title, subtitle }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredModels.map(model => (
           <div key={model.id} className="bg-[#121212] border border-gray-800 rounded-2xl overflow-hidden hover:border-gray-600 transition group flex flex-col shadow-lg">
-            <div className="relative aspect-[4/3] bg-gray-900 overflow-hidden">
+            <div className="relative aspect-[9/16] bg-gray-900 overflow-hidden">
               {model.htmlPreview ? (
                 <IframePreview
                   src={model.htmlPreview}

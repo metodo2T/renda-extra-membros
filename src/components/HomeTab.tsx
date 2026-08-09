@@ -288,7 +288,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                     </div>
                   )}
 
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-black flex items-center justify-center">
+                  <div className="relative aspect-[9/16] w-full overflow-hidden bg-black flex items-center justify-center">
                     {finalCover ? (
                       <>
                         <img src={finalCover} className="absolute inset-0 w-full h-full object-cover opacity-40 blur-xl scale-110 group-hover:scale-125 transition duration-700" />
