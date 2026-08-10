@@ -276,10 +276,11 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                           setTempModuleDesc(finalDesc); 
                         }}
                         className="px-3 py-2 bg-black/80 hover:bg-cyan-600 text-white rounded-lg backdrop-blur-md transition border border-gray-700 flex items-center gap-2 text-xs font-bold"
-                        title="Editar Módulo (Capa 1024x1536)"
+                        title="Editar Módulo"
                       >
                         <Pencil className="w-3.5 h-3.5" />
-                        <span>Editar (1024x1536)</span>
+                        <span className="md:hidden">Editar (1920x1080)</span>
+                        <span className="hidden md:inline">Editar (1024x1536)</span>
                       </button>
                     </div>
                   )}
@@ -380,10 +381,11 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                               setEditingLessonId(aula.id);
                             }}
                             className="absolute top-2 right-2 z-20 bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 shadow-lg border border-cyan-400/30 text-[10px] font-bold"
-                            title="Alterar Capa (1024x1536) e Título da Aula"
+                            title="Alterar Capa e Título da Aula"
                           >
                             <Pencil className="w-3 h-3" />
-                            <span>1024x1536</span>
+                            <span className="md:hidden">1920x1080</span>
+                            <span className="hidden md:inline">1024x1536</span>
                           </button>
                         )}
 
