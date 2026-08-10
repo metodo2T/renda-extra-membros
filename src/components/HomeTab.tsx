@@ -284,7 +284,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                     </div>
                   )}
 
-                  <div className="relative aspect-[2/3] w-full overflow-hidden bg-black flex items-center justify-center">
+                  <div className="relative aspect-video md:aspect-[2/3] w-full overflow-hidden bg-black flex items-center justify-center">
                     {finalCover ? (
                       <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
                     ) : (
@@ -352,7 +352,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                         onClick={() => setVideoAberto({ ...aula, titulo: finalTitulo, imagem: finalImagem })}
                       >
                         {/* Thumbnail com Overlay */}
-                        <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden border-2 border-transparent transition-all duration-300 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] bg-gray-900">
+                        <div className="relative w-full aspect-video md:aspect-[2/3] rounded-xl overflow-hidden border-2 border-transparent transition-all duration-300 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] bg-gray-900">
                           <img 
                             src={finalImagem} 
                             alt={finalTitulo} 
