@@ -21,25 +21,31 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
   
   // Controle de edição da capa (Apenas Admin)
   const [coverUrl, setCoverUrl] = useState('https://i.postimg.cc/MKVWxzMy/Chat-GPT-Image-8-de-ago-de-2026-22-27-54.png');
+  const [coverUrlMobile, setCoverUrlMobile] = useState('');
   const [isEditingCover, setIsEditingCover] = useState(false);
   const [tempCoverUrl, setTempCoverUrl] = useState('');
+  const [tempCoverUrlMobile, setTempCoverUrlMobile] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
   // Controle de edição das capas e títulos das aulas individuais (Admin)
   const [customLessonCovers, setCustomLessonCovers] = useState<Record<number, string>>({});
+  const [customLessonCoversMobile, setCustomLessonCoversMobile] = useState<Record<number, string>>({});
   const [customLessonTitles, setCustomLessonTitles] = useState<Record<number, string>>({});
   const [editingLessonId, setEditingLessonId] = useState<number | null>(null);
   const [tempLessonCoverUrl, setTempLessonCoverUrl] = useState('');
+  const [tempLessonCoverUrlMobile, setTempLessonCoverUrlMobile] = useState('');
   const [tempLessonTitle, setTempLessonTitle] = useState('');
 
   // Controle de edição dos módulos (Admin)
   const [activeModuleId, setActiveModuleId] = useState<number | null>(null);
   const [customModuleCovers, setCustomModuleCovers] = useState<Record<number, string>>({});
+  const [customModuleCoversMobile, setCustomModuleCoversMobile] = useState<Record<number, string>>({});
   const [customModuleDescriptions, setCustomModuleDescriptions] = useState<Record<number, string>>({});
   const [customModuleTitles, setCustomModuleTitles] = useState<Record<number, string>>({});
   
   const [isEditingModule, setIsEditingModule] = useState<number | null>(null);
   const [tempModuleCoverUrl, setTempModuleCoverUrl] = useState('');
+  const [tempModuleCoverUrlMobile, setTempModuleCoverUrlMobile] = useState('');
   const [tempModuleTitle, setTempModuleTitle] = useState('');
   const [tempModuleDesc, setTempModuleDesc] = useState('');
 
@@ -52,9 +58,12 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
         if (docSnap.exists()) {
           const data = docSnap.data();
           if (data.coverUrl) setCoverUrl(data.coverUrl);
+          if (data.coverUrlMobile) setCoverUrlMobile(data.coverUrlMobile);
           if (data.lessonCovers) setCustomLessonCovers(data.lessonCovers);
+          if (data.lessonCoversMobile) setCustomLessonCoversMobile(data.lessonCoversMobile);
           if (data.lessonTitles) setCustomLessonTitles(data.lessonTitles);
           if (data.moduleCovers) setCustomModuleCovers(data.moduleCovers);
+          if (data.moduleCoversMobile) setCustomModuleCoversMobile(data.moduleCoversMobile);
           if (data.moduleDescriptions) setCustomModuleDescriptions(data.moduleDescriptions);
           if (data.moduleTitles) setCustomModuleTitles(data.moduleTitles);
         }
@@ -67,12 +76,12 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
 
   // Salvar a nova capa principal no banco
   const handleSaveCover = async () => {
-    if (!tempCoverUrl) return;
     setIsSaving(true);
     try {
       const docRef = doc(db, 'settings', 'homeTab');
-      await setDoc(docRef, { coverUrl: tempCoverUrl }, { merge: true });
+      await setDoc(docRef, { coverUrl: tempCoverUrl, coverUrlMobile: tempCoverUrlMobile }, { merge: true });
       setCoverUrl(tempCoverUrl);
+      setCoverUrlMobile(tempCoverUrlMobile);
       setIsEditingCover(false);
     } catch (err) {
       console.error("Erro ao salvar", err);
@@ -89,14 +98,17 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
       const docRef = doc(db, 'settings', 'homeTab');
       
       const updatedCovers = { ...customLessonCovers, [editingLessonId]: tempLessonCoverUrl };
+      const updatedCoversMobile = { ...customLessonCoversMobile, [editingLessonId]: tempLessonCoverUrlMobile };
       const updatedTitles = { ...customLessonTitles, [editingLessonId]: tempLessonTitle };
       
       await setDoc(docRef, { 
         lessonCovers: updatedCovers,
+        lessonCoversMobile: updatedCoversMobile,
         lessonTitles: updatedTitles
       }, { merge: true });
       
       setCustomLessonCovers(updatedCovers);
+      setCustomLessonCoversMobile(updatedCoversMobile);
       setCustomLessonTitles(updatedTitles);
       setEditingLessonId(null);
     } catch (err) {
@@ -114,16 +126,19 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
       const docRef = doc(db, 'settings', 'homeTab');
       
       const updatedCovers = { ...customModuleCovers, [isEditingModule]: tempModuleCoverUrl };
+      const updatedCoversMobile = { ...customModuleCoversMobile, [isEditingModule]: tempModuleCoverUrlMobile };
       const updatedDescriptions = { ...customModuleDescriptions, [isEditingModule]: tempModuleDesc };
       const updatedTitles = { ...customModuleTitles, [isEditingModule]: tempModuleTitle };
       
       await setDoc(docRef, { 
         moduleCovers: updatedCovers,
+        moduleCoversMobile: updatedCoversMobile,
         moduleDescriptions: updatedDescriptions,
         moduleTitles: updatedTitles
       }, { merge: true });
       
       setCustomModuleCovers(updatedCovers);
+      setCustomModuleCoversMobile(updatedCoversMobile);
       setCustomModuleDescriptions(updatedDescriptions);
       setCustomModuleTitles(updatedTitles);
       setIsEditingModule(null);
@@ -217,8 +232,13 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
       <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[4/1] rounded-2xl overflow-hidden border border-gray-700 shadow-2xl flex items-center justify-center bg-gray-900">
         <img 
           src={coverUrl} 
-          alt="Capa Início/Aulas" 
-          className="absolute inset-0 w-full h-full object-cover"
+          alt="Capa Início/Aulas Desktop" 
+          className="absolute inset-0 w-full h-full object-cover hidden md:block"
+        />
+        <img 
+          src={coverUrlMobile || coverUrl} 
+          alt="Capa Início/Aulas Mobile" 
+          className="absolute inset-0 w-full h-full object-cover md:hidden"
         />
         {/* Overlay escuro sutil para garantir que a capa não fique muito clara com o tema dark */}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent pointer-events-none"></div>
@@ -228,6 +248,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
           <button 
             onClick={() => {
               setTempCoverUrl(coverUrl);
+              setTempCoverUrlMobile(coverUrlMobile || coverUrl);
               setIsEditingCover(true);
             }}
             className="absolute top-4 right-4 z-20 bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-lg transition-all flex items-center gap-2 shadow-lg border border-cyan-400/30"
@@ -273,6 +294,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                           setIsEditingModule(modulo.id); 
                           setTempModuleTitle(finalTitle); 
                           setTempModuleCoverUrl(finalCover); 
+                          setTempModuleCoverUrlMobile(customModuleCoversMobile[modulo.id] || finalCover);
                           setTempModuleDesc(finalDesc); 
                         }}
                         className="px-3 py-2 bg-black/80 hover:bg-cyan-600 text-white rounded-lg backdrop-blur-md transition border border-gray-700 flex items-center gap-2 text-xs font-bold"
@@ -287,7 +309,10 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
 
                   <div className="relative aspect-video md:aspect-[2/3] w-full overflow-hidden bg-black flex items-center justify-center">
                     {finalCover ? (
-                      <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+                      <>
+                        <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700 hidden md:block" />
+                        <img src={customModuleCoversMobile[modulo.id] || finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700 md:hidden" />
+                      </>
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-[#1a1a1a]">
                         <Play className="w-16 h-16 text-cyan-900/50 group-hover:text-cyan-800/80 transition" />
@@ -357,7 +382,12 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                           <img 
                             src={finalImagem} 
                             alt={finalTitulo} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hidden md:block"
+                          />
+                          <img 
+                            src={customLessonCoversMobile[aula.id] || finalImagem} 
+                            alt={finalTitulo} 
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 md:hidden"
                           />
                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           
@@ -377,6 +407,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                             onClick={(e) => {
                               e.stopPropagation();
                               setTempLessonCoverUrl(finalImagem);
+                              setTempLessonCoverUrlMobile(customLessonCoversMobile[aula.id] || finalImagem);
                               setTempLessonTitle(finalTitulo);
                               setEditingLessonId(aula.id);
                             }}
@@ -465,14 +496,29 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
           <div className="bg-gray-900 border border-gray-700 rounded-xl w-full max-w-md p-6 shadow-2xl animate-in zoom-in-95">
             <h3 className="text-xl font-bold text-white mb-4">Atualizar Capa Principal</h3>
-            <p className="text-sm text-gray-400 mb-4">Cole abaixo o link (URL) da nova imagem hospedada no PostImage ou Imgur.</p>
-            <input 
-              type="text" 
-              value={tempCoverUrl}
-              onChange={(e) => setTempCoverUrl(e.target.value)}
-              className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none mb-6"
-              placeholder="https://i.postimg.cc/..."
-            />
+            <p className="text-sm text-gray-400 mb-4">Cole abaixo os links das imagens hospedadas no PostImage ou Imgur.</p>
+            <div className="space-y-4 mb-6">
+              <div>
+                <label className="block text-sm text-gray-400 mb-1">Capa Principal (Desktop):</label>
+                <input 
+                  type="text" 
+                  value={tempCoverUrl}
+                  onChange={(e) => setTempCoverUrl(e.target.value)}
+                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
+                  placeholder="Ex: https://i.postimg.cc/desktop.jpg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-400 mb-1">Capa Principal (Mobile - 1920x1080):</label>
+                <input 
+                  type="text" 
+                  value={tempCoverUrlMobile}
+                  onChange={(e) => setTempCoverUrlMobile(e.target.value)}
+                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
+                  placeholder="Ex: https://i.postimg.cc/mobile.jpg"
+                />
+              </div>
+            </div>
             <div className="flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditingCover(false)}
@@ -511,12 +557,22 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-1">URL da Imagem (Capa):</label>
-                <p className="text-xs text-gray-500 mb-2">Proporção sugerida: 3:4 Vertical (PostImage / Imgur).</p>
+                <label className="block text-sm text-gray-400 mb-1">URL da Imagem (Desktop - 1024x1536):</label>
+                <p className="text-xs text-gray-500 mb-2">Proporção sugerida: 2:3 Vertical (PostImage / Imgur).</p>
                 <input 
                   type="text" 
                   value={tempLessonCoverUrl}
                   onChange={(e) => setTempLessonCoverUrl(e.target.value)}
+                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none mb-4"
+                  placeholder="https://i.postimg.cc/..."
+                />
+                
+                <label className="block text-sm text-gray-400 mb-1 mt-2">URL da Imagem (Mobile - 1920x1080):</label>
+                <p className="text-xs text-gray-500 mb-2">Se deixar em branco, usará a imagem do Desktop.</p>
+                <input 
+                  type="text" 
+                  value={tempLessonCoverUrlMobile}
+                  onChange={(e) => setTempLessonCoverUrlMobile(e.target.value)}
                   className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
                   placeholder="https://i.postimg.cc/..."
                 />
@@ -569,14 +625,24 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-1">URL da Capa do Módulo:</label>
-                <p className="text-xs text-cyan-500/80 mb-2 font-medium">Atenção: Use o "Link Direto" do Postimages (tem que terminar em .jpg ou .png)</p>
+                <label className="block text-sm text-gray-400 mb-1">Capa do Módulo (Desktop - 1024x1536):</label>
+                <p className="text-xs text-cyan-500/80 mb-2 font-medium">Use o "Link Direto" do Postimages (.jpg ou .png)</p>
                 <input 
                   type="text" 
                   value={tempModuleCoverUrl}
                   onChange={(e) => setTempModuleCoverUrl(e.target.value)}
-                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
+                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none mb-4"
                   placeholder="https://i.postimg.cc/xyz.jpg"
+                />
+
+                <label className="block text-sm text-gray-400 mb-1 mt-2">Capa do Módulo (Mobile - 1920x1080):</label>
+                <p className="text-xs text-gray-500 mb-2">Se deixar em branco, usará a imagem do Desktop.</p>
+                <input 
+                  type="text" 
+                  value={tempModuleCoverUrlMobile}
+                  onChange={(e) => setTempModuleCoverUrlMobile(e.target.value)}
+                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
+                  placeholder="https://i.postimg.cc/xyz-mobile.jpg"
                 />
               </div>
             </div>
