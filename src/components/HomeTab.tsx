@@ -255,7 +255,8 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
             title="Alterar Capa (Apenas Admin)"
           >
             <Pencil className="w-4 h-4" />
-            <span className="text-sm font-bold uppercase tracking-wider">Trocar Capa (1920x1080)</span>
+            <span className="text-sm font-bold uppercase tracking-wider md:hidden">Trocar Capa (1920x1080)</span>
+            <span className="text-sm font-bold uppercase tracking-wider hidden md:inline">Trocar Capa (1920x480)</span>
           </button>
         )}
       </div>
