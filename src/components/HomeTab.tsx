@@ -232,13 +232,8 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
       <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[4/1] rounded-2xl overflow-hidden border border-gray-700 shadow-2xl flex items-center justify-center bg-gray-900">
         <img 
           src={coverUrl} 
-          alt="Capa Início/Aulas Desktop" 
-          className="absolute inset-0 w-full h-full object-cover hidden md:block"
-        />
-        <img 
-          src={coverUrlMobile || coverUrl} 
-          alt="Capa Início/Aulas Mobile" 
-          className="absolute inset-0 w-full h-full object-cover md:hidden"
+          alt="Capa Início/Aulas" 
+          className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Overlay escuro sutil para garantir que a capa não fique muito clara com o tema dark */}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent pointer-events-none"></div>
@@ -248,15 +243,13 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
           <button 
             onClick={() => {
               setTempCoverUrl(coverUrl);
-              setTempCoverUrlMobile(coverUrlMobile || coverUrl);
               setIsEditingCover(true);
             }}
             className="absolute top-4 right-4 z-20 bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-lg transition-all flex items-center gap-2 shadow-lg border border-cyan-400/30"
             title="Alterar Capa (Apenas Admin)"
           >
             <Pencil className="w-4 h-4" />
-            <span className="text-sm font-bold uppercase tracking-wider md:hidden">Trocar Capa (1920x1080)</span>
-            <span className="text-sm font-bold uppercase tracking-wider hidden md:inline">Trocar Capa (1920x480)</span>
+            <span className="text-sm font-bold uppercase tracking-wider">Trocar Capa</span>
           </button>
         )}
       </div>
@@ -271,7 +264,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
             </h3>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
             {modulos.map((modulo) => {
               const finalTitle = customModuleTitles[modulo.id] || modulo.titulo;
               const finalCover = customModuleCovers[modulo.id] || modulo.aulas[0]?.imagem;
@@ -294,26 +287,22 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                           e.stopPropagation(); 
                           setIsEditingModule(modulo.id); 
                           setTempModuleTitle(finalTitle); 
-                          setTempModuleCoverUrl(finalCover); 
-                          setTempModuleCoverUrlMobile(customModuleCoversMobile[modulo.id] || finalCover);
+                          setTempModuleCoverUrl(finalCover);
                           setTempModuleDesc(finalDesc); 
                         }}
                         className="px-3 py-2 bg-black/80 hover:bg-cyan-600 text-white rounded-lg backdrop-blur-md transition border border-gray-700 flex items-center gap-2 text-xs font-bold"
                         title="Editar Módulo"
                       >
                         <Pencil className="w-3.5 h-3.5" />
-                        <span className="md:hidden">Editar (1920x1080)</span>
-                        <span className="hidden md:inline">Editar (1024x1536)</span>
+                        <span className="md:hidden">Editar</span>
+                        <span className="hidden md:inline">Editar Capa</span>
                       </button>
                     </div>
                   )}
 
-                  <div className="relative aspect-video md:aspect-[2/3] w-full overflow-hidden bg-black flex items-center justify-center">
+                  <div className="relative aspect-[2/3] w-full overflow-hidden bg-black flex items-center justify-center">
                     {finalCover ? (
-                      <>
-                        <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700 hidden md:block" />
-                        <img src={customModuleCoversMobile[modulo.id] || finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700 md:hidden" />
-                      </>
+                      <img src={finalCover} alt={finalTitle} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-[#1a1a1a]">
                         <Play className="w-16 h-16 text-cyan-900/50 group-hover:text-cyan-800/80 transition" />
@@ -368,7 +357,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                 <p className="text-gray-400 mt-2 ml-6">{finalDesc}</p>
                 
                 {/* Grade de Vídeos do Módulo */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-8">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mt-8">
                   {modulo.aulas.map((aula) => {
                     const finalImagem = customLessonCovers[aula.id] || aula.imagem;
                     const finalTitulo = customLessonTitles[aula.id] || aula.titulo;
@@ -379,16 +368,11 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                         onClick={() => setVideoAberto({ ...aula, titulo: finalTitulo, imagem: finalImagem })}
                       >
                         {/* Thumbnail com Overlay */}
-                        <div className="relative w-full aspect-video md:aspect-[2/3] rounded-xl overflow-hidden border-2 border-transparent transition-all duration-300 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] bg-gray-900">
+                        <div className="relative w-full aspect-[2/3] rounded-xl overflow-hidden border-2 border-transparent transition-all duration-300 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] bg-gray-900">
                           <img 
                             src={finalImagem} 
                             alt={finalTitulo} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 hidden md:block"
-                          />
-                          <img 
-                            src={customLessonCoversMobile[aula.id] || finalImagem} 
-                            alt={finalTitulo} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 md:hidden"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           
@@ -408,7 +392,6 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                             onClick={(e) => {
                               e.stopPropagation();
                               setTempLessonCoverUrl(finalImagem);
-                              setTempLessonCoverUrlMobile(customLessonCoversMobile[aula.id] || finalImagem);
                               setTempLessonTitle(finalTitulo);
                               setEditingLessonId(aula.id);
                             }}
@@ -416,12 +399,12 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                             title="Alterar Capa e Título da Aula"
                           >
                             <Pencil className="w-3 h-3" />
-                            <span className="md:hidden">1920x1080</span>
-                            <span className="hidden md:inline">1024x1536</span>
+                            <span className="md:hidden">Editar</span>
+                            <span className="hidden md:inline">Editar Capa</span>
                           </button>
                         )}
 
-                        <h4 className="text-gray-300 text-sm md:text-[15px] font-medium leading-snug group-hover:text-cyan-400 transition-colors px-1 mt-1">
+                        <h4 className="text-gray-300 text-xs sm:text-sm md:text-[15px] font-medium leading-snug group-hover:text-cyan-400 transition-colors px-1 mt-1 line-clamp-2">
                           {finalTitulo}
                         </h4>
                       </div>
@@ -500,23 +483,13 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
             <p className="text-sm text-gray-400 mb-4">Cole abaixo os links das imagens hospedadas no PostImage ou Imgur.</p>
             <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-sm text-gray-400 mb-1">Capa Principal (Desktop):</label>
+                <label className="block text-sm text-gray-400 mb-1">Capa Principal:</label>
                 <input 
                   type="text" 
                   value={tempCoverUrl}
                   onChange={(e) => setTempCoverUrl(e.target.value)}
                   className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
-                  placeholder="Ex: https://i.postimg.cc/desktop.jpg"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-400 mb-1">Capa Principal (Mobile - 1920x1080):</label>
-                <input 
-                  type="text" 
-                  value={tempCoverUrlMobile}
-                  onChange={(e) => setTempCoverUrlMobile(e.target.value)}
-                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
-                  placeholder="Ex: https://i.postimg.cc/mobile.jpg"
+                  placeholder="Ex: https://i.postimg.cc/capa.jpg"
                 />
               </div>
             </div>
@@ -558,23 +531,13 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-1">URL da Imagem (Desktop - 1024x1536):</label>
-                <p className="text-xs text-gray-500 mb-2">Proporção sugerida: 2:3 Vertical (PostImage / Imgur).</p>
+                <label className="block text-sm text-gray-400 mb-1">URL da Imagem da Aula (Vertical):</label>
+                <p className="text-xs text-gray-500 mb-2">Proporção sugerida: 2:3 (PostImage / Imgur).</p>
                 <input 
                   type="text" 
                   value={tempLessonCoverUrl}
                   onChange={(e) => setTempLessonCoverUrl(e.target.value)}
                   className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none mb-4"
-                  placeholder="https://i.postimg.cc/..."
-                />
-                
-                <label className="block text-sm text-gray-400 mb-1 mt-2">URL da Imagem (Mobile - 1920x1080):</label>
-                <p className="text-xs text-gray-500 mb-2">Se deixar em branco, usará a imagem do Desktop.</p>
-                <input 
-                  type="text" 
-                  value={tempLessonCoverUrlMobile}
-                  onChange={(e) => setTempLessonCoverUrlMobile(e.target.value)}
-                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
                   placeholder="https://i.postimg.cc/..."
                 />
               </div>
@@ -626,7 +589,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-1">Capa do Módulo (Desktop - 1024x1536):</label>
+                <label className="block text-sm text-gray-400 mb-1">Capa do Módulo (Vertical):</label>
                 <p className="text-xs text-cyan-500/80 mb-2 font-medium">Use o "Link Direto" do Postimages (.jpg ou .png)</p>
                 <input 
                   type="text" 
@@ -634,16 +597,6 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                   onChange={(e) => setTempModuleCoverUrl(e.target.value)}
                   className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none mb-4"
                   placeholder="https://i.postimg.cc/xyz.jpg"
-                />
-
-                <label className="block text-sm text-gray-400 mb-1 mt-2">Capa do Módulo (Mobile - 1920x1080):</label>
-                <p className="text-xs text-gray-500 mb-2">Se deixar em branco, usará a imagem do Desktop.</p>
-                <input 
-                  type="text" 
-                  value={tempModuleCoverUrlMobile}
-                  onChange={(e) => setTempModuleCoverUrlMobile(e.target.value)}
-                  className="w-full bg-[#0a0a0a] border border-gray-700 rounded-lg p-3 text-white focus:border-cyan-500 outline-none"
-                  placeholder="https://i.postimg.cc/xyz-mobile.jpg"
                 />
               </div>
             </div>
