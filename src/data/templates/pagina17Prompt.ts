@@ -129,4 +129,4 @@ JAVASCRIPT & ANIMATION BEHAVIOR
 - Use GSAP & ScrollTrigger for reveal animations (.reveal, .reveal-left, .blur-in, .name-reveal). Elements should fade and slide up when scrolling into view.
 - Draggable Carousel: Implement custom vanilla JS logic to handle touch/mouse drag over the video track container to scroll horizontally smoothly.
 - FAQ Accordion: Add logic to close other open <details> tags when one is opened.
-\`;
+`;
