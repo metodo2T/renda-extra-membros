@@ -10,6 +10,7 @@ import { linkNaBio05Prompt } from './templates/linkNaBio05Prompt';
 import { linkNaBioAdvogadoPrompt } from './templates/linkNaBioAdvogadoPrompt';
 import { linkNaBioArquitetaPrompt } from './templates/linkNaBioArquitetaPrompt';
 import { linkNaBioNetflixPrompt } from './templates/linkNaBioNetflixPrompt';
+import { pagina17Prompt } from './templates/pagina17Prompt';
 
 export interface Question {
   id: string;
@@ -218,6 +219,25 @@ export const models: LandingModel[] = [
 - Seção "Como Funciona" com 3 cards de metodologia sticky em pilha tridimensional contínua.
 - Rodapé de conversão direta com CTA de diagnóstico e layout 100% responsivo.`,
     generatePrompt: () => gestorDeTrafegoPrompt
+  },
+  {
+    id: 'pagina-17',
+    name: 'Página 17 - Método Conteúdo com IA',
+    category: 'Páginas Completas',
+    description: 'Página elegante em tons de ciano (#00a8b5) para método de criação de conteúdo com Inteligência Artificial.',
+    image: 'https://i.postimg.cc/k47vCns8/heromobile.png',
+    htmlPreview: '/templates/pagina-17/index.html',
+    downloadUrl: '/templates/pagina-17/index.html',
+    promptId: 'pagina-17',
+    indicatedFor: `🎯 Profissionais mais indicados:
+- Criadores de Conteúdo, Estrategistas Digitais, Social Medias e Empreendedores.
+- Qualquer pessoa que sofra com bloqueio criativo ou queira automatizar sua produção de conteúdo com IA.
+
+🚀 Objetivos e Estratégias:
+- Hero otimizado com destaque ciano e promessa clara de criação de conteúdo sem tela em branco.
+- Estrutura de fácil conversão focada no método de inteligência artificial.
+- Cores de alta conversão (#00a8b5).`,
+    generatePrompt: () => typeof pagina17Prompt === 'function' ? pagina17Prompt({}) : pagina17Prompt as unknown as string
   },
 
   // ==========================================
