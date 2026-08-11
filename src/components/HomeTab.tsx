@@ -320,10 +320,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                   </div>
 
                   <div className="p-4 flex flex-col justify-between border-t border-cyan-900/50 flex-1 bg-[#0a0a0a]">
-                    <h3 className="text-cyan-400 font-bold text-sm sm:text-base leading-snug mb-2 text-center line-clamp-1">
-                      {finalTitle}
-                    </h3>
-                    <p className="text-gray-400 text-[11px] sm:text-xs text-center mb-4 leading-tight line-clamp-2">
+                    <p className="text-gray-400 text-[11px] sm:text-xs text-center mb-4 leading-tight line-clamp-3">
                       {finalDesc}
                     </p>
                     <button className="w-full flex items-center justify-center px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(8,145,178,0.3)] pointer-events-none">
