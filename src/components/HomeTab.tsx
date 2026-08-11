@@ -13,7 +13,6 @@ interface Aula {
 interface Modulo {
   id: number;
   titulo: string;
-  descricao: string;
   aulas: Aula[];
 }
 
@@ -155,7 +154,6 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
     {
       id: 1,
       titulo: 'Módulo 1: Páginas com IA',
-      descricao: 'Aprenda a criar e editar páginas de alta conversão do zero usando Inteligência Artificial.',
       aulas: [
         {
           id: 101,
@@ -186,7 +184,6 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
     {
       id: 2,
       titulo: 'Módulo 2: Link na Bio',
-      descricao: 'Descubra como montar uma página de links profissional para as suas redes sociais.',
       aulas: [
         {
           id: 201,
@@ -205,7 +202,6 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
     {
       id: 3,
       titulo: 'Módulo 3: Gerando Imagens com IA',
-      descricao: 'Domine a criação de imagens realistas e artes de alta qualidade através de prompts.',
       aulas: [
         {
           id: 301,
@@ -218,7 +214,6 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
     {
       id: 4,
       titulo: 'Módulo 4: Elementos Visuais',
-      descricao: 'Aprenda a utilizar elementos gráficos avançados para deixar suas páginas muito mais bonitas.',
       aulas: [
         {
           id: 401,
@@ -273,7 +268,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
             {modulos.map((modulo) => {
               const finalTitle = customModuleTitles[modulo.id] || modulo.titulo;
               const finalCover = customModuleCovers[modulo.id] || modulo.aulas[0]?.imagem;
-              const finalDesc = customModuleDescriptions[modulo.id] || modulo.descricao;
+              const finalDesc = customModuleDescriptions[modulo.id] || 'Módulo exclusivo para alunos da plataforma.';
               
               return (
                 <div 
@@ -325,7 +320,10 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
                   </div>
 
                   <div className="p-4 flex flex-col justify-between border-t border-cyan-900/50 flex-1 bg-[#0a0a0a]">
-                    <p className="text-cyan-400 font-bold text-[12px] sm:text-sm text-center mb-4 leading-tight line-clamp-3">
+                    <h3 className="text-cyan-400 font-bold text-sm sm:text-base leading-snug mb-2 text-center line-clamp-1">
+                      {finalTitle}
+                    </h3>
+                    <p className="text-gray-400 text-[11px] sm:text-xs text-center mb-4 leading-tight line-clamp-2">
                       {finalDesc}
                     </p>
                     <button className="w-full flex items-center justify-center px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(8,145,178,0.3)] pointer-events-none">
@@ -341,7 +339,7 @@ export function HomeTab({ isAdmin = false }: { isAdmin?: boolean }) {
         <div className="pt-4 pb-8 animate-in fade-in">
           {modulos.filter(m => m.id === activeModuleId).map(modulo => {
             const finalTitle = customModuleTitles[modulo.id] || modulo.titulo;
-            const finalDesc = customModuleDescriptions[modulo.id] || modulo.descricao;
+            const finalDesc = customModuleDescriptions[modulo.id] || 'Módulo exclusivo para alunos da plataforma.';
             return (
               <div key={modulo.id} className="mb-8">
                 <button 
