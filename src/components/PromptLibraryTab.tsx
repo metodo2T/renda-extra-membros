@@ -221,7 +221,7 @@ export function PromptLibraryTab() {
             <p className="text-gray-400">Nenhuma foto encontrada nesta pasta.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {filteredPrompts.map(prompt => (
               <div 
                 key={prompt.id} 
@@ -317,7 +317,7 @@ export function PromptLibraryTab() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
         
         {/* CARD FIXO DO GPT */}
         <div 
@@ -334,7 +334,7 @@ export function PromptLibraryTab() {
             PREMIUM
           </div>
 
-          <div className="relative aspect-[4/3] sm:aspect-[3/4] w-full overflow-hidden bg-black">
+          <div className="relative aspect-[3/4] w-full overflow-hidden bg-black">
             <img 
               src="https://i.postimg.cc/Twf7sMLC/2ab2dd64-2780-4a08-975d-e90e5ddb8aa4.png" 
               alt="Prompt Visual Pro"
@@ -417,7 +417,7 @@ export function PromptLibraryTab() {
                 </div>
               )}
 
-              <div className="relative aspect-[4/3] sm:aspect-[3/4] w-full overflow-hidden bg-black">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-black">
                 {coverPhoto ? (
                   <img src={coverPhoto} alt={folder.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700" />
                 ) : (
