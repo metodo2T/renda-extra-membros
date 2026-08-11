@@ -1,105 +1,132 @@
-export const pagina17Prompt = (answers: Record<string, string>) => `Build a static responsive landing page for the infoproduct "Método Conteúdo com IA" using plain HTML, CSS, and JavaScript with GSAP and ScrollTrigger. The goal is to create a high-converting, modern, and fast sales page focused on teaching how to create content with Artificial Intelligence.
+export const pagina17Prompt = (answers: Record<string, string>) => `Build a full landing page for "Método Conteúdo com IA" using plain HTML, CSS, and vanilla JavaScript. Recreate the existing page with maximum visual fidelity: a modern, conversion-focused layout with a dark aesthetic, vibrant cyan accents (#00a8b5), interactive 3D elements, draggable video carousel, scroll reveal animations, animated guarantee seal, and glowing bonus cards.
 
 PAGE IDENTITY
-- Product Name: \${answers.productName || 'Método Conteúdo com IA'}
-- Target Audience: \${answers.targetAudience || 'Criadores de conteúdo, empreendedores e social medias que sofrem com bloqueio criativo'}
-- Main Promise: \${answers.mainPromise || 'Crie conteúdo com IA todos os dias sem travar e sem depender de agência'}
-- Price: \${answers.price || 'R$ 49,00'}
-- Original Price: \${answers.originalPrice || 'R$ 149,00'}
-- Primary Color: #00a8b5 (Cyan/Teal)
-- Typography: "Plus Jakarta Sans" for headings, "Inter" for body text
+- Page title: "Método Conteúdo com IA"
+- Meta description: "Aprenda a criar conteúdo com inteligência artificial de forma prática, rápida e sem travar na tela em branco."
+- Language: pt-BR.
+- Page type: high-converting infoproduct sales landing page.
+- Visual style: modern dark mode (#000000 / #0a0a0a), sharp borders, glowing cyan accents (#00a8b5), sans-serif typography, and subtle glassmorphism.
+- Primary font stack: 'Plus Jakarta Sans' for headings and 'Inter' for body text (loaded from Google Fonts).
+- Core fidelity rule: output a single complete HTML file containing all HTML structure, embedded CSS inside a <style> tag, and embedded vanilla JavaScript inside a <script> tag. Preserve all GSAP scroll animations, hover effects, the draggable carousel logic, and the exact section flow.
 
-PAGE SECTIONS (Must follow this exact structure):
+ASSETS DE IMAGEM E VÍDEO
+Use exactly these asset links. Do not use generic placeholders.
+
+1. Hero Background Image (Desktop)
+- Type: Image (jpg)
+- Link: assets/images/hero1.jpg
+- Appears in: Hero Section (Desktop view)
+
+2. Hero Background Image (Mobile)
+- Type: Image (png)
+- Link: assets/images/heromobile.png
+- Appears in: Hero Section (Mobile view, via <picture> tag)
+
+3. Carousel Videos (Results)
+- Type: Video (mp4)
+- Link 1: assets/videos/V01.mp4
+- Link 2: assets/videos/V02.mp4
+- Link 3: assets/videos/V03.mp4
+- Link 4: assets/videos/V04.mp4
+- Link 5: assets/videos/V05.mp4
+- Appears in: Video Carousel Section
+
+4. Deliverable 1 Image (Biblioteca de Prompts)
+- Type: Image (png)
+- Link: assets/images/e1.png
+- Appears in: Revolution CTA Section (Card 1)
+
+5. Deliverable 2 Image (Guia Prático)
+- Type: Image (png)
+- Link: assets/images/e2.png
+- Appears in: Revolution CTA Section (Card 2)
+
+6. Bonus Image (Arsenal de Ganchos e CTAs)
+- Type: Image (png)
+- Link: assets/images/B2.png
+- Appears in: Bonus Section (Card 2)
+
+GLOBAL STYLES & DESIGN TOKENS
+:root {
+  --bg: 0 0% 4%;
+  --surface: 0 0% 8%;
+  --text: 0 0% 96%;
+  --muted: 0 0% 53%;
+  --stroke: 0 0% 12%;
+  --accent: 0 0% 96%;
+  --brand: 185 100% 35%;
+  --brand-strong: 185 100% 30%;
+  --brand-soft: 185 100% 62%;
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+}
+
+SECTION ORDER & STRUCTURE
 
 1. HERO SECTION
-- Seals/Badges above title: "Sem bloqueio criativo", "Sem depender de agência", "Sem perder horas escrevendo"
-- Main Title: "Use este método e crie conteúdo com IA todos os dias sem travar" (Highlight 'crie conteúdo com IA' in primary color)
-- Subtitle: "Chega de olhar para a tela sem saber o que postar. Com um processo validado e prompts prontos, você cria ideias, roteiros, legendas e peças completas com IA em minutos."
-- Call to Action (CTA): "Quero criar conteúdo com IA hoje"
-- Background: A modern hero image or a dark, tech-oriented abstract background.
+- Main wrapper: <section class="hero" id="heroSection">
+- Background: <picture> tag switching between hero1.jpg and heromobile.png based on media queries, with object-fit: cover.
+- Content:
+  - 3 Seals/Badges (Sem bloqueio criativo, Sem depender de agência, Sem perder horas escrevendo)
+  - Main Title: "Use este método e <span style='color:#00a8b5'>crie conteúdo com IA</span> todos os dias sem travar"
+  - Subtitle: "Chega de olhar para a tela sem saber o que postar. Com um processo validado e prompts prontos, você cria ideias, roteiros, legendas e peças completas com IA em minutos."
+  - CTA Button: "Quero criar conteúdo com IA hoje" with a glowing gradient ring.
 
-2. VIDEO CAROUSEL (Resultados Reais)
+2. VIDEO CAROUSEL SECTION (Resultados Reais)
 - Title: "Veja o tipo de conteúdo que você vai conseguir criar"
-- Content: A horizontal swipeable/draggable carousel of video placeholders.
+- Layout: A horizontal track of 5 vertical video elements. Drag/swipe behavior using JS. The videos should autoplay on hover/focus or loop silently.
 
-3. PAIN POINTS
+3. PAIN POINTS SECTION
 - Title: "Você já passou por alguma dessas situações na hora de criar conteúdo?"
-- Bullet points with icons:
-  * Abriu a IA para pedir conteúdo e recebeu textos genéricos que parecem iguais aos de todo mundo.
-  * Perdeu horas testando prompts, gastou energia e no final ainda achou o resultado fraco.
-  * Precisa produzir conteúdo com frequência, mas trava na hora de transformar ideias em posts, vídeos e roteiros.
-  * Publica sem consistência, vê o engajamento cair e sente que está ficando para trás no mercado.
-- Highlight at the bottom: "É por isso que existe o Método Conteúdo com IA" followed by an infinite scrolling marquee of the product name.
+- Items: 4 list items with a custom icon, appearing sequentially on scroll.
+- Bottom Highlight: "É por isso que existe o Método Conteúdo com IA"
+- Marquee: A continuous CSS text marquee scrolling across the screen reading "Método Conteúdo com IA •" over and over.
 
-4. EXPECTATION BENEFITS
+4. BENEFITS FX SECTION (Primary)
 - Title: "Com o método você vai:"
-- Cards with icons:
-  * Criar conteúdo com mais clareza, mantendo uma comunicação forte e consistente
-  * Parar de postar no improviso e construir autoridade com conteúdos estratégicos
-  * Produzir ideias, roteiros e legendas em minutos usando inteligência artificial
-  * Transformar conteúdo em atenção, confiança e mais oportunidades de venda
-- CTA: "Quero acessar o método agora"
+- Layout: 4 grid cards with corner border accents (.bfx-corner) and central SVG icons.
+- CTA Button: "Quero acessar o método agora"
 
-5. HOW IT WORKS
+5. HOW IT WORKS SECTION
 - Title: "Veja como funciona na prática"
-- 3 Steps:
-  1. Escolha um objetivo (Defina o que você quer criar no dia: post, roteiro curto, carrossel...)
-  2. Use os prompts guiados (Aplique os prompts do método para gerar conteúdo alinhado...)
-  3. Refine e publique (Faça os ajustes finais e publique com segurança...)
+- Layout: 3 steps horizontally or stacked on mobile (01: Escolha um objetivo, 02: Use os prompts guiados, 03: Refine e publique).
 
-6. DELIVERABLES (O que você vai receber)
+6. DELIVERABLES SECTION (Revolution CTA)
 - Title: "Veja tudo o que você vai receber"
-- Cards with placeholder images/icons:
-  * Biblioteca de Prompts para Conteúdo com IA
-  * Guia Prático de Criação com IA
-  * Checklist de Consistência
+- Layout: 3 cards. First two cards contain the deliverables images (e1.png and e2.png). Third card (Checklist) contains a div element for a 3D animation context (id="checklist3d").
 
 7. BONUS SECTION
 - Eyebrow: "Bônus Exclusivos"
 - Title: "E ainda tem mais"
-- 2 Bonus Cards:
-  * Bônus 01: Calendário de Conteúdo IA
-  * Bônus 02: Arsenal de Ganchos e CTAs
-- CTA: "Acessar o Método agora"
+- Layout: 2 glowing bonus cards (BÔNUS 01: Calendário de Conteúdo IA with a CSS/SVG animated publish window, BÔNUS 02: Arsenal de Ganchos e CTAs with image B2.png).
+- CTA Button: "Acessar o Método agora"
 
-8. WHO IS THIS FOR
+8. WHO IS THIS FOR SECTION (Benefits FX Secondary)
 - Title: "O método de conteúdo com IA é pra você que:"
-- Points:
-  * Quer criar conteúdo de forma profissional sem depender de equipe grande.
-  * Quer fugir do conteúdo genérico com cara de texto automático.
-  * Quer produzir com mais velocidade sem perder qualidade.
-  * Quer transformar conteúdo em autoridade, demanda e vendas.
+- Layout: 4 grid cards with check/play/arrow icons.
 
-9. VALUE ANCHORING
-- Center-aligned card: "Quando finalizei este método, me disseram para cobrar no mínimo R$ 197... e faria sentido."
-- Compare the price to consulting or creating without a method. "Mas eu não queria que preço fosse barreira..."
+9. BANNER HIGHLIGHT SECTION
+- Layout: A central glowing glassmorphism card stating "Quando finalizei este método, me disseram para cobrar no mínimo R$ 197...". Includes a list with crossed-out/strike-through text items showing expensive alternatives.
 
 10. OFFER SECTION
-- Title: "Hoje você pode entrar no método com uma condição especial:"
-- Checklist of all deliverables included.
-- Price Display: From {Original Price} to {Price}
-- Main CTA Button: "Quero criar conteúdo com IA hoje"
+- Features: 5 checkmarked items.
+- Pricing layout: "De R$149,00" crossed out. "por apenas R$ 49,00" highly visible.
+- Main CTA Button: "Quero criar conteúdo com IA hoje" with an arrow icon.
 
-11. GUARANTEE
-- Big '7' Icon
-- Title: "7 dias de Garantia Incondicional"
-- Description: "Você tem 7 dias para testar o método completo. Se não fizer sentido para você, é só pedir reembolso..."
+11. GUARANTEE SECTION
+- Layout: A 3D-styled '7' seal icon beside text "7 dias de Garantia Incondicional".
 
-12. COMPARISON (Opção 1 vs Opção 2)
+12. COMPARISON SECTION
 - Title: "Agora, você tem duas opções"
-- Option 1 (Bad): Sem o método (Continuar travando, perder tempo, conteúdo genérico).
-- Option 2 (Good): Com o método (Estruturas validadas, em poucos minutos, diferenciação, autoridade).
-- CTA: "Quero acessar o método agora"
+- Layout: Side-by-side comparison cards (Option 1 with red/bad icons, Option 2 with green/good icons).
 
-13. FAQ & FOOTER
-- Standard Accordion FAQ (5 questions).
-- Footer: © 2026 Operação Conteúdo com IA. Todos os direitos reservados.
+13. FAQ SECTION & FOOTER
+- Title: "Perguntas Frequentes"
+- Layout: 5 <details> elements acting as an accordion.
+- Footer: Simple copyright text.
 
-TECHNICAL & DESIGN REQUIREMENTS
-- Single HTML file output preferred (or clear separation of HTML, CSS, JS).
-- Styling: Use modern CSS variables, Grid/Flexbox, and a dark mode aesthetic with the primary Cyan color (#00a8b5) for accents, glows, and buttons.
-- Animations: Use GSAP for scroll-triggered reveals (fade-ins, slide-ups) and smooth interactions.
-- Buttons: High-conversion styling with subtle pulse animations or gradient borders.
-- Responsiveness: Must look perfect on mobile devices (stack elements appropriately).
-- Avoid frameworks like React or Tailwind; stick to vanilla web technologies to maintain the exact desired markup structure.
+JAVASCRIPT & ANIMATION BEHAVIOR
+- Use GSAP & ScrollTrigger for reveal animations (.reveal, .reveal-left, .blur-in, .name-reveal). Elements should fade and slide up when scrolling into view.
+- Draggable Carousel: Implement custom vanilla JS logic to handle touch/mouse drag over the video track container to scroll horizontally smoothly.
+- FAQ Accordion: Add logic to close other open <details> tags when one is opened.
 \`;
