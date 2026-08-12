@@ -11,6 +11,7 @@ import { linkNaBioAdvogadoPrompt } from './templates/linkNaBioAdvogadoPrompt';
 import { linkNaBioArquitetaPrompt } from './templates/linkNaBioArquitetaPrompt';
 import { linkNaBioNetflixPrompt } from './templates/linkNaBioNetflixPrompt';
 import { pagina17Prompt } from './templates/pagina17Prompt';
+import { pagina18Prompt } from './templates/pagina18Prompt';
 
 export interface Question {
   id: string;
@@ -238,6 +239,20 @@ export const models: LandingModel[] = [
 - Estrutura de fácil conversão focada no método de inteligência artificial.
 - Cores de alta conversão (#00a8b5).`,
     generatePrompt: () => typeof pagina17Prompt === 'function' ? pagina17Prompt({}) : pagina17Prompt as unknown as string
+  },
+  {
+    id: 'pagina-18',
+    category: 'Vendas',
+    title: 'Página 18 - Método TT',
+    description: 'Clone exato da página Método 2T Vendas Online.',
+    image: '/templates/pagina-18/assets/images/capa01.jpeg',
+    questions: [],
+    marketingContext: `📝 Foco da Página: Vendas e Conversão Direta.
+🎯 Público-Alvo: Empreendedores e infoprodutores buscando escalar.
+
+💡 Estrutura da Oferta:
+- Alta conversão e clone 100% idêntico.`,
+    generatePrompt: () => typeof pagina18Prompt === 'function' ? pagina18Prompt({}) : pagina18Prompt as unknown as string
   },
 
   // ==========================================
