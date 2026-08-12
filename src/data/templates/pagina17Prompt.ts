@@ -17,9 +17,9 @@ CRITICAL INSTRUCTIONS:
   <meta name="description" content="Aprenda a criar conteúdo com inteligência artificial de forma prática, rápida e sem travar na tela em branco." />
 
   <!-- Preload: recursos críticos -->
-  <link rel="preload" href="\${cdnBase}images/hero1.jpg" as="image" media="(min-width: 768px)" />
-  <link rel="preload" href="\${cdnBase}images/heromobile.png" as="image" media="(max-width: 767px)" />
-  <link rel="preload" href="\${cdnBase}css/styles.css" as="style" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/hero1.jpg" as="image" media="(min-width: 768px)" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/heromobile.png" as="image" media="(max-width: 767px)" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/css/styles.css" as="style" />
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
@@ -31,7 +31,7 @@ CRITICAL INSTRUCTIONS:
   <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="\${cdnBase}css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/css/styles.css" />
 </head>
 <body>
 
@@ -41,8 +41,8 @@ CRITICAL INSTRUCTIONS:
   <section class="hero" id="heroSection">
     <!-- Background image -->
     <picture>
-      <source media="(max-width: 767px)" srcset="\${cdnBase}images/heromobile.png" />
-      <img class="hero-video hero-image" src="\${cdnBase}images/hero1.jpg" alt="Background hero" fetchpriority="high" />
+      <source media="(max-width: 767px)" srcset="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/heromobile.png" />
+      <img class="hero-video hero-image" src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/hero1.jpg" alt="Background hero" fetchpriority="high" />
     </picture>
 
     <!-- Content -->
@@ -88,19 +88,19 @@ CRITICAL INSTRUCTIONS:
         <div class="vc-slider-track" id="vcSliderTrack">
           <!-- Slides posicionados via absolute JS Coverflow Style -->
           <div class="vc-slide">
-            <video src="\${cdnBase}videos/V01.mp4" muted playsinline preload="none"></video>
+            <video src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/videos/V01.mp4" muted playsinline preload="none"></video>
           </div>
           <div class="vc-slide">
-            <video src="\${cdnBase}videos/V02.mp4" muted playsinline preload="none"></video>
+            <video src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/videos/V02.mp4" muted playsinline preload="none"></video>
           </div>
           <div class="vc-slide">
-            <video src="\${cdnBase}videos/V03.mp4" muted playsinline preload="none"></video>
+            <video src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/videos/V03.mp4" muted playsinline preload="none"></video>
           </div>
           <div class="vc-slide">
-            <video src="\${cdnBase}videos/V04.mp4" muted playsinline preload="none"></video>
+            <video src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/videos/V04.mp4" muted playsinline preload="none"></video>
           </div>
           <div class="vc-slide">
-            <video src="\${cdnBase}videos/V05.mp4" muted playsinline preload="none"></video>
+            <video src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/videos/V05.mp4" muted playsinline preload="none"></video>
           </div>
         </div>
       </div>
@@ -304,7 +304,7 @@ CRITICAL INSTRUCTIONS:
                 <p>Prompts prontos para ideias, roteiros, legendas, carrosséis e conteúdos de venda. É copiar, adaptar e publicar.</p>
               </div>
               <div class="rev-feature-media tight-media">
-                <img src="\${cdnBase}images/e1.png" alt="Biblioteca de Prompts para Conteúdo com IA" class="rev-feature-img tight-img" loading="lazy" decoding="async" />
+                <img src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/e1.png" alt="Biblioteca de Prompts para Conteúdo com IA" class="rev-feature-img tight-img" loading="lazy" decoding="async" />
               </div>
             </article>
 
@@ -318,7 +318,7 @@ CRITICAL INSTRUCTIONS:
                 <p>Passo a passo direto ao ponto mostrando como transformar qualquer ideia em conteúdo estratégico com apoio da IA.</p>
               </div>
               <div class="rev-feature-media tight-media">
-                <img src="\${cdnBase}images/e2.png" alt="Guia de Personalização com IA" class="rev-feature-img tight-img" loading="lazy" decoding="async" />
+                <img src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/e2.png" alt="Guia de Personalização com IA" class="rev-feature-img tight-img" loading="lazy" decoding="async" />
               </div>
             </article>
 
@@ -404,7 +404,7 @@ CRITICAL INSTRUCTIONS:
           <div class="bc-inner">
             <div class="bc-image">
               <div class="bc-glow shadow-cyan"></div>
-              <img src="\${cdnBase}images/B2.png" alt="Arsenal de Ganchos e CTAs" loading="lazy" decoding="async" style="mix-blend-mode: normal; filter: drop-shadow(0 10px 20px rgba(0,168,181,0.3)); max-width: 85%; transform: scale(1.1); margin-top: 1rem;" />
+              <img src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/images/B2.png" alt="Arsenal de Ganchos e CTAs" loading="lazy" decoding="async" style="mix-blend-mode: normal; filter: drop-shadow(0 10px 20px rgba(0,168,181,0.3)); max-width: 85%; transform: scale(1.1); margin-top: 1rem;" />
             </div>
             <div class="bc-content">
               <div class="bc-badge"><span class="bc-badge-icon">🎁</span> BÔNUS 02</div>
@@ -723,8 +723,8 @@ CRITICAL INSTRUCTIONS:
   <!-- Scripts (defer para não bloquear render) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="\${cdnBase}js/main.js" defer></script>
-  <script src="\${cdnBase}js/checklist3d.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/js/main.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/metodo2T/renda-extra-membros@main/public/templates/pagina-17/assets/js/checklist3d.js" defer></script>
 </body>
 </html>
 
