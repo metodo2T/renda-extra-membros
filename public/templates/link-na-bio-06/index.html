@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maria Santos | Social Media</title>
+    <script>
+      (function() {
+        try {
+          var origFetch = window.fetch;
+          var currentFetch = origFetch;
+          var propDesc = Object.getOwnPropertyDescriptor(window, 'fetch') || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(window), 'fetch');
+          if (!propDesc || !propDesc.set) {
+            Object.defineProperty(window, 'fetch', {
+              configurable: true,
+              enumerable: true,
+              get: function() { return currentFetch; },
+              set: function(val) { currentFetch = val; }
+            });
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-DXHFb_1A.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DlwcQKFZ.css">
+  </head>
+  <body class="bg-[#f7f5fa] text-slate-900 selection:bg-purple-600 selection:text-white">
+    <div id="root"></div>
+  </body>
+</html>
+

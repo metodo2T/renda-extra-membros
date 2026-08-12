@@ -334,6 +334,7 @@ export const models: LandingModel[] = [
     category: 'Link na Bio',
     description: 'Maria Santos - Social Media Bio Link Page em tons de violeta, banner infinito e modal interativo.',
     image: 'https://i.postimg.cc/BbDGqC6K/Posicionamento-de-Imagem.jpg',
+    htmlPreview: '/templates/link-na-bio-06/index.html',
     downloadUrl: '/templates/link-na-bio-06/socialmidia-main.zip',
     promptId: 'link-na-bio-06',
     indicatedFor: `🎯 Profissionais mais indicados:
