@@ -10,6 +10,7 @@ import { linkNaBio05Prompt } from './templates/linkNaBio05Prompt';
 import { linkNaBioAdvogadoPrompt } from './templates/linkNaBioAdvogadoPrompt';
 import { linkNaBioArquitetaPrompt } from './templates/linkNaBioArquitetaPrompt';
 import { linkNaBioNetflixPrompt } from './templates/linkNaBioNetflixPrompt';
+import { linkNaBio06Prompt } from './templates/linkNaBio06Prompt';
 import { pagina17Prompt } from './templates/pagina17Prompt';
 
 export interface Question {
@@ -326,5 +327,23 @@ export const models: LandingModel[] = [
 - Selos de "99% Match", durações estimadas e botão de reprodução em hover.
 - Rodapé estilizado com monograma cinematográfico.`,
     generatePrompt: () => linkNaBioNetflixPrompt
+  },
+  {
+    id: 'link-na-bio-06',
+    name: 'Link da Bio 06 - Maria Santos (Social Media)',
+    category: 'Link na Bio',
+    description: 'Maria Santos - Social Media Bio Link Page em tons de violeta, banner infinito e modal interativo.',
+    image: 'https://i.postimg.cc/BbDGqC6K/Posicionamento-de-Imagem.jpg',
+    downloadUrl: '/templates/link-na-bio-06/socialmidia-main.zip',
+    promptId: 'link-na-bio-06',
+    indicatedFor: `🎯 Profissionais mais indicados:
+- Social Medias, Designers e Criadores de Conteúdo.
+- Estrategistas Digitais e Gestores de Marca.
+
+💡 Objetivos e Estratégias:
+- Capa de Portfólio Marquee (carrossel infinito CSS).
+- Avatar circular com anel iluminado de gradiente.
+- Cards interativos que abrem um Modal Detalhado.`,
+    generatePrompt: () => linkNaBio06Prompt
   }
 ];
